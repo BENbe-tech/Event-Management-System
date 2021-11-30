@@ -15,7 +15,7 @@
   \*****************************/
 /***/ (() => {
 
-eval("// var menu_btn = document.querySelector(\"#menu-btn\")\n// var sidebar = document.querySelector(\"#sidebar\")\n// var container = document.querySelector(\".mycontainer\")\n// menu_btn.addEventListener(\"click\", ()=>{\n//     sidebar.classList.toggle(\"active-nav\")\n//     container.classList.toggle(\"active-cont\")\n// })//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzP2NlZDYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBRUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJzb3VyY2VzQ29udGVudCI6WyJcblxuLy8gdmFyIG1lbnVfYnRuID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIiNtZW51LWJ0blwiKVxuLy8gdmFyIHNpZGViYXIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiI3NpZGViYXJcIilcbi8vIHZhciBjb250YWluZXIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKFwiLm15Y29udGFpbmVyXCIpXG4vLyBtZW51X2J0bi5hZGRFdmVudExpc3RlbmVyKFwiY2xpY2tcIiwgKCk9Pntcbi8vICAgICBzaWRlYmFyLmNsYXNzTGlzdC50b2dnbGUoXCJhY3RpdmUtbmF2XCIpXG4vLyAgICAgY29udGFpbmVyLmNsYXNzTGlzdC50b2dnbGUoXCJhY3RpdmUtY29udFwiKVxuLy8gfSlcblxuXG4iXSwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL2FwcC5qcy5qcyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZXNDb250ZW50IjpbIlxuXG4iXSwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL2FwcC5qcy5qcyIsInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 

@@ -16,182 +16,99 @@
 </head>
 <body >
 
-{{--
-    <div class="container">
-     <div class="row">
-      <div class = "col-md-4 col-md-offset-4" style="margin-top:20px;">
-        <h4>Welcome to dashboard</h4>
-        <hr>
-        <table class="table">
-    <thead>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Action</th>
-    </thead>
-    <tbody>
-    <tr>
-        <td>{{$data->name}}</td>
-        <td>{{$data->email}}</td>
-        <td><a href="logout">Logout</a></td>
-    </tr>
-
-    </tbody>
-        </table>
-
-
-      </div>
-
-     </div>
-
-    </div> --}}
-
-
-
-
-{{--
-<nav class = "navbar navbar-expand d-flex flex-column align-item-start" id="sidebar">
-
-<a href = "#" class = "navbar-brand text-light mt-5">
-<div class="display-5 font-weight-bold">THANOS</div>
-</a>
-<a href="logout">Logout</a>
-
-<ul class="navbar-nav d-flex flex-column mt-5 w-100">
-
-    <li class="nav-item w-100">
-  <a href="#" class="nav-link text-light p1-4">Home</a>
-    </li>
-
-    <li class="nav-item w-100">
-        <a href="#" class="nav-link text-light p1-4">About</a>
-    </li>
-
-    <li class="nav-item w-100">
-        <a href="#" class="nav-link text-light p1-4">Blog</a>
-    </li>
-
- <li class="nav-item dropdown w-100">
-        <a href="#" class="nav-link dropdown-toggle text-light p1-4"
-        id = "dropdownMenuLink" role="button" data-bs-toggle="dropdown"
-        aria-expanded="false">Service</a>
-
-        <ul class ="dropdown-menu w-100" aria-labelledby="dropdownMenuLink">
-            <li><a href ="#" class = "dropdown-item text-light pl-4 p-2">Service 01</a></li>
-            <li><a href ="#" class = "dropdown-item text-light pl-4 p-2">Service 02</a></li>
-            <li><a href ="#" class = "dropdown-item text-light pl-4 p-2">Service 03</a></li>
-
-        </ul>
-    </li>
-
-
-
-    <li class="nav-item w-100">
-        <a href="#" class="nav-link text-light p1-4">Contact</a>
-    </li>
-
-
-</ul>
-
-</nav>
-
-<section class = "p-4 my-container">
-    <button class = "btn my-4" id ="menu-btn">Toggle Sidebar</button>
-<h1>BootStrap 5 sidebar Navigation</h1>
-<p class ="text-dark">paragraph</p>
-</section> --}}
-
-
-
-
-
-<div class="wrapper">
-
-
-<nav id = "sidebar">
-
-<div class = "sidebar-header">
-
-<h3>Bootstrap Slider</h3>
-
-</div>
-
-
-<ul class = "lisst-unstyled components">
-<p>The Providers</p>
-<li class = "active">
-<a href = "#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-<ul class= "collapse lisst-unstyled" id = "homeSubmenu">
-
-<li>
-    <a href = "#">Home 1</a>
-</li>
-
-<li>
-    <a href = "#">Home 2</a>
-</li>
-
-</ul>
-</li>
-
-<li>
-    <a href="#">About</a>
-</li>
-<li>
-    <a href = "#pageSubmenu" data-toggle="collapse" aria-expanded="false" class = "dropdown-toggle">Pages</a>
-    <ul class = "collapse lisst-unstyled" id = "pageSubmenu">
-        <li>
-            <a href="#">Page 1</a>
-        </li>
-
-        <li>
-            <a href="#">Page 2</a>
-        </li>
-    </ul>
-</li>
-
-<li>
-    <a href="#">Policy</a>
-</li>
-
-<li>
-    <a href="#">COntact us</a>
-</li>
-
-</ul>
-</nav>
-
-
-<div id = "content">
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-<div class="container-fluid">
-<button type = "button" id ="sidebarCollpase" class="btn btn-nfo" >
-<i class = "fas fa-align-left"></i>
-<span>Toggle Sidebar</span>
-</button>
-</div>
-</nav>
-
-<br><br>
-
-<h2>Collapseible Sidebar using Bootstrap 4</h2>
-<p>
-
-    long story
-</p>
-
-<div class ="line"></div>
-<h3>Lorem Ipsum</h3>
-
-
-<p> Another long story</p>
-
-
-</div>
-
-
-
-</div>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+                <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                    <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                        <span class="fs-5 d-none d-sm-inline">Menu</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link align-middle px-0">
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Events</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-speedometer2"></i> <span class="ms-1 d-none d-sm-inline">Create event</span> </a>
+                            <ul class="collapse show nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1 </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2 </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Report</span></a>
+                        </li>
+                        <li>
+                            <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
+                                <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Calendar</span></a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Item</span> 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Participants</span> </a>
+                                <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                                <li class="w-100">
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 1</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 2</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 3</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="nav-link px-0"> <span class="d-none d-sm-inline">Product</span> 4</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link px-0 align-middle">
+                                <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Real time data analytic</span> </a>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="dropdown pb-4">
+                        <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle">
+                            <span class="d-none d-sm-inline mx-1">loser</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                            <li><a class="dropdown-item" href="#">New project...</a></li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Sign out</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col py-3">
+                <h3>Left Sidebar with Submenus</h3>
+                <p class="lead">
+                    An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single
+                    menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.</p>
+                <ul class="list-unstyled">
+                    <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
 
 
