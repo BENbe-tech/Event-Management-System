@@ -98,4 +98,12 @@ public function forgotpassword(){
     return view('auth.forgotpassword');
 }
 
+
+// //Create Event
+// public function createEvent(){
+
+//     return view('create-event');
+
+// }
+
 }

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\CreateEventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +31,9 @@ Route::post('login-user',[CustomAuthController::class,'loginUser'])->name('login
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware('isLoggedIn');
 
-Route::get('/logout',[CustomAuthController::class,'logout']);
+Route::post('/logout',[CustomAuthController::class,'logout'])->name('logout');
 
-Route::get('/forgotpassword',[CustomAuthController::class,'forgotpassword']);
+Route::get('/forgotpassword',[CustomAuthController::class,'forgotpassword'])->name('forgotpassword');
+
+Route::get('/create-event',[CreateEventController::class,'createEvent'])->name('create-event');
+
