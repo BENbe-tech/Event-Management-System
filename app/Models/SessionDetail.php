@@ -9,7 +9,7 @@ class SessionDetail extends Model
 {
     use HasFactory;
 
-    public function session(){
+    public function sessions(){
 
         return $this->belongsTo('App\Models\Session');
     }

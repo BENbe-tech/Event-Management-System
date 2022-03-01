@@ -12,7 +12,7 @@ class CreateEventsUsersTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {        //participants table
            Schema::create('event_user', function (Blueprint $table) {
 
             $table->id();

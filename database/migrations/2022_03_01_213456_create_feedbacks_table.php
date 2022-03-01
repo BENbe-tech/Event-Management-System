@@ -17,7 +17,7 @@ class CreateFeedbacksTable extends Migration
             $table->id();
             $table->text('comment');
             $table->timestamps();
-            $table->unsignedBigInteger('event_user_id');
+            $table->unsignedBigInteger('event_user_id')->nullable();
             $table->foreign('event_user_id')->references('id')->on('event_user')->onDelete('set null')->onUpdate('cascade');
             $table->unsignedBigInteger('organizer_id')->nullable();
             $table->foreign('organizer_id')->references('id')->on('organizers')->onDelete('set null')->onUpdate('cascade');

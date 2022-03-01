@@ -10,22 +10,22 @@ class Event extends Model
     use HasFactory;
 
 
-    public function eventDetail(){
+    public function eventDetails(){
 
         return $this->hasOne('App\Models\EventDetail','event_id');
     }
 
-    public function ticket(){
+    public function tickets(){
         return $this->hasMany('App\Models\Ticket','event_id');
 
        }
 
-       public function session(){
+       public function sessions(){
         return $this->hasMany('App\Models\Session','event_id');
 
        }
 
-       public function user(){
+       public function users(){
          return $this->belongsToMany('App\Models\User');
 
        }

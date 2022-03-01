@@ -14,7 +14,8 @@ class User extends Model
     use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'name',
+        'surname',
+        'othernames',
         'email',
         'password',
         'phone'
@@ -30,12 +31,12 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function organizer(){
+    public function organizers(){
         return $this->hasMany('App\Models\Organizer','user_id');
 
        }
 
-       public function event(){
+       public function events(){
         return $this->belongsToMany('App\Models\Event');
 
       }

@@ -9,7 +9,7 @@ class Ticket extends Model
 {
     use HasFactory;
 
-    public function payment(){
+    public function payments(){
 
         return $this->belongsTo('App\Models\Payment');
     }

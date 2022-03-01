@@ -19,7 +19,7 @@ class CreateTicketsTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('event_user_id');
+            $table->unsignedBigInteger('event_user_id')->nullable();
             $table->foreign('event_user_id')->references('id')->on('event_user')->onDelete('set null')->onUpdate('cascade');
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null')->onUpdate('cascade');

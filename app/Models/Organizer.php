@@ -9,12 +9,12 @@ class Organizer extends Model
 {
     use HasFactory;
 
-    public function feedback(){
+    public function feedbacks(){
      return $this->hasMany('App\Models\Feedback','organizer_id');
 
     }
 
-    public function event(){
+    public function events(){
         return $this->hasMany('App\Models\Event','organizer_id');
 
        }

@@ -9,7 +9,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    public function ticket(){
+    public function tickets(){
 
         return $this->hasOne('App\Models\Ticket','payment_id');
     }

@@ -9,7 +9,7 @@ class EventDetail extends Model
 {
     use HasFactory;
 
-    public function event(){
+    public function events(){
 
         return $this->belongsTo('App\Models\Event');
     }
