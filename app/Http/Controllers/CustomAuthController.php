@@ -29,7 +29,7 @@ class CustomAuthController extends Controller
        'name' => 'required',
        'email'=>'required|email|unique:users',
       'password' =>'required|min:8|confirmed',
-      'roles' => 'required',
+      'phone' => 'required|min:10',
 
    ]);
 
@@ -37,10 +37,11 @@ class CustomAuthController extends Controller
    $user = new User();
    $user->name = $request->name;
    $user->email = $request->email;
+   $user->phone = $request->phone;
    $user->password = Hash::make($request->password);
    $res = $user->save();
 
-   $user->roles()->sync($request->roles);
+//    $user->roles()->sync($request->roles);
 
    $request->session()->put('loginId',$user->id);
    if($res){

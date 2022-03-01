@@ -16,7 +16,8 @@ class User extends Model
     protected $fillable = [
         'name',
         'email',
-        'password'
+        'password',
+        'phone'
 
     ];
 
@@ -29,8 +30,5 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    public function roles(){
-
-        return $this->belongsToMany('App\Models\Role');
-    }
+ 
 }

@@ -51,20 +51,15 @@
                     <label for="password">Confirm Password</label>
                    <input type = "password" class = "form-control" placeholder="Confirm Password" name="password_confirmation" value="" required autocomplete="new-password">
                    <span class = "text-danger">@error('confirmpassword'){{$message}} @enderror</span>
-                       </div>
+                       </div><br>
 
-                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="1" id="Administrator" name="roles[]">
-                    <label class="form-check-label" for="Administrator">
-                      Administrator
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="2" id="Subscriber" name="roles[]">
-                    <label class="form-check-label" for="Subscriber">
-                      Subscriber
-                    </label>
-                  </div>
+                    <div class ="form-group">
+                   <label for="phone">Enter a Phone number:</label>
+                   <input type="tel" class="form-control" placeholder="+255656400900" id="phone" name="phone" pattern="[+255]{4}" value="" required autocomplete="phone">
+                   <span class = "text-danger">@error('confirmpassword'){{$message}} @enderror</span>
+
+
+                    </div><br>
 
                    <div class ="form-group">
                     <button class =" btn btn-block btn-primary" type="submit">Register</button>
