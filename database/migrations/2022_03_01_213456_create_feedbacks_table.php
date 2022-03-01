@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFeedbackTable extends Migration
+class CreateFeedbacksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,8 +17,8 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->text('comment');
             $table->timestamps();
-            $table->unsignedBigInteger('participant_id');
-            $table->foreign('participant_id')->references('id')->on('participants')->onDelete('set null')->onUpdate('cascade');
+            $table->unsignedBigInteger('event_user_id');
+            $table->foreign('event_user_id')->references('id')->on('event_user')->onDelete('set null')->onUpdate('cascade');
             $table->unsignedBigInteger('organizer_id')->nullable();
             $table->foreign('organizer_id')->references('id')->on('organizers')->onDelete('set null')->onUpdate('cascade');
         });

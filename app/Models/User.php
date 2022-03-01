@@ -30,5 +30,13 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
- 
+    public function organizer(){
+        return $this->hasMany('App\Models\Organizer','user_id');
+
+       }
+
+       public function event(){
+        return $this->belongsToMany('App\Models\Event');
+
+      }
 }

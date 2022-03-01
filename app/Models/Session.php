@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
+
+
+public function sessionDetail(){
+
+    return $this->hasOne('App\Models\SessionDetail','session_id');
+}
+
 }

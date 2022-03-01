@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTicketTable extends Migration
+class CreateTicketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,8 +19,8 @@ class CreateTicketTable extends Migration
             $table->timestamps();
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');
-            $table->unsignedBigInteger('participant_id');
-            $table->foreign('participant_id')->references('id')->on('participants')->onDelete('set null')->onUpdate('cascade');
+            $table->unsignedBigInteger('event_user_id');
+            $table->foreign('event_user_id')->references('id')->on('event_user')->onDelete('set null')->onUpdate('cascade');
             $table->unsignedBigInteger('payment_id')->nullable();
             $table->foreign('payment_id')->references('id')->on('payments')->onDelete('set null')->onUpdate('cascade');
         });
