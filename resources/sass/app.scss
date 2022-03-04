@@ -1,5 +1,9 @@
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+
 
 // Variables
 @import 'variables';
@@ -16,6 +20,7 @@ html,body{
     overflow-x:hidden;
     top:0;
     left:0;
+
 
 }
 
@@ -115,3 +120,4 @@ background-color:#0a3d62;
 
 
 
+//Create Event CSS

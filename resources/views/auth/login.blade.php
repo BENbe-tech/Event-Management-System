@@ -44,7 +44,8 @@
                     <button class =" btn btn-block btn-primary" type="submit">login</button>
                    </div>
                    <br>
-                   <a href="registration">New User!! Register Here.</a>
+                   <a href="registration">New User!! Register Here.</a><br>
+                   <a href="forgotpassword">Forgot Password</a>
           </form>
       </div>
 

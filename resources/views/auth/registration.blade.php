@@ -29,15 +29,15 @@
            @endif
         @csrf
           <div class="form-group">
-       <label for="name"> Names</label>
-      <input type = "text" class = "form-control" placeholder="Enter full Name" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+       <label for="name"> Fullname</label>
+      <input type = "text" class = "form-control" placeholder="Jane John Doe" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
    <span class = "text-danger">@error('name'){{$message}} @enderror</span>
 
           </div><br>
 
           <div class="form-group">
             <label for="email">Email</label>
-           <input type = "text" class = "form-control" placeholder="Enter Emial" name="email" value="{{ old('name') }}" required autocomplete="email">
+           <input type = "text" class = "form-control" placeholder="Enter Emial" name="email" value="{{ old('email') }}" required autocomplete="email">
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 
@@ -55,8 +55,8 @@
 
                     <div class ="form-group">
                    <label for="phone">Enter a Phone number:</label>
-                   <input type="tel" class="form-control" placeholder="+255656400900" id="phone" name="phone" pattern="[+255]{4}" value="" required autocomplete="phone">
-                   <span class = "text-danger">@error('confirmpassword'){{$message}} @enderror</span>
+                   <input type="tel" class="form-control" placeholder="+255656400900" id="phone" name="phone"  value="{{ old('phone') }}" required autocomplete="phone">
+                   <span class = "text-danger">@error('phone'){{$message}} @enderror</span>
 
 
                     </div><br>
@@ -65,7 +65,8 @@
                     <button class =" btn btn-block btn-primary" type="submit">Register</button>
                    </div>
                    <br>
-                   <a href="forgotpassword">Forgot Password</a>
+                   <p>Already have an account? <a href="login-user">Login in</a>.</p><br>
+
           </form>
 
 

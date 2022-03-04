@@ -9,7 +9,9 @@
     <title>{{config('app.name','Event Managemnet System')}}</title>
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <script src = "{{asset('js/app.js')}}" defer></script>
+
+    <script type="text/javascript" src = "{{asset('js/app.js')}}" defer></script>
+
 
 
      {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> --}}
@@ -29,7 +31,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="dashboard">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Profile</a>
@@ -69,10 +71,10 @@
       </nav>
 
 </header>
-
+<br>
 <div class ="container">
 
-    @yield('content');
+    @yield('content')
 </div>
 
 </body>

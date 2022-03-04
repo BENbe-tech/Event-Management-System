@@ -14,8 +14,7 @@ class User extends Model
     use HasFactory, HasApiTokens, Notifiable;
 
     protected $fillable = [
-        'surname',
-        'othernames',
+        'name',
         'email',
         'password',
         'phone'
