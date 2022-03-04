@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateEventController;
+use App\Http\Controllers\OrganizerController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,6 +32,8 @@ Route::post('/register-user',[CustomAuthController::class,'registerUser'])->name
 
 Route::post('login-user',[CustomAuthController::class,'loginUser'])->name('login-user');
 
+Route::get('login-user1',[CustomAuthController::class,'login'])->name('login-user1');
+
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware('isLoggedIn');
 
 Route::post('/logout',[CustomAuthController::class,'logout'])->name('logout');
@@ -37,3 +42,8 @@ Route::get('/forgotpassword',[CustomAuthController::class,'forgotpassword'])->na
 
 Route::get('/create-event',[CreateEventController::class,'createEvent'])->name('create-event');
 
+Route::get('/category',[CategoryController::class,'index'])->name('category');
+
+Route::get('/organizer',[OrganizerController::class,'index'])->name('organizer');
+
+Route::post('/create-organizer',[OrganizerController::class,'createorganizer'])->name('create-organizer');

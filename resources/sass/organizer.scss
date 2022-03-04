@@ -11,10 +11,11 @@ body {
   .container {
     padding: 16px;
     background-color: white;
+
   }
 
   /* Full-width input fields */
-  input[type=text], input[type=password] , input {
+  input[type=text], input[type=password] , input ,textarea{
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -24,20 +25,10 @@ body {
     border-radius:4px;
   }
 
-  input[type=text]:focus, input[type=password]:focus ,input:focus {
+  input[type=text]:focus, input[type=password]:focus ,input:focus,textarea {
     background-color: #ddd;
     outline: none;
   }
-
-  select {
-    width: 100%;
-    padding: 16px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #f1f1f1;
-  }
-
-
 
   .required {
    color:red;

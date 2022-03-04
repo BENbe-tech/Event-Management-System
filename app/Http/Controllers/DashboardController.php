@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+
 class DashboardController extends Controller
 {
     //
@@ -17,5 +18,5 @@ class DashboardController extends Controller
         return view('dashboard',compact('data'));
     }
 
-   
+
 }

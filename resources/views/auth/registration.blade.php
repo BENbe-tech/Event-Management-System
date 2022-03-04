@@ -30,14 +30,14 @@
         @csrf
           <div class="form-group">
        <label for="name"> Fullname</label>
-      <input type = "text" class = "form-control" placeholder="Jane John Doe" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+      <input type = "text" class = "form-control" placeholder="John Doe" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
    <span class = "text-danger">@error('name'){{$message}} @enderror</span>
 
           </div><br>
 
           <div class="form-group">
             <label for="email">Email</label>
-           <input type = "text" class = "form-control" placeholder="Enter Emial" name="email" value="{{ old('email') }}" required autocomplete="email">
+           <input type = "email" class = "form-control" placeholder="Enter Emial" name="email" value="{{ old('email') }}" required autocomplete="email">
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 
@@ -65,7 +65,7 @@
                     <button class =" btn btn-block btn-primary" type="submit">Register</button>
                    </div>
                    <br>
-                   <p>Already have an account? <a href="login-user">Login in</a>.</p><br>
+                   <p>Already have an account? <a href="login-user1" >Login in</a>.</p><br>
 
           </form>
 

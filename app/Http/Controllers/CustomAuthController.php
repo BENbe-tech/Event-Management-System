@@ -62,7 +62,7 @@ public function loginUser(Request $request){
     $request->validate([
 
         'email'=>'required|email',
-       'password' =>'required|min:5|max:12',
+       'password' =>'required|min:8',
 
     ]);
       $user = User::where('email', '=', $request->email)->first();

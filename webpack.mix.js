@@ -15,4 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/create.js', 'public/js/create.js')
     .sass('resources/sass/app.scss', 'public/css')
     .sass('resources/sass/create.scss','public/css/create.css')
+    .sass('resources/sass/organizer.scss','public/css/organizer.css')
     .sourceMaps();

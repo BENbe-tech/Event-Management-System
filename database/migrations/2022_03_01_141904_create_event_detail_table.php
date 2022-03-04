@@ -18,8 +18,10 @@ class CreateEventDetailTable extends Migration
             $table->string('category');
             $table->string('online_link')->nullable();
             $table->string('venue')->nullable();
-            $table->date('date');
-            $table->time('time');
+            $table->string('city')->nullable();
+            $table->string('address')->nullable();
+            $table->dateTime('starttime');
+            $table->datetime('endtime');
             $table->string('price')->nullable();
             $table->text('description');
             $table->string('image');
