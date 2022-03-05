@@ -23,8 +23,8 @@ class CreateEventDetailTable extends Migration
             $table->dateTime('starttime');
             $table->datetime('endtime');
             $table->string('price')->nullable();
-            $table->text('description');
-            $table->string('image');
+            $table->text('description')->nullable();
+            $table->string('image')->nullable();
             $table->string('speaker')->nullable();
             $table->string('document')->nullable();
             $table->timestamps();

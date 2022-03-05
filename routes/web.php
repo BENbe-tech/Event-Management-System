@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateEventController;
+use App\Http\Controllers\CreateEventcontController;
 use App\Http\Controllers\OrganizerController;
 
 /*
@@ -40,7 +41,13 @@ Route::post('/logout',[CustomAuthController::class,'logout'])->name('logout');
 
 Route::get('/forgotpassword',[CustomAuthController::class,'forgotpassword'])->name('forgotpassword');
 
-Route::get('/create-event',[CreateEventController::class,'createEvent'])->name('create-event');
+Route::get('/create-event',[CreateEventController::class,'index'])->name('create-event');
+
+Route::post('/create-event1',[CreateEventController::class,'createEvent'])->name('create-event1');
+
+Route::get('/create-eventcont',[CreateEventcontController::class,'createEventcont'])->name('create-eventcont');
+
+// Route::get('/create-eventcont',[CreateEventcontController::class,'createEventcont'])->name('create-eventcont');
 
 Route::get('/category',[CategoryController::class,'index'])->name('category');
 

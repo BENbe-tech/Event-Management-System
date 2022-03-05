@@ -24,19 +24,19 @@ class OrganizerController extends Controller
         ]);
 
 
-        $user = new Organizer();
-        $user->name = $request->name;
-        $user->description = $request->description;
-        $user->email = $request->email;
-        $user->website_link = $request->website;
-        $user->facebook = $request->facebook;
-        $user->twitter = $request->twitter;
-        $user->instagram = $request->instagram;
-        $user->linkedIn = $request->linkedin;
-        $user->user_id = session('loginId');
-        // $user->user_id = $request->session()->get('loginId');
+        $organizer = new Organizer();
+        $organizer->name = $request->name;
+        $organizer->description = $request->description;
+        $organizer->email = $request->email;
+        $organizer->website_link = $request->website;
+        $organizer->facebook = $request->facebook;
+        $organizer->twitter = $request->twitter;
+        $organizer->instagram = $request->instagram;
+        $organizer->linkedIn = $request->linkedin;
+        // $user->user_id = session('loginId');
+        $organizer->user_id = $request->session()->get('loginId');
 
-        $res = $user->save();
+        $res = $organizer->save();
 
 
 

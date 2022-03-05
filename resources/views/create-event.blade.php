@@ -7,7 +7,7 @@
     {{-- <script src="https://kit.fontawesome.com/fe05d227ea.js" crossorigin="anonymous"></script> --}}
 </head>
 <body>
-<form action="/action_page.php">
+<form action="{{route('create-event1')}}"  method="post">
     @if(Session::has('success'))
     <div class = "alert alert-success">{{Session::get('success')}}</div>
        @endif
@@ -41,9 +41,9 @@
     <div>
         <label for="Organizer"><b>Event Organizer</b></label><span class ="required"> * </span><a href ="{{route('organizer')}}">Add new profile for event organizer</a><br>
         <select id="organizer"  name ="organizer" value="{{ old('organizer') }}" required>
-     <?php $organizers = App\Models\Organizer::all(); ?>
+     <?php $organizers = App\Models\Organizer::all()->where('user_id',session('loginId')); ?>
      @foreach ($organizers as $organizer )
-        <option value = "{{$organizer->name}}" selected>{{$organizer->name}}</option>
+        <option value = "{{$organizer->id}}" selected>{{$organizer->name}}</option>
         @endforeach
         </select>
         <span class = "text-danger">@error('organizer'){{$message}} @enderror</span>
@@ -53,13 +53,13 @@
       <hr>
       <div class ="formline">
       <div>
-        <label for="venue"><b>Venue</b></label><span class ="required"> *</span><br>
-        <input type="text" placeholder="Enter Venue of your event" name="venue" id="venue" value="{{ old('venue') }}" required autocomplete="venue" >
+        <label for="venue"><b>Venue</b></label><br>
+        <input type="text" placeholder="Enter Venue of your event" name="venue" id="venue" value="{{ old('venue') }}" autocomplete="venue" >
         <span class = "text-danger">@error('venue'){{$message}} @enderror</span>
        </div>
 
        <div>
-        <label for="title"><b>Virtual Link</b></label><br>
+        <label for="Link"><b>Virtual Link</b></label><br>
         <input type="text" placeholder="Enter online link of event" name="link" id="link" value="{{ old('link') }}"  autocomplete="link" >
         <span class = "text-danger">@error('link'){{$message}} @enderror</span>
        </div>
@@ -67,13 +67,13 @@
 
        <div class ="formline">
        <div>
-        <label for="title"><b>City</b></label><br>
+        <label for="City"><b>City</b></label><br>
         <input type="text" placeholder="Enter City " name="city" id="city" value="{{ old('city') }}" autocomplete="city" >
         <span class = "text-danger">@error('city'){{$message}} @enderror</span>
        </div>
 
        <div>
-        <label for="title"><b>Address</b></label><br>
+        <label for="address"><b>Address</b></label><br>
         <input type="text" placeholder="Enter an Address,Zipcode" name="address" id="address" value="{{ old('address') }}"  autocomplete="address" >
         <span class = "text-danger">@error('address'){{$message}} @enderror</span>
        </div>
@@ -83,22 +83,21 @@
       <hr>
     <div class ="formline">
        <div>
-        <label for="title"><b>Event start date and time</b></label><br>
-        <input type="datetime-local" placeholder="" name="start" id="start" value="{{ old('start') }}" >
-        <span class = "text-danger">@error('start'){{$message}} @enderror</span>
+        <label for="start"><b>Event start date and time</b></label><span class ="required"> *</span><br>
+        <input type="datetime-local" placeholder="" name="start_date" id="start_date" value="{{ old('start_date') }}" required >
+        <span class = "text-danger">@error('start_date'){{$message}} @enderror</span>
        </div>
 
        <div>
-        <label for="title"><b>Event end date and time</b></label><br>
-        <input type="datetime-local" placeholder="" name="end" id="end" value="{{ old('end') }}"  >
-        <span class = "text-danger">@error('end'){{$message}} @enderror</span>
+        <label for="end"><b>Event end date and time</b></label><span class ="required"> *</span><br>
+        <input type="datetime-local" placeholder="" name="end_date" id="end_date" value="{{ old('end_date') }}"  required >
+        <span class = "text-danger">@error('end_date'){{$message}} @enderror</span>
        </div>
     </div>
-
-
     <hr>
+
     <div>
-        <button type="submit" class="registerbtn">Enter</button>
+        <button type="submit" class="registerbtn">Continue</button>
     </div>
 
     </div>
