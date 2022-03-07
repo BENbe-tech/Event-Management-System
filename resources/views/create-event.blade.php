@@ -7,7 +7,7 @@
     {{-- <script src="https://kit.fontawesome.com/fe05d227ea.js" crossorigin="anonymous"></script> --}}
 </head>
 <body>
-<form action="{{route('create-event1')}}"  method="post">
+<form action="{{route('create-event1')}}"  method="post" enctype="multipart/form-data">
     @if(Session::has('success'))
     <div class = "alert alert-success">{{Session::get('success')}}</div>
        @endif
@@ -63,6 +63,7 @@
         <input type="text" placeholder="Enter online link of event" name="link" id="link" value="{{ old('link') }}"  autocomplete="link" >
         <span class = "text-danger">@error('link'){{$message}} @enderror</span>
        </div>
+
     </div>
 
        <div class ="formline">
@@ -94,10 +95,60 @@
         <span class = "text-danger">@error('end_date'){{$message}} @enderror</span>
        </div>
     </div>
+
+
+    <h3>Payment and Description</h3>
     <hr>
+  <div class ="formline">
+     <div>
+      <label for="entry_mode"><b>Entry Mode</b></label><span class ="required"> *</span><br>
+    <select id="entry_mode"  name ="entry_mode" value="{{ old('entry_mode') }}" required>
+        <option value = "paid" selected>Paid Event</option>
+        <option value = "free" selected>Free Event</option>
+    </select>
+      <span class = "text-danger">@error('entry_mode'){{$message}} @enderror</span>
+     </div>
+
+     <div>
+      <label for="price"><b>Price</b></label><br>
+      <input type="text" placeholder="price for paid event" name="price" id="price" value="{{ old('price') }}"  >
+      <span class = "text-danger">@error('price'){{$message}} @enderror</span>
+     </div>
+
+     <div>
+        <label for="speaker"><b>Speaker</b></label><br>
+        <input type="text" placeholder="Speaker of event" name="speaker" id="speaker" value="{{ old('speaker') }}"  >
+        <span class = "text-danger">@error('speaker'){{$message}} @enderror</span>
+    </div>
+  </div>
+
+  <div class ="formline">
 
     <div>
-        <button type="submit" class="registerbtn">Continue</button>
+     <label for="document"><b>Document</b></label><br>
+     <input type="file" placeholder="price for paid event" name="document" id="document" value="{{ old('document') }} "  >
+     <p class="required">file(pdf) maximum size 2MB</p>
+     <span class = "text-danger">@error('document'){{$message}} @enderror</span>
+    </div>
+
+    <div>
+       <label for="image"><b>Image</b></label><span class ="required"> *</span><br>
+       <input type="file" placeholder="Enter image for event" name="image" id="image" value="{{ old('image') }}" required>
+       <p class="required">image(jpg,jpeg,png) maximum size 2MB</p>
+       <span class = "text-danger">@error('image'){{$image}} @enderror</span>
+   </div>
+ </div>
+
+ <div>
+    <label for="description"><b>Description</b></label><span class ="required"> *</span><br>
+    <textarea placeholder="Enter description" name="description" id="description" value="{{ old('description') }}" required ></textarea>
+    <span class = "text-danger">@error('description'){{$message}} @enderror</span>
+   </div>
+
+
+  <hr>
+    <div>
+        <button type="submit" class="registerbtn">Create</button>
     </div>
 
     </div>

@@ -23,10 +23,13 @@ class CreateEventDetailTable extends Migration
             $table->dateTime('starttime');
             $table->datetime('endtime');
             $table->string('price')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->text('description');
+            $table->string('image_name');
+            $table->string('image_path');
+            $table->string('document_name')->nullable();
+            $table->string('document_path')->nullable();
+            $table->string('entry_mode');
             $table->string('speaker')->nullable();
-            $table->string('document')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade')->onUpdate('cascade');

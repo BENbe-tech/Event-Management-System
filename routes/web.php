@@ -45,9 +45,6 @@ Route::get('/create-event',[CreateEventController::class,'index'])->name('create
 
 Route::post('/create-event1',[CreateEventController::class,'createEvent'])->name('create-event1');
 
-Route::get('/create-eventcont',[CreateEventcontController::class,'createEventcont'])->name('create-eventcont');
-
-// Route::get('/create-eventcont',[CreateEventcontController::class,'createEventcont'])->name('create-eventcont');
 
 Route::get('/category',[CategoryController::class,'index'])->name('category');
 
