@@ -1,3 +1,98 @@
-body{background-color:#ebe0e4;font-family:Arial,Helvetica,sans-serif}*{box-sizing:border-box}.container{background-color:#fff;padding:16px}input,input[type=password],input[type=text],textarea{background:#f1f1f1;border:none;border-radius:4px;display:inline-block;margin:5px 0 22px;padding:15px;width:100%}input:focus,input[type=password]:focus,input[type=text]:focus,textarea{background-color:#ddd;outline:none}select{background-color:#f1f1f1;border:none;border-radius:4px;padding:16px 20px;width:100%}.required{color:red}hr{border:1px solid #f1f1f1;margin-bottom:25px}.registerbtn{background-color:#147ce4;border:none;border-radius:4px;color:#fff;cursor:pointer;margin:8px 0;opacity:.9;padding:16px 20px;width:100%}.registerbtn:hover{opacity:1}a{color:#1e90ff}.signin{background-color:#f1f1f1;text-align:center}.formline{align-items:center;display:flex;flex-flow:row wrap}.formline div{margin:0 50px;vertical-align:middle}@media (max-width:800px){.formline div{margin:1px 0}.formline{align-items:stretch;flex-direction:column}}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ebe0e4;
+}
 
-/*# sourceMappingURL=create.css.map*/
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password], input, textarea {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+input[type=text]:focus, input[type=password]:focus, input:focus, textarea {
+  background-color: #ddd;
+  outline: none;
+}
+
+select {
+  width: 100%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+
+.required {
+  color: red;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #147ce4;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 4px;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.formline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.formline div {
+  vertical-align: middle;
+  margin: 0px 50px;
+}
+
+@media (max-width: 800px) {
+  .formline div {
+    margin: 1px 0;
+  }
+
+  .formline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

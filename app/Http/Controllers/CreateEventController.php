@@ -24,7 +24,7 @@ class CreateEventController extends Controller
             'start_date'=>'required',
             'end_date'=>'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'document' => 'required|mimes:pdf|max:2048',
+            'document' => 'mimes:pdf|max:2048',
             'description' => 'required',
             'entry_mode' => 'required',
         ]);
@@ -37,7 +37,7 @@ class CreateEventController extends Controller
         $eventid = Event::insertGetId(
 	        ['event_title' => $request->eventtitle,'organizer_id' => $request->organizer]
 	    );
-        echo $eventid;
+        // echo $eventid;
 
         if($eventid != ""){
         // $eventfetch = DB::table('events')
@@ -54,9 +54,14 @@ class CreateEventController extends Controller
         $name = $request->file('image')->getClientOriginalName();
         $path =  $request->file('image')->store('public/ImageFolder');
 
+         if($request->document != ""){
         $namedoc = $request->file('document')->getClientOriginalName();
         $pathdoc =  $request->file('document')->store('public/DocumentFolder');
 
+         }else{
+             $namedoc = null;
+             $pathdoc = null;
+         }
         $eventdetail = new EventDetail();
         $eventdetail->category = $request->category;
         $eventdetail->venue = $request->venue;

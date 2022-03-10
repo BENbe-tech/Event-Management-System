@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateEventController;
 use App\Http\Controllers\CreateEventcontController;
+use App\Http\Controllers\MyEventsController;
 use App\Http\Controllers\OrganizerController;
 
 /*
@@ -51,3 +52,5 @@ Route::get('/category',[CategoryController::class,'index'])->name('category');
 Route::get('/organizer',[OrganizerController::class,'index'])->name('organizer');
 
 Route::post('/create-organizer',[OrganizerController::class,'createorganizer'])->name('create-organizer');
+
+Route::get('/myevents',[MyEventsController::class,'index'])->name('myevents');
