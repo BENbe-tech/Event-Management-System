@@ -9,6 +9,20 @@ class Organizer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'email',
+        'website_link',
+        'facebook',
+        'twitter',
+        'instagram',
+        'linkedIn',
+        'user_id'
+
+    ];
+
+
     public function feedbacks(){
      return $this->hasMany('App\Models\Feedback','organizer_id');
 

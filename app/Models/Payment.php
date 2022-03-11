@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+
+        'payment_time',
+        'amount',
+        'method'
+    ];
+
 
     public function tickets(){
 

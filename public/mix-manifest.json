@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/js/create.js": "/js/create.js",
     "/css/app.css": "/css/app.css",
+    "/css/myevents.css": "/css/myevents.css",
     "/css/organizer.css": "/css/organizer.css",
     "/css/create.css": "/css/create.css"
 }

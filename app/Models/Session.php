@@ -9,7 +9,11 @@ class Session extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'event_id'
 
+    ];
 public function sessionDetails(){
 
     return $this->hasOne('App\Models\SessionDetail','session_id');

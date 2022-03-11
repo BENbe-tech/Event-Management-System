@@ -29,38 +29,38 @@ class CreateEventController extends Controller
             'entry_mode' => 'required',
         ]);
 
-        // $event = new Event();
-        // $event->event_title = $request->eventtitle;
-        // $event->organizer_id = $request->organizer;
-        // $eventres = $event->save();
+
 
         $eventid = Event::insertGetId(
 	        ['event_title' => $request->eventtitle,'organizer_id' => $request->organizer]
 	    );
-        // echo $eventid;
+
 
         if($eventid != ""){
-        // $eventfetch = DB::table('events')
-        // ->where('event_title','=',$request->eventtitle)
-        // ->where('organizer_id' ,'=',$request->organizer)
-        // ->first('id');
-        // echo $eventfetch;
 
-        // $eventfetch = DB::select('select id from events where event_title = ? and organizer_id = ?',[$request->eventtitle,$request->organizer]);
-        // $eventfetch = Event::firstWhere('event_title','organizer_id',[$request->eventtitle,$request->organizer]);
-
-        // echo $eventfetch->id;
+      if($request->hasFile('image')){
 
         $name = $request->file('image')->getClientOriginalName();
-        $path =  $request->file('image')->store('public/ImageFolder');
-
-         if($request->document != ""){
+        $file = $request->file('image');
+        $extention = $file->getClientOriginalExtension();
+        $filename = time().'.'.$extention;
+        $file->move('storage/ImageFolder/',$filename);
+        // $path =  $request->file('image')->store('public/ImageFolder');
+    }else{
+        $filename = null;
+        $name =null;
+    }
+        if($request->hasFile('document')){
         $namedoc = $request->file('document')->getClientOriginalName();
-        $pathdoc =  $request->file('document')->store('public/DocumentFolder');
+
+        $docfile = $request->file('document');
+        $docname = time().'.'.$docfile->getClientOriginalExtension();
+        $docfile->move('storage/DocumentFolder/',$docname);
+        // $pathdoc =  $request->file('document')->store('public/DocumentFolder');
 
          }else{
              $namedoc = null;
-             $pathdoc = null;
+             $docname = null;
          }
         $eventdetail = new EventDetail();
         $eventdetail->category = $request->category;
@@ -72,9 +72,9 @@ class CreateEventController extends Controller
         $eventdetail->endtime= $request->end_date;
         $eventdetail->event_id= $eventid;
         $eventdetail->image_name = $name;
-        $eventdetail->image_path = $path;
+        $eventdetail->image_path = $filename ;
         $eventdetail->document_name = $namedoc;
-        $eventdetail->document_path = $pathdoc;
+        $eventdetail->document_path = $docname ;
         $eventdetail->entry_mode =$request->entry_mode;
         $eventdetail ->price = $request->price;
         $eventdetail->description =$request->description ;
@@ -84,7 +84,7 @@ class CreateEventController extends Controller
 
         if($res){
             // return back()->with('success','You have registerd successfully');
-            return redirect('dashboard');
+            return redirect('myevents');
 
         }else{
              return back()->with('fail', 'something wrong');

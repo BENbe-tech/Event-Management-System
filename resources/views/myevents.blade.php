@@ -6,66 +6,48 @@
     {{-- <script src="https://kit.fontawesome.com/fe05d227ea.js" crossorigin="anonymous"></script> --}}
 </head>
 <body>
-
-
-   
-    {{-- @foreach ($event_details as $event_detail)
-    @foreach ($event_titles as $event_title ) --}}
-
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th><b>Organizer name</b></th>
+                <th><b>Event title</b></th>
+            </tr>
+        </thead>
+        <tbody>
   <?php
-//    $event = App\Models\Event::all()-> whereIn('organizer_id',$organizer_id);
-//     echo $event;
-//     foreach ($event->eventDetails as $details) {
 
-//         echo $details->category;
-
-//     }
 
          $organizer_id = App\Models\Organizer::all()->where('user_id',session('loginId'))->pluck('id');
-         //echo   $organizer_id[0];
-        //echo $organizer_id->count();
+
         $length = $organizer_id->count();
 
         for($i =0; $i<$length;$i++ ){
-         //   echo $organizer_id[$i];
+
        $organizer_name = App\Models\Organizer::all()->where('id',$organizer_id[$i])->pluck('name');
-        //    echo $organizer_name[0];
+
 
       $event_title =App\Models\Event::all()-> where('organizer_id',$organizer_id[$i])->pluck('event_title');
-      $event_id =App\Models\Event::all()-> where('organizer_id',$organizer_id[$i])->pluck('id')
- ?>
+      $events_id =App\Models\Event::all()-> where('organizer_id',$organizer_id[$i])->pluck('id');
 
-     <h4><b>Organizer name:</b> {{$organizer_name[0]}}</h4>
-    <?php
    $length_title = $event_title->count();
      for($j=0; $j<$length_title;$j++){
+         $event_id = $events_id[$j];
     ?>
 
-        {{-- <h4><b>{{$event_title}}</b></h4> --}}
-     <div class="container">
-        {{-- <p>{{$event_detail->category}}</p>
-        <p>{{$event_detail->starttime}}</p> --}}
-        <span>Event title:
-            <?php
-
-                  echo $event_title[$j];
-                  echo $event_id[$j];
-              ?>
-        </span>
-        <a href="#">open</a>
-      </div>
-
-    <br>
+            <tr>
+                <td><b>{{$organizer_name[0]}}</b></td>
+                <td><a href="{{route('myeventdetails', $event_id)}}"><b>{{$event_title[$j]}}{{$events_id[$j]}}</b></a></td>
+            </tr>
 
 <?php
         }
 }
 ?>
-
-{{-- @endforeach
-    @endforeach --}}
-
+   </tbody>
+</table>
+<span>Click Event title of particular event to open it</span>
 </body>
 @endsection
+
 
 

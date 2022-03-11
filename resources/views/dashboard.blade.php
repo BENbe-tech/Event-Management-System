@@ -48,7 +48,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropbtn" href="#">Events</a>
                 <div class="dropdown-content">
-                    <a href="myevents">My Events</a>
+                    <a href="{{route('myevents')}}">My Events</a>
                     <a href="#">Registered events</a>
                     <a href="#">Link 3</a>
                 </div>
