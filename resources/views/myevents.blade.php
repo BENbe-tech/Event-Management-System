@@ -6,6 +6,13 @@
     {{-- <script src="https://kit.fontawesome.com/fe05d227ea.js" crossorigin="anonymous"></script> --}}
 </head>
 <body>
+    <?php
+      $organizer_id = App\Models\Organizer::all()->where('user_id',session('loginId'))->pluck('id');
+      $event_title =App\Models\Event::all()-> whereIn('organizer_id',$organizer_id)->pluck('event_title');
+
+?>
+@if($event_title!="[]")
+    <div>
     <table class="styled-table">
         <thead>
             <tr>
@@ -45,7 +52,11 @@
 ?>
    </tbody>
 </table>
-<span>Click Event title of particular event to open it</span>
+<p class="central" style="text-align: center;">Click Event title of particular event to open it</p>
+</div>
+@else
+<p style="text-align: center;">You have not created any event</p>
+@endif
 </body>
 @endsection
 

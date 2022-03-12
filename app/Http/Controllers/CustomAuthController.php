@@ -46,7 +46,7 @@ class CustomAuthController extends Controller
    $request->session()->put('loginId',$user->id);
    if($res){
     //    return back()->with('success','You have registerd successfully');
-       return redirect('dashboard');
+       return redirect('login-user1');
 
    }else{
         return back()->with('fail', 'something wrong');
@@ -70,7 +70,7 @@ public function loginUser(Request $request){
          if(Hash::check($request->password,$user->password)){
             //  Session::put('loginId',$user->id);
              $request->session()->put('loginId',$user->id);
-             return redirect('dashboard');
+             return redirect('home');
          } else {
           return back()->with('fail','Password not matches.');
          }
