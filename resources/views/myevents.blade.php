@@ -43,7 +43,7 @@
 
             <tr>
                 <td><b>{{$organizer_name[0]}}</b></td>
-                <td><a href="{{route('myeventdetails', $event_id)}}"><b>{{$event_title[$j]}}{{$events_id[$j]}}</b></a></td>
+                <td><a href="{{route('myeventdetails', $event_id)}}" class="title"><b>{{$event_title[$j]}}{{$events_id[$j]}}</b></a></td>
             </tr>
 
 <?php

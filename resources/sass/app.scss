@@ -47,6 +47,7 @@ ul {
     padding: 3rem 2rem;
     height: 0rem;
     min-height:12vh;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.2);
 
 }
 
@@ -148,7 +149,6 @@ background-color:#0a3d62;
   .dropdown:hover .dropdown-content {
     display: block;
   }
-
 
 
 
