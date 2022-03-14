@@ -12,6 +12,7 @@ use App\Http\Controllers\MyEventDetailsController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\StorageFileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeEventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,3 +66,8 @@ Route::get('/download/{file}',[MyEventDetailsController::class,'download'])->nam
 Route::get('/forgotpassword',[ForgotPasswordController::class,'index'])->name('forgotpassword');
 
 Route::get('/home',[HomeController::class,'index'])->name('home')->middleware('isLoggedIn');
+
+
+Route::post('/home-search',[HomeController::class,'search'])->name('home-search');
+
+Route::get('/home-event/{id}',[HomeEventController::class,'index'])->name('home-event');

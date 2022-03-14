@@ -32,7 +32,7 @@ class EventDetail extends Model
 
 
     public function events(){
-
-        return $this->belongsTo('App\Models\Event');
+     
+        return $this->belongsTo('App\Models\Event','event_id');
     }
 }

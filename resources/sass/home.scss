@@ -5,8 +5,6 @@ body {
   }
 
 
-
-
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -30,7 +28,6 @@ body {
     display: flex;
     flex-flow: row wrap;
 
-
   }
 
   .image img{
@@ -51,7 +48,8 @@ body {
    width:100%;
    height: 20%;
    text-align: center;
-   padding-top: 20px;
+   padding-top: 10px;
+   background-color: #e9e9e9;
 }
 
 
@@ -70,9 +68,17 @@ body {
 
   }
 
+  a.title{
+    text-decoration: none;
+    color: black;
+    &:hover{
+        color:#2f2fb6;
+      }
+}
 
-//Search Bar
 
+
+//Search Bar and Home nav bar Styling
 .topnav {
     overflow: hidden;
     background-color: #e9e9e9;
@@ -125,6 +131,11 @@ body {
 
   .topnav .search-container button:hover {
     background: #ccc;
+  }
+
+  .response {
+     text-align: center;
+     padding-top: 30px;
   }
 
   @media screen and (max-width: 600px) {

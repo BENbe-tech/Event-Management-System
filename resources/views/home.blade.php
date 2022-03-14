@@ -12,13 +12,13 @@
 
         <a  class="active"><h5>Explore Events</h5></a>
         <div class="search-container">
-          <form action="/action_page.php">
-
-            <select id="organizer"  name ="organizer" value="" required>
-                <option value = "1" selected>All</option>
+          <form action="{{route('home-search')}}" method="post" enctype="multipart/form-data">
+           @csrf
+            <select id="organizer"  name ="category" value="" required>
+                <option value = "0" selected>All</option>
                 @foreach ($event_categorys as $event_category )
-                
-                <option value = "{{$event_category->id}}" >{{$event_category->category_name}}</option>
+
+                <option value = "{{$event_category->category_name}}" >{{$event_category->category_name}}</option>
                 @endforeach
             </select>
             <button type="submit"><i class="fa fa-search"></i></button>
@@ -31,17 +31,70 @@
 
 <div class = "container">
 
+<?php
+if($flag==1){
+$length = $events->count();
+
+for($i=0 ; $i<$length; $i++ ){
+
+
+ $dataDetail =  App\Models\Event::find($IDevents[$i])->eventDetails;
+ $dataEvent  = $events[$i];
+ $event_id = $dataEvent->id;
+?>
+
 <div class="card">
     <div class = "image">
-  <img src="{{ asset('storage/ImageFolder/pop.png') }}" alt="Avatar" style="width:100%">
+  <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" >
     </div>
   <div class="details">
-    <h5>Event title</h5>
+    <h5>{{$dataEvent->event_title}}</h5>
+    <a href="{{route('home-event', $event_id)}}" class="title">Book Now</a>
+  </div>
+</div>
+
+<?php
+}}
+elseif ($flag == 0) {
+
+  ?>
+ <p class = "response"><b>No event present</b></p>
+  <?php
+}
+
+elseif($flag == 2){
+    $length = $IDevents->count();
+
+for($i=0 ; $i<$length; $i++ ){
+
+$dataDetail =  App\Models\Event::find($IDevents[$i])->eventDetails;
+$dataEvent =  App\Models\EventDetail::find($IDdetails[$i])->events;
+$event_id = $dataEvent->id;
+
+?>
+
+<div class="card">
+    <div class = "image">
+  <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" >
+    </div>
+  <div class="details">
+    <h5>{{$dataEvent->event_title}}</h5>
+    <a href="{{route('home-event', $event_id)}}" class="title">Book Now</a>
   </div>
 </div>
 
 
+<?php
 
+}
+}
+else{
+?>
+<p class = "response"><b>Error in fetching events</b></p>
+
+<?php
+}
+?>
 
 </div>
 </body>
