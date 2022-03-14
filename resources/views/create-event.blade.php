@@ -130,15 +130,15 @@
     <div>
      <label for="document"><b>Document</b></label><br>
      <input type="file" placeholder="price for paid event" name="document" id="document" value="{{ old('document') }} "  >
-     <p class="required">file(pdf) maximum size 2MB</p>
+     <p class="required">file(pdf) maximum size 4MB</p>
      <span class = "text-danger">@error('document'){{$message}} @enderror</span>
     </div>
 
     <div>
        <label for="image"><b>Image</b></label><span class ="required"> *</span><br>
        <input type="file" placeholder="Enter image for event" name="image" id="image" value="{{ old('image') }}" required>
-       <p class="required">image(jpg,jpeg,png) maximum size 2MB</p>
-       <span class = "text-danger">@error('image'){{$image}} @enderror</span>
+       <p class="required">image(jpg,jpeg,png) maximum size 4MB</p>
+       <span class = "text-danger">@error('image'){{$message}} @enderror</span>
    </div>
  </div>
 

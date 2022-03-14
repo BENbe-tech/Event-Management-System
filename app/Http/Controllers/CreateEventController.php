@@ -25,8 +25,8 @@ class CreateEventController extends Controller
             'category' => 'required',
             'start_date'=>'required',
             'end_date'=>'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-            'document' => 'mimes:pdf|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg|max:4096',
+            'document' => 'mimes:pdf|max:4096',
             'description' => 'required',
             'entry_mode' => 'required',
         ]);

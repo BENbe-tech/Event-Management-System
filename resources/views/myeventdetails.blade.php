@@ -80,26 +80,26 @@ who is created by the specific user of the system . Also the buttons to delete a
 
     <div class="details" >
 
-    <h4 style="padding-left: 20px;"><b>Category: </b>{{$event_detail->category}}</h4>
+    <p style="padding-left: 20px;"><b>Category: </b>{{$event_detail->category}}</p>
 
 
     <div class ="inline" >
     <p style="padding-left: 20px;"><b>Venue:</b> {{$venue}}</p>
-    <p style="padding-left: 20px;"><b>City: </b>{{$city}}</p>
     <p style="padding-left: 20px;"><b>Location: </b>{{$address}}</p>
     </div>
 
+    <p style="padding-left: 20px;"><b>City: </b>{{$city}}</p>
 
-    <div class ="inline" >
+
     <p style="padding-left: 20px;"><b>Price:</b> {{$price}}</p>
     @if ($event_detail->online_link != "")
     <p style="padding-left: 20px;"><b>Virtual event:</b><a href="{{url($link)}}" class="change"> {{$link_value }}</a></p>
     @else
     <p style="padding-left: 20px;"><b>Virtual event:</b> None</a></p>
     @endif
-    </div>
 
-    <div class ="inline">
+
+
    <p style="padding-left: 20px;"><b>Speaker:</b> {{$speaker}}</p>
    @if ($event_detail->document_path!="")
    <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p>
@@ -107,7 +107,7 @@ who is created by the specific user of the system . Also the buttons to delete a
    <p style="padding-left: 20px;"><b>Document: </b> None</p>
    @endif
 
-    </div>
+
 
     <div class ="inline">
    <p style="padding-left: 20px;"><b>Starttime:</b> {{$event_detail->starttime}}</p>
