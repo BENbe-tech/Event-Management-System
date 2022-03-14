@@ -15,6 +15,9 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+
+//Dahboard CSS 
+
 html,body{
     // font-family:'Poppins';
     font-size: 15px;
@@ -122,7 +125,11 @@ ul {
 .navbar-nav .btn:hover{
 background-color:#0a3d62;
 }
-//Dropdown events
+
+
+
+
+//Dropdown events  CSS starts here
 
 .dropdown-content{
     display: none;
@@ -153,4 +160,4 @@ background-color:#0a3d62;
 
 
 
-//Create Event CSS
+

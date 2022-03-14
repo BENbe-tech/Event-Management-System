@@ -16,6 +16,9 @@
        <div class = "alert alert-danger">{{Session::get('fail')}}</div>
           @endif
     @csrf
+
+  {{-- Container class is used to display the form for creating organizer of event --}}
+
     <div class="container">
      <h3>Create Organizer Profile</h3>
       <p><span class ="required"> *</span> Must be filled</p>

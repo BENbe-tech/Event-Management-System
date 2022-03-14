@@ -9,11 +9,13 @@ use Illuminate\Support\Facades\DB;
 
 class CreateEventController extends Controller
 {
-    //
+
     public function index(){
 
         return view('create-event');
     }
+
+    //function createEvent is used to create new event
 
     public function createEvent(Request $request){
 
@@ -29,7 +31,7 @@ class CreateEventController extends Controller
             'entry_mode' => 'required',
         ]);
 
-
+//insertGetId used to get ID of inserted event
 
         $eventid = Event::insertGetId(
 	        ['event_title' => $request->eventtitle,'organizer_id' => $request->organizer]

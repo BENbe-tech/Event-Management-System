@@ -8,7 +8,8 @@ use App\Models\User;
 
 class DashboardController extends Controller
 {
-    //
+    //used to display the dashboard view file only if the user is login. the if statement used to check the loginid of the user
+
     public function dashboard(){
 
         $data = array();

@@ -13,6 +13,12 @@
 ?>
 @if($event_title!="[]")
     <div>
+
+{{-- The table is used to display the event created by the specific organizer
+who is created by the user of the system. It displays specific event title
+and organizer of the event respectively .Will not be displayed if there is no event
+created --}}
+
     <table class="styled-table">
         <thead>
             <tr>

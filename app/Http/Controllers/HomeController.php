@@ -8,7 +8,10 @@ use App\Models\EventDetail;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
-    //
+
+//Index function is called when user presses home on dashboard and flag = 0 is set
+//When there is no event present in the database else flag =1 is set when events are
+//present in the database
 
     public function index(){
 
@@ -30,6 +33,10 @@ class HomeController extends Controller
     }
 
 
+// Search function is called when the user search for event at the search engine and flag = 0 is set
+//When there is no event present in the database else flag =1 is set when events are
+//present in the database when the category is all  the if statement is executed
+
     public function search(Request $request){
 
       if($request->category == 0){
@@ -49,6 +56,8 @@ class HomeController extends Controller
 
         }
 
+  //The else statement is called when the category is not all and flag=2 when events are present
+  // flag=0 when events are not present
 
         else{
 

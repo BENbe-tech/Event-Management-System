@@ -10,6 +10,10 @@
 
 
 <h3><b>Event Details</b></h3>
+
+{{-- The if statements are used to check whether the event details are empty or not
+and what should be displayed when the eventdetail is empty --}}
+
 <?php
 
 $image_path = $event_detail->image_path;
@@ -63,6 +67,11 @@ if($event_detail->address!=""){
 
 
 ?>
+
+{{-- class card display the event details of the particular event created by the organizer
+who is created by the specific user of the system . Also the buttons to delete and edit events--}}
+
+
 <div class="card">
 <div class ="inline1">
     <div class = "image">

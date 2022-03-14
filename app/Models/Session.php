@@ -14,6 +14,8 @@ class Session extends Model
         'event_id'
 
     ];
+
+    //One to one relatioship between session and sessioDetail
 public function sessionDetails(){
 
     return $this->hasOne('App\Models\SessionDetail','session_id');

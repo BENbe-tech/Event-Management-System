@@ -21,8 +21,9 @@ class SessionDetail extends Model
         'session_id'
     ];
 
+//Inverse relationship between sessionDetails and sessions
     public function sessions(){
 
-        return $this->belongsTo('App\Models\Session');
+        return $this->belongsTo('App\Models\Session','session_id');
     }
 }

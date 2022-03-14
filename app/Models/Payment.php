@@ -14,7 +14,7 @@ class Payment extends Model
         'amount',
         'method'
     ];
-
+     //One to one relatioship for between payment and ticket
 
     public function tickets(){
 

@@ -100,11 +100,4 @@ public function forgotpassword(){
 }
 
 
-// //Create Event
-// public function createEvent(){
-
-//     return view('create-event');
-
-// }
-
 }

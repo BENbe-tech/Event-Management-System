@@ -14,15 +14,14 @@ class OrganizerController extends Controller
         return view('organizer');
     }
 
+//createorganizer function is used to create organizers of the event
 
     public function createorganizer(Request $request){
 
         $request->validate([
             'name' => 'required',
             'email'=>'required|email',
-
         ]);
-
 
         $organizer = new Organizer();
         $organizer->name = $request->name;
@@ -37,8 +36,6 @@ class OrganizerController extends Controller
         $organizer->user_id = $request->session()->get('loginId');
 
         $res = $organizer->save();
-
-
 
         if($res){
             // return back()->with('success','You have registerd successfully');

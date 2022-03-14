@@ -30,9 +30,10 @@ class EventDetail extends Model
 
     ];
 
+    //Inverse relation for eventdetail with event
 
     public function events(){
-     
+
         return $this->belongsTo('App\Models\Event','event_id');
     }
 }

@@ -7,6 +7,7 @@
 </head>
 <body>
 
+   {{-- The topnav class consist of the search engine of events --}}
 
     <div class="topnav">
 
@@ -27,7 +28,7 @@
       </div>
 
 
-
+{{-- The container class consit of cards for displaying each event image, event title and book now link--}}
 
 <div class = "container">
 

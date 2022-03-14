@@ -16,9 +16,9 @@ class Ticket extends Model
         'payment_id'
 
     ];
-
+       //Inverse relationship between Ticket and payment
     public function payments(){
 
-        return $this->belongsTo('App\Models\Payment');
+        return $this->belongsTo('App\Models\Payment','payment_id');
     }
 }

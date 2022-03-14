@@ -1,3 +1,5 @@
+//Create event page CSS
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color: #f3f3f3;
@@ -89,6 +91,10 @@ body {
     vertical-align: middle;
     margin: 0px 50px;
   }
+
+
+  
+  //CSS for screen less than 800px
 
   @media (max-width: 800px) {
     .formline div {

@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateEventController;
-use App\Http\Controllers\CreateEventcontController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MyEventsController;
 use App\Http\Controllers\MyEventDetailsController;

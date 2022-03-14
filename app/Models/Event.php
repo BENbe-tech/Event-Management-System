@@ -15,6 +15,7 @@ class Event extends Model
         'organizer_id'
 
     ];
+    //One to one, one to many and many to many relationship relationship for event model
 
     public function eventDetails(){
 

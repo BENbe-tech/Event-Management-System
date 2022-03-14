@@ -15,6 +15,9 @@
        <div class = "alert alert-danger">{{Session::get('fail')}}</div>
           @endif
     @csrf
+
+    {{-- class container displays form for creating event --}}
+
     <div class="container">
         <i class="fa-solid fa-memo-circle-info"></i> <h3>Basic Details</h3>
       <p>Please fill in the form to enter the event details</p>

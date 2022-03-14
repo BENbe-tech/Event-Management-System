@@ -30,6 +30,7 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
+    //Many to many and many to one relationship for User
     public function organizers(){
         return $this->hasMany('App\Models\Organizer','user_id');
 

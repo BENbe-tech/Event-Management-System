@@ -18,6 +18,8 @@
 </head>
 <body >
 
+{{-- header class used to display the navigation bar  --}}
+
 <header class= "header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" >Event Management System</a>
@@ -77,6 +79,9 @@
 
 </header>
 <br>
+
+{{-- Class conatiner is the point where other blades files will yield their content --}}
+
 <div class ="container">
 
     @yield('content')

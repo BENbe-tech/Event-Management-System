@@ -29,6 +29,7 @@
            @endif
         @csrf
 
+  {{-- class form-group used to display forgetpassword form --}}
 
           <div class="form-group">
             <label for="email">Enter Email</label>
