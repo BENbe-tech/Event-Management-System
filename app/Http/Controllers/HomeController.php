@@ -80,4 +80,12 @@ class HomeController extends Controller
 
     }
     }
+
+
+    public function homeevent($id){
+        $event =Event::find($id);
+
+        return view('home-event',compact('id','event'));
+
+    }
 }

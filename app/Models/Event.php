@@ -33,7 +33,14 @@ class Event extends Model
        }
 
        public function users(){
-         return $this->belongsToMany('App\Models\User');
+        //  return $this->belongsToMany('App\Models\User','event_user');
+         return $this->belongsToMany(User::class, 'event_user','event_id','user_id');
+
+       }
+
+
+       public function organizers(){
+        return $this->belongsTo(Organizer::class,'organizer_id');
 
        }
 }

@@ -7,13 +7,25 @@
 </head>
 <body>
 
-<h3><b>Event Details</b></h3>
+<h4><b>Event Details</b></h4>
+
+{{-- The if statements are used to check whether the event details are empty or not
+    and what should be displayed when the eventdetail is empty --}}
 
 <?php
 $event_detail = App\Models\Event::find($id)->eventDetails;
+$organizer    = $event->organizers;
+$user         = $organizer->users;
+
 
 $image_path = $event_detail->image_path;
 
+
+if($organizer->description!=""){
+       $description = $organizer->description;
+    }else{
+        $description = "None";
+    }
 
 if($event_detail->price !=""){
    $price = $event_detail->price;
@@ -22,17 +34,6 @@ if($event_detail->price !=""){
 }
 
 
-if ($event_detail->document_path!="") {
-
-    $document_path = $event_detail->document_path;
-    $document_value = "Download to view document";
-}
-
-if($event_detail->online_link!=""){
-    $link = $event_detail->online_link;
-    $link_value = "Online link";
-
-}
 
 if($event_detail->speaker!=""){
     $speaker = $event_detail->speaker;
@@ -63,8 +64,13 @@ if($event_detail->address!=""){
 }
 
 
+$event_id = $event->id;
+$user_id = session('loginId');
 
 ?>
+
+{{-- the card class displays the details of event --}}
+
 
 <div class="card">
     <div class ="inline1">
@@ -76,9 +82,6 @@ if($event_detail->address!=""){
 
         <p style="padding-left: 20px;"><b>Title: </b>{{$event->event_title}}</p>
 
-        <p style="padding-left: 20px;"><b>Category: </b>{{$event_detail->category}}</p>
-
-
 
         <div class ="inline" >
         <p style="padding-left: 20px;"><b>Venue:</b> {{$venue}}</p>
@@ -89,20 +92,10 @@ if($event_detail->address!=""){
 
 
         <p style="padding-left: 20px;"><b>Price:</b> {{$price}}</p>
-        @if ($event_detail->online_link != "")
-        <p style="padding-left: 20px;"><b>Virtual event:</b><a href="{{url($link)}}" class="change"> {{$link_value }}</a></p>
-        @else
-        <p style="padding-left: 20px;"><b>Virtual event:</b> None</a></p>
-        @endif
-
 
 
        <p style="padding-left: 20px;"><b>Speaker:</b> {{$speaker}}</p>
-       @if ($event_detail->document_path!="")
-       <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p>
-       @else
-       <p style="padding-left: 20px;"><b>Document: </b> None</p>
-       @endif
+
 
 
 
@@ -112,15 +105,22 @@ if($event_detail->address!=""){
         </div>
 
 
-        <div class="event_more inline" >
-            <a style="padding-left: 20px;" href="#" class="btn_more">
-              Register for Event
+           <div class="inline button" >
+            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}"  style="padding-left: 20px;" href="#" class="btn_more">
+              Register for event
             </a>
 
             <a style="padding-left: 20px;" href="#" class="btn_more">
-              Pay for Event
+              Share
             </a>
+
+            <a style="padding-left: 20px;" href="#" class="btn_more">
+                Add to Calendar
+              </a>
           </div>
+          @if(Session::has('fail'))
+               <div class = "alert alert-danger">{{Session::get('fail')}}</div>
+                  @endif
 
 
       </div>
@@ -131,6 +131,32 @@ if($event_detail->address!=""){
     </div>
     </div>
 
+
+    <div class="card2">
+
+        <div class ="inline2">
+
+
+    <div class = "organizer">
+        <h5 style="padding-left: 20px;"><b>Organizer information</b></h5>
+        <p style="padding-left: 20px;"><b>Name:</b> {{$organizer->name}}</p>
+        <p style="padding-left: 20px;"><b>Description:</b> {{$description}}</p>
+        <p style="padding-left: 20px;"><b>Email:</b> {{$organizer->email}}</p>
+        <p style="padding-left: 20px;"><b>Phone No:</b> {{$user->phone}}</p>
+    </div>
+        </div>
+
+
+
+    <div class ="sessions">
+        <p style="padding-left: 20px;"><b>Present Sessions</b></p>
+
+    </div>
+
+    </div>
+
+
+{{-- MAP --}}
 
 </body>
 @endsection

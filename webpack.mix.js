@@ -20,4 +20,6 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/myeventdetails.scss','public/css/myeventdetails.css')
     .sass('resources/sass/home.scss','public/css/home.css')
     .sass('resources/sass/home-event.scss','public/css/home-event.css')
+    .sass('resources/sass/registered-events.scss','public/css/registered-events.css')
+    .sass('resources/sass/registered-eventdetails.scss','public/css/registered-eventdetails.css')
     .sourceMaps();

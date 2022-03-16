@@ -1,17 +1,16 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CreateEventController;
-use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\MyEventsController;
-use App\Http\Controllers\MyEventDetailsController;
 use App\Http\Controllers\OrganizerController;
-use App\Http\Controllers\StorageFileController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\HomeEventController;
+use App\Http\Controllers\RegisteredEventsController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,23 +49,27 @@ Route::get('/create-event',[CreateEventController::class,'index'])->name('create
 Route::post('/create-event1',[CreateEventController::class,'createEvent'])->name('create-event1');
 
 
-Route::get('/category',[CategoryController::class,'index'])->name('category');
-
 Route::get('/organizer',[OrganizerController::class,'index'])->name('organizer');
 
 Route::post('/create-organizer',[OrganizerController::class,'createorganizer'])->name('create-organizer');
 
-Route::get('/myevents',[MyEventsController::class,'index'])->name('myevents');
+Route::get('/myevents',[MyEventsController::class,'myevent'])->name('myevents');
 
-Route::get('/myeventdetails/{id}',[MyEventDetailsController::class,'index'])->name('myeventdetails');
+Route::get('/myeventdetails/{id}',[MyEventsController::class,'index'])->name('myeventdetails');
 
-Route::get('/download/{file}',[MyEventDetailsController::class,'download'])->name('download');
+Route::get('/download/{file}',[MyEventsController::class,'download'])->name('download');
 
-Route::get('/forgotpassword',[ForgotPasswordController::class,'index'])->name('forgotpassword');
 
 Route::get('/home',[HomeController::class,'index'])->name('home')->middleware('isLoggedIn');
 
 
 Route::post('/home-search',[HomeController::class,'search'])->name('home-search');
 
-Route::get('/home-event/{id}',[HomeEventController::class,'index'])->name('home-event');
+Route::get('/home-event/{id}',[HomeController::class,'homeevent'])->name('home-event');
+
+
+Route::get('/registered-events',[RegisteredEventsController::class,'index'])->name('registered-events');
+
+Route::get('/participants/{event_id}/{user_id}',[RegisteredEventsController::class,'participants'])->name('participants');
+
+Route::get('/eventdetails/{id}',[RegisteredEventsController::class,'eventdetails'])->name('eventdetails');

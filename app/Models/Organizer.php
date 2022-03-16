@@ -22,7 +22,7 @@ class Organizer extends Model
 
     ];
 
-//One to many relationship for organizer 
+//One to many relationship for organizer
     public function feedbacks(){
      return $this->hasMany('App\Models\Feedback','organizer_id');
 
@@ -31,6 +31,11 @@ class Organizer extends Model
     public function events(){
         return $this->hasMany('App\Models\Event','organizer_id');
 
+       }
+//Inverse one to many relationship
+
+       public function users(){
+        return $this->belongsTo(User::class,'user_id');
        }
 
 }

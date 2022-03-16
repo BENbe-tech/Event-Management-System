@@ -17,6 +17,7 @@ class CreateOrganizersTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
+            // $table->text('description');
             $table->string('email');
             $table->string('website_link')->nullable();
             $table->string('facebook')->nullable();

@@ -46,6 +46,7 @@ body {
 .footer {
   padding-left: 5px;
   padding-right: 5px;
+  padding-top: 5px;
   padding-bottom: 10px;
   height: 30%;
 }
@@ -59,9 +60,17 @@ a.change:hover {
   color: red;
 }
 
+.button {
+  padding-top: 50px;
+}
+
 @media (max-width: 800px) {
   .inline1 {
     display: block;
+  }
+
+  .button {
+    padding-top: 0px;
   }
 
   .details {
@@ -83,6 +92,9 @@ a.btn_more {
   align-items: center;
   padding: 0 15px;
   text-decoration: none;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   color: #5F5FFC;
   font-size: 16px;
   font-weight: 600;
@@ -118,7 +130,7 @@ a.btn_more:hover {
   height: 100%;
 }
 
-.report {
+.payment {
   padding-top: 20px;
   padding-bottom: 15px;
   padding-left: 5px;
@@ -129,7 +141,7 @@ a.btn_more:hover {
 .session {
   padding-left: 5px;
   padding-right: 5px;
-  padding-top: 5px;
+  padding-top: 15px;
   padding-bottom: 10px;
   height: 50%;
 }
@@ -139,7 +151,7 @@ a.btn_more:hover {
     display: block;
   }
 
-  .report {
+  .payment {
     width: 100%;
     height: 50%;
   }

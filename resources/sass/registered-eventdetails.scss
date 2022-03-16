@@ -1,4 +1,4 @@
-//Created event details CSS
+//Registered event details CSS
 
 
 body {
@@ -17,9 +17,9 @@ body {
     background-color: white;
   }
 
-    // .card:hover {
-    //  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    //}
+    //.card:hover {
+   //box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+   // }
 
   .inline {
     display: flex;
@@ -57,20 +57,25 @@ body {
 
       padding-left: 5px;
       padding-right: 5px;
-    //   padding-top: 5px;
+      padding-top: 5px;
       padding-bottom: 10px;
       height: 30%;
   }
 
 
 a.change{
-    color:#5F5FFC;
+    color:#5F5FFC;;
      font-weight: 600;
      text-decoration: none;
     &:hover{
         color:red;
       }
 }
+
+.button{
+    padding-top: 50px;
+}
+
 
 //CSS for screen less than 800px
 
@@ -82,23 +87,30 @@ a.change{
 
     }
 
+    .button{
+        padding-top: 0px;
+    }
+
 
    .details {
     width: 100%;
     height :50%
 }
 
+
    .image{
      width: 100%;
      height: 50%;
 
    }
+
+
    .card{
        height: auto;
    }
 
-  }
 
+  }
 
 
   a.btn_more{
@@ -106,6 +118,7 @@ a.change{
     align-items: center;
     padding: 0 15px;
     text-decoration: none;
+    width: fit-content;
     color: #5F5FFC;
     font-size: 16px;
     font-weight: 600;
@@ -117,7 +130,6 @@ a.change{
       color: #FFF;
     }
   }
-
 
 
 
@@ -157,7 +169,7 @@ a.change{
     height: 100%;
   }
 
-  .report{
+  .payment{
      padding-top: 20px;
      padding-bottom: 15px;
      padding-left: 5px;
@@ -170,7 +182,7 @@ a.change{
 
     padding-left: 5px;
     padding-right: 5px;
-    padding-top: 5px;
+    padding-top: 15px;
     padding-bottom: 10px;
     height: 50%;
 }
@@ -187,7 +199,7 @@ a.change{
       }
 
 
-.report {
+.payment {
     width: 100%;
     height :50%
 }

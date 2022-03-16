@@ -6,6 +6,8 @@
     "/css/myevents.css": "/css/myevents.css",
     "/css/organizer.css": "/css/organizer.css",
     "/css/create.css": "/css/create.css",
+    "/css/registered-eventdetails.css": "/css/registered-eventdetails.css",
+    "/css/registered-events.css": "/css/registered-events.css",
     "/css/home-event.css": "/css/home-event.css",
     "/css/home.css": "/css/home.css"
 }

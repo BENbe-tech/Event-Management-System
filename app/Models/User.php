@@ -30,14 +30,16 @@ class User extends Model
         'email_verified_at' => 'datetime',
     ];
 
-    //Many to many and many to one relationship for User
+    //Many to many and one to mnay relationship for User
     public function organizers(){
-        return $this->hasMany('App\Models\Organizer','user_id');
+        return $this->hasMany(Organizer::class,'user_id');
 
        }
 
+       //Inerse many to many relationship
        public function events(){
-        return $this->belongsToMany('App\Models\Event');
+        // return $this->belongsToMany('App\Models\Event','event_user');
+        return $this->belongsToMany(Event::class, 'event_user','user_id','event_id');
 
       }
 }

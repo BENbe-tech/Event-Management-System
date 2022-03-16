@@ -30,7 +30,7 @@ class EventDetail extends Model
 
     ];
 
-    //Inverse relation for eventdetail with event
+    //Inverse relation for eventdetail with event one to one relationship
 
     public function events(){
 
