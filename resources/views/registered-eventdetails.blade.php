@@ -124,9 +124,6 @@
 
 
         <div class="inline button" >
-            <a style="padding-left: 20px;" href="#" class="btn_more">
-              Unregister
-            </a>
 
             <a style="padding-left: 20px;" href="#" class="btn_more">
               Verify Attendendance

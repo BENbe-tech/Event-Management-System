@@ -132,6 +132,7 @@ a.btn_more:hover {
   padding-top: 5px;
   padding-bottom: 10px;
   height: 50%;
+  box-sizing: border-box;
 }
 
 @media (max-width: 800px) {

@@ -22,4 +22,8 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/home-event.scss','public/css/home-event.css')
     .sass('resources/sass/registered-events.scss','public/css/registered-events.css')
     .sass('resources/sass/registered-eventdetails.scss','public/css/registered-eventdetails.css')
+    .sass('resources/sass/createsession.scss','public/css/createsession.css')
+    .js('resources/js/createsession.js', 'public/js/createsession.js')
+    .sass('resources/sass/session.scss','public/css/session.css')
+    .sass('resources/sass/sessiondetails.scss','public/css/sessiondetails.css')
     .sourceMaps();

@@ -17,7 +17,8 @@ and what should be displayed when the eventdetail is empty --}}
 <?php
 
 $image_path = $event_detail->image_path;
-$user         = $organizer->users;
+$user       = $organizer->users;
+$event_id   = $event->id;
 
 
 if($event_detail->price !=""){
@@ -184,11 +185,19 @@ the user has registered. Also the buttons to delete and edit events
 
 
 <div class ="sessions">
-    <p style="padding-left: 20px;"><b>Present Sessions</b></p>
+    <p style="padding-left: 20px;"><b>Present Sessions</b>
 
-    <a style="padding-left: 20px;" href="#" class="btn_more1" >
+    </p>
+    <div class="inline" >
+    <a style="padding-left: 20px;" href="{{route('create-session', $event_id)}}" class="btn_more1" >
         Create Session
       </a>
+
+      <a style="padding-left: 20px;" href="{{route('sessions', $event_id)}}" class="btn_more1" >
+        Show Sessions
+      </a>
+    </div>
+
 
 </div>
 

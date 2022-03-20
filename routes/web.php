@@ -9,7 +9,7 @@ use App\Http\Controllers\MyEventsController;
 use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisteredEventsController;
-
+use App\Http\Controllers\SessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +73,16 @@ Route::get('/registered-events',[RegisteredEventsController::class,'index'])->na
 Route::get('/participants/{event_id}/{user_id}',[RegisteredEventsController::class,'participants'])->name('participants');
 
 Route::get('/eventdetails/{id}',[RegisteredEventsController::class,'eventdetails'])->name('eventdetails');
+
+
+Route::get('/create-session/{id}',[SessionController::class,'index'])->name('create-session');
+
+
+Route::post('/create-session1',[SessionController::class,'createSession'])->name('create-session1');
+
+
+Route::get('/sessions/{id}',[SessionController::class,'showsessions'])->name('sessions');
+
+Route::get('/sessiondetails/{id}',[SessionController::class,'showsessiondetails'])->name('sessiondetails');
+
+Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('downloaddoc');

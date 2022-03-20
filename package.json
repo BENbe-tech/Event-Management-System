@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "flatpickr": "^4.6.11",
         "font-awesome": "^4.7.0"
     }
 }

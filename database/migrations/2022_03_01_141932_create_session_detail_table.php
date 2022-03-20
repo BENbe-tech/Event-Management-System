@@ -22,7 +22,8 @@ class CreateSessionDetailTable extends Migration
             $table->string('online_link')->nullable();
             $table->string('venue')->nullable();
             $table->string('speaker')->nullable();
-            $table->string('document')->nullable();
+            $table->string('document_name')->nullable();
+            $table->string('document_path')->nullable();
             $table->timestamps();
             $table->unsignedBigInteger('session_id');
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade')->onUpdate('cascade');
