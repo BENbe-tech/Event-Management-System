@@ -49,9 +49,20 @@ if($sessiondetails->description!=""){
         $description = "None";
     }
 
+    $session_id = $session->id;
+    $user_id = session('loginId');
+    $event_id = $event->id;
+
 
 ?>
 <div class="card">
+
+    @if(Session::has('success'))
+    <div class = "alert alert-success">{{Session::get('success')}}</div>
+       @endif
+       @if(Session::has('fail'))
+       <div class = "alert alert-danger">{{Session::get('fail')}}</div>
+          @endif
 
 <p style="padding-left: 20px;"><i class="fa fa-calendar" aria-hidden="true" ></i>{{$session->name}}</p>
 
@@ -83,9 +94,11 @@ if($sessiondetails->description!=""){
 <p style="padding-left: 20px;"><b>Description: </b>{{$description}}</p>
 
 <div class=" inline1" >
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-      Register for session
-    </a>
+
+
+    <a href="{{url('session-participants/'.$event_id.'/'.$user_id.'/'.$session_id)}}"  style="padding-left: 20px;"  class="btn_more">
+        Register for session
+      </a>
 
   </div>
 

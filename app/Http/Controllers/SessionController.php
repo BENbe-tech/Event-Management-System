@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SessionDetail;
 use App\Models\Session;
+use App\Models\Event;
 
 class SessionController extends Controller
 {
@@ -93,7 +94,6 @@ public function showsessiondetails($id){
     $session = Session::find($id);
     $sessiondetails = $session->sessionDetails;
 
-
      return view('sessiondetails',compact('session','sessiondetails'));
 
  }
@@ -103,5 +103,7 @@ public function showsessiondetails($id){
 
     return response()->download(public_path('storage/SessionDocuments/'.$file));
   }
+
+
 
 }

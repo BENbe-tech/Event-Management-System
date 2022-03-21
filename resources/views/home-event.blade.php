@@ -106,7 +106,7 @@ $user_id = session('loginId');
 
 
            <div class="inline button" >
-            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}"  style="padding-left: 20px;" href="#" class="btn_more">
+            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}"  style="padding-left: 20px;" class="btn_more">
               Register for event
             </a>
 

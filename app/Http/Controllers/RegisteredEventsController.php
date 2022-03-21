@@ -7,6 +7,7 @@ use App\Models\Event;
 use App\Models\User;
 use App\Models\SessionDetail;
 use App\Models\Session;
+use Illuminate\Support\Facades\DB;
 
 class RegisteredEventsController extends Controller
 {
@@ -49,6 +50,41 @@ class RegisteredEventsController extends Controller
         }
     }
 
+
+    // function sessionParticipants registers the partcipant of the session to the table session_user
+    public function sessionParticipants($event_id,$user_id,$session_id){
+        $event = DB::table('event_user')->where('event_id',$event_id)
+        ->where('user_id',$user_id)->get();
+
+        echo  $event;
+        if($event!=[]){
+
+            $session = Session::find($session_id);
+            $user = $session->users->find($user_id);
+            $res_session = $session->id;
+            if($user!=""){
+            $res_user = $user->id;
+                }
+          else{
+              $res_user=0;
+             }
+            if($res_session == $session_id && $res_user == $user_id){
+
+            return back()->with('fail','You have already registered in the session');
+
+            }else{
+            $session = Session::find($session_id);
+            $session->users()->attach($user_id);
+            return back()->with('success','You have registered in this session successful');
+            }
+
+        }else{
+            return back()->with('fail','You have not registered in the event');
+        }
+
+    }
+
+
     //function that deplays event details of registered events
     public function eventdetails($id){
 
@@ -57,10 +93,6 @@ class RegisteredEventsController extends Controller
         $organizer = $event->organizers;
 
         $event_detail = $event->eventDetails;
-
-        // echo $event;
-        // echo $organizer;
-        // echo $event_detail->image_path;
 
 
         return view('registered-eventdetails',compact('event','organizer','event_detail'));
@@ -80,9 +112,10 @@ class RegisteredEventsController extends Controller
 
          $session = Session::find($id);
          $sessiondetails = $session->sessionDetails;
+         $event = $session->event;
 
 
-          return view('registered-sessiondetails',compact('session','sessiondetails'));
+          return view('registered-sessiondetails',compact('session','sessiondetails','event'));
 
       }
 

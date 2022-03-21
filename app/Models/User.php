@@ -42,4 +42,14 @@ class User extends Model
         return $this->belongsToMany(Event::class, 'event_user','user_id','event_id');
 
       }
+
+       //Inerse many to many relationship
+       public function sessions(){
+        // return $this->belongsToMany('App\Models\Event','event_user');
+        return $this->belongsToMany(Session::class, 'session_user','user_id','session_id');
+
+      }
+
+
+
 }

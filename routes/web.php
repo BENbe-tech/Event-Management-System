@@ -85,6 +85,9 @@ Route::get('/registeredevents-sessions/{id}',[RegisteredEventsController::class,
 Route::get('/registeredevents-sessiondetails/{id}',[RegisteredEventsController::class,'showsessiondetails'])->name('registeredevents-sessiondetails');
 
 
+Route::get('/session-participants/{event_id}/{user_id}/{session_id}',[RegisteredEventsController::class,'sessionParticipants'])->name('session-participants');
+
+
 
 Route::get('/create-session/{id}',[SessionController::class,'index'])->name('create-session');
 
@@ -97,3 +100,5 @@ Route::get('/sessions/{id}',[SessionController::class,'showsessions'])->name('se
 Route::get('/sessiondetails/{id}',[SessionController::class,'showsessiondetails'])->name('sessiondetails');
 
 Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('downloaddoc');
+
+

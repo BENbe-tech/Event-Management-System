@@ -21,4 +21,16 @@ public function sessionDetails(){
     return $this->hasOne('App\Models\SessionDetail','session_id');
 }
 
+public function users(){
+    //  return $this->belongsToMany('App\Models\User','event_user');
+     return $this->belongsToMany(User::class, 'session_user','session_id','user_id');
+
+   }
+
+   public function event(){
+    return $this->belongsTo(Event::class,'event_id');
+
+   }
+
+
 }
