@@ -84,16 +84,9 @@ if($sessiondetails->description!=""){
 
 <div class=" inline1" >
     <a style="padding-left: 20px;" href="#" class="btn_more">
-      Edit session
+      Register for session
     </a>
 
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-      Cancel session
-    </a>
-
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-        View session report
-      </a>
   </div>
 
 </div>

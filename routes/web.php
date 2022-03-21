@@ -67,12 +67,23 @@ Route::post('/home-search',[HomeController::class,'search'])->name('home-search'
 
 Route::get('/home-event/{id}',[HomeController::class,'homeevent'])->name('home-event');
 
+Route::get('/event-sessions/{id}',[HomeController::class,'showsessions'])->name('event-sessions');
+
+Route::get('/event-sessiondetails/{id}',[HomeController::class,'showsessiondetails'])->name('event-sessiondetails');
+
+
 
 Route::get('/registered-events',[RegisteredEventsController::class,'index'])->name('registered-events');
 
 Route::get('/participants/{event_id}/{user_id}',[RegisteredEventsController::class,'participants'])->name('participants');
 
 Route::get('/eventdetails/{id}',[RegisteredEventsController::class,'eventdetails'])->name('eventdetails');
+
+
+Route::get('/registeredevents-sessions/{id}',[RegisteredEventsController::class,'showsessions'])->name('registeredevents-sessions');
+
+Route::get('/registeredevents-sessiondetails/{id}',[RegisteredEventsController::class,'showsessiondetails'])->name('registeredevents-sessiondetails');
+
 
 
 Route::get('/create-session/{id}',[SessionController::class,'index'])->name('create-session');

@@ -176,13 +176,18 @@
         <p style="padding-left: 20px;"><b>Email:</b> {{$organizer->email}}</p>
         <p style="padding-left: 20px;"><b>Phone No:</b> {{$user->phone}}</p>
     </div>
+
+
         </div>
 
 
 
-    <div class ="sessions">
+    <div class ="session inline">
         <p style="padding-left: 20px;"><b>Present Sessions</b></p>
 
+        <a style="padding-left: 20px;" href="{{route('registeredevents-sessions', $event->id)}}" class="btn_more1" >
+            Show Sessions
+          </a>
     </div>
 
     </div>

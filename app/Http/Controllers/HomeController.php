@@ -5,6 +5,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\EventDetail;
+use App\Models\SessionDetail;
+use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
@@ -88,4 +90,24 @@ class HomeController extends Controller
         return view('home-event',compact('id','event'));
 
     }
+
+    public function showsessiondetails($id){
+
+        $session = Session::find($id);
+        $sessiondetails = $session->sessionDetails;
+
+
+         return view('homesessiondetails',compact('session','sessiondetails'));
+
+     }
+
+     public function showsessions($id){
+
+        $sessions = Session::all()->where('event_id',$id);
+        $count = $sessions->count();
+
+         return view('homesession',compact('sessions','count'));
+
+     }
+
 }

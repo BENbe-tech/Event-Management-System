@@ -9,7 +9,8 @@
 
 <h4 style="margin-left: 50px;"><b>Session Details</b></h4>
 
-    {{-- class card display the session details of the particular session of
+
+ {{-- class card display the session details of the particular session of
         the event .Also the buttons to delete and edit a session
 and session report--}}
 
@@ -64,17 +65,7 @@ if($sessiondetails->description!=""){
 
 </div>
 
-@if ($sessiondetails->online_link != "")
-<p style="padding-left: 20px;"><b>Virtual event:</b><a href="{{url($link)}}" class="change"> {{$link_value }}</a></p>
-@else
-<p style="padding-left: 20px;"><b>Virtual event:</b> None</a></p>
-@endif
 
-@if ($sessiondetails->document_path!="")
-<p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/downloaddoc',$document_path)}}" class="change">{{ $document_value }}</a></p>
-@else
-<p style="padding-left: 20px;"><b>Document: </b> None</p>
-@endif
 
 <p style="padding-left: 20px;"><b>Venue: </b>{{$venue}}</p>
 <p style="padding-left: 20px;"><b>Speaker: </b>{{$speaker}}</p>
@@ -82,20 +73,10 @@ if($sessiondetails->description!=""){
 
 <p style="padding-left: 20px;"><b>Description: </b>{{$description}}</p>
 
-<div class=" inline1" >
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-      Edit session
-    </a>
 
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-      Cancel session
-    </a>
-
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-        View session report
-      </a>
-  </div>
 
 </div>
+
+
 </body>
 @endsection

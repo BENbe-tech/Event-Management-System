@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\SessionDetail;
+use App\Models\Session;
 
 class RegisteredEventsController extends Controller
 {
@@ -63,6 +65,33 @@ class RegisteredEventsController extends Controller
 
         return view('registered-eventdetails',compact('event','organizer','event_detail'));
     }
+
+
+    public function showsessions($id){
+
+        $sessions = Session::all()->where('event_id',$id);
+        $count = $sessions->count();
+
+         return view('registered-sessions',compact('sessions','count'));
+
+     }
+
+     public function showsessiondetails($id){
+
+         $session = Session::find($id);
+         $sessiondetails = $session->sessionDetails;
+
+
+          return view('registered-sessiondetails',compact('session','sessiondetails'));
+
+      }
+
+
+      public function download(Request $request,$file){
+
+         return response()->download(public_path('storage/SessionDocuments/'.$file));
+       }
+
 
 
 }

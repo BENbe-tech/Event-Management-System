@@ -144,14 +144,18 @@ $user_id = session('loginId');
         <p style="padding-left: 20px;"><b>Email:</b> {{$organizer->email}}</p>
         <p style="padding-left: 20px;"><b>Phone No:</b> {{$user->phone}}</p>
     </div>
+
+    <div class ="session ">
+        <p style="padding-left: 20px;"><b>Present Sessions</b></p>
+
+        <a style="padding-left: 20px;" href="{{route('event-sessions', $event->id)}}" class="btn_more1" >
+            Show Sessions
+          </a>
+
+    </div>
         </div>
 
 
-
-    <div class ="sessions">
-        <p style="padding-left: 20px;"><b>Present Sessions</b></p>
-
-    </div>
 
     </div>
 
