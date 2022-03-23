@@ -26,4 +26,5 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/createsession.js', 'public/js/createsession.js')
     .sass('resources/sass/session.scss','public/css/session.css')
     .sass('resources/sass/sessiondetails.scss','public/css/sessiondetails.css')
+    .sass('resources/sass/comments.scss','public/css/comments.css')
     .sourceMaps();

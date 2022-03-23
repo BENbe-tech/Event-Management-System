@@ -129,7 +129,7 @@
               Verify Attendendance
             </a>
 
-            <a style="padding-left: 20px;" href="#" class="btn_more">
+            <a style="padding-left: 20px;" href="{{route('participant-comment', $event->id)}}" class="btn_more">
              Comment
               </a>
 

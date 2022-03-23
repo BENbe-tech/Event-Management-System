@@ -10,6 +10,7 @@ use App\Http\Controllers\OrganizerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RegisteredEventsController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\CommentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -101,4 +102,4 @@ Route::get('/sessiondetails/{id}',[SessionController::class,'showsessiondetails'
 
 Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('downloaddoc');
 
-
+Route::get('/comment/{id}',[CommentsController::class,'participantComments'])->name('participant-comment');
