@@ -72,7 +72,13 @@
     }else{
         $description = "None";
     }
+    $event_id = $event->id;
 
+    $event= App\Models\Event::find($event->id);
+    $eventdetails = $event->eventDetails;
+    $title = $event->event_title;
+    $eventdetails_id = $eventdetails->id;
+ 
     ?>
 
     {{-- class card display the event details of the particular event created by the organizer
@@ -157,9 +163,10 @@
       </a>
      @endif
 
-    <a style="padding-left: 20px;" href="#" class="btn_more1" >
+    <a style="padding-left: 20px;" href="{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
         Add to calendar
       </a>
+
 
       <a style="padding-left: 20px;" href="#" class="btn_more1" >
         Share
