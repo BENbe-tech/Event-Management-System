@@ -7,6 +7,9 @@ use Spatie\GoogleCalendar\GoogleCalendarServiceProvider;
 use Carbon\Carbon;
 use App\Models\EventDetail;
 use App\Models\User;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Redirect;
 
 use Illuminate\Http\Request;
 
@@ -37,26 +40,33 @@ class CalendarController extends Controller
       $email = $user->email;
       $starttime = $eventdetails->starttime;
       $endtime = $eventdetails->endtime;
-//    $eventdetails = $event->eventDetails;
 
-
+ if($endtime > $starttime){
 
         $event = new Event;
 
         $event->name = $title;
         $event->startDateTime =Carbon::parse( $starttime,'Africa/Dar_es_Salaam');
         $event->endDateTime = Carbon::parse($endtime,'Africa/Dar_es_Salaam');
-        // $event->addAttendee(['email' => $email]);
+       // $event->addAttendee(['email' => $email]);
 
-        $event->save();
+       $res =  $event->save();
+
+       if($res){
 
 
-        // $e = Event::get();
-        // dd($e);
-        echo $email;
-        echo $title;
-        echo $starttime;
-        echo $endtime;
+        return response()->json(['success'=>'Event added to calendar successfully']);
+
+    }
+       else{
+
+
+        return response()->json(['success'=>'Event not added to calendar']);
+       }
+    }else{
+
+        return response()->json(['success'=>'Failed to add event to calendar']);
+    }
 
 
   }

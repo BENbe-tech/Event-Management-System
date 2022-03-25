@@ -33,7 +33,7 @@
     <p class="central" style="text-align: center;">Click Session title to view details</p>
 
     @else
-    <p style="text-align: center;">You have not created any Session</p>
+    <p style="text-align: center;">No any session for this event</p>
     @endif
     </div>
 

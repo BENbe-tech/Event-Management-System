@@ -39,14 +39,14 @@ class RegisteredEventsController extends Controller
 
         if($res_event==$event_id && $res_user==$user_id){
 
-            return back()->with('fail','You have already registered');
+            return response()->json(['success'=>'You have already registered']);
         }
         else{
         $event = Event::find($event_id);
 
         $event->users()->attach($user_id);
 
-        return redirect('registered-events');
+        return response()->json(['success'=>'You have registered successfuly to this event']);
         }
     }
 
@@ -56,7 +56,6 @@ class RegisteredEventsController extends Controller
         $event = DB::table('event_user')->where('event_id',$event_id)
         ->where('user_id',$user_id)->get();
 
-        echo  $event;
         if($event!=[]){
 
             $session = Session::find($session_id);
@@ -70,16 +69,19 @@ class RegisteredEventsController extends Controller
              }
             if($res_session == $session_id && $res_user == $user_id){
 
-            return back()->with('fail','You have already registered in the session');
+            // return back()->with('fail','You have already registered in the session');
+            return response()->json(['success'=>'You have already registered in the session']);
 
             }else{
             $session = Session::find($session_id);
             $session->users()->attach($user_id);
-            return back()->with('success','You have registered in this session successful');
+            // return back()->with('success','You have registered in this session successful');
+            return response()->json(['success'=>'You have registered in this session successful']);
             }
 
         }else{
-            return back()->with('fail','You have not registered in the event');
+            // return back()->with('fail','You have not registered in the event');
+            return response()->json(['success'=>'You have not registered in the event']);
         }
 
     }

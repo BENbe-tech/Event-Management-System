@@ -5,6 +5,8 @@
 <head>
     <link rel="stylesheet" href="{{asset('css/registered-eventdetails.css')}}">
     {{-- <script src="https://kit.fontawesome.com/fe05d227ea.js" crossorigin="anonymous"></script> --}}
+    {{-- <script type="text/javascript" src = "{{asset('js/registered-eventdetails.js')}}" defer></script> --}}
+
 </head>
 <body>
 
@@ -78,7 +80,7 @@
     $eventdetails = $event->eventDetails;
     $title = $event->event_title;
     $eventdetails_id = $eventdetails->id;
- 
+
     ?>
 
     {{-- class card display the event details of the particular event created by the organizer
@@ -163,9 +165,12 @@
       </a>
      @endif
 
-    <a style="padding-left: 20px;" href="{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
+    <a style="padding-left: 20px;" id = "calendar" href="{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
         Add to calendar
       </a>
+
+
+
 
 
       <a style="padding-left: 20px;" href="#" class="btn_more1" >
@@ -200,6 +205,35 @@
     </div>
 
 {{-- MAP --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+</script>
+
+
+<script>
+    jQuery(document).ready(function(){
+       jQuery('#calendar').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}",
+             method: 'GET',
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+             }});
+          });
+       });
+</script>
 
 </body>
 

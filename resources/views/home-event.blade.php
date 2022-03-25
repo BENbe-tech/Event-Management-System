@@ -106,9 +106,11 @@ $user_id = session('loginId');
 
 
            <div class="inline button" >
-            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}"  style="padding-left: 20px;" class="btn_more">
+            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}" id="register" style="padding-left: 20px;" class="btn_more">
               Register for event
             </a>
+
+            
 
             <a style="padding-left: 20px;" href="#" class="btn_more">
               Share
@@ -158,6 +160,38 @@ $user_id = session('loginId');
 
 
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+                   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                   crossorigin="anonymous">
+    </script>
+
+
+    <script>
+        jQuery(document).ready(function(){
+           jQuery('#register').click(function(e){
+              e.preventDefault();
+              $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                 }
+             });
+              jQuery.ajax({
+                url: "{{url('participants/'.$event_id.'/'.$user_id)}}",
+                 method: 'GET',
+                 data: {
+                    "_token": "{{ csrf_token() }}",
+                 },
+                 success: function(result){
+
+                    alert(result.success);
+
+                 }});
+              });
+           });
+    </script>
+
 
 
 {{-- MAP --}}
