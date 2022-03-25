@@ -165,7 +165,7 @@
       </a>
      @endif
 
-    <a style="padding-left: 20px;" id = "calendar" href="{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
+    <a style="padding-left: 20px;" id = "calendar" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
         Add to calendar
       </a>
 
@@ -223,14 +223,29 @@
              }
          });
           jQuery.ajax({
-            url: "{{url('addtocalendar-regevent/'. $title.'/'.$eventdetails_id)}}",
+            url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
              method: 'GET',
+             timeout:10000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
              success: function(result){
                 alert(result.success);
-             }});
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+            // timeout -> reload the page and try again
+            // console.log("timeout");
+            // window.location.reload();
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+            // another error occured
+            alert("error: " + request + status + err);
+        }
+    }
+
+            });
           });
        });
 </script>

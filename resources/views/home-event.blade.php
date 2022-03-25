@@ -67,6 +67,9 @@ if($event_detail->address!=""){
 $event_id = $event->id;
 $user_id = session('loginId');
 
+$title = $event->event_title;
+$eventdetails_id = $event_detail->id;
+
 ?>
 
 {{-- the card class displays the details of event --}}
@@ -110,13 +113,13 @@ $user_id = session('loginId');
               Register for event
             </a>
 
-            
+
 
             <a style="padding-left: 20px;" href="#" class="btn_more">
               Share
             </a>
 
-            <a style="padding-left: 20px;" href="#" class="btn_more">
+            <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" id = "calendar" class="btn_more">
                 Add to Calendar
               </a>
           </div>
@@ -189,6 +192,29 @@ $user_id = session('loginId');
 
                  }});
               });
+
+
+
+         jQuery('#calendar').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
+             method: 'GET',
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+             }});
+          });
+
+
+
            });
     </script>
 

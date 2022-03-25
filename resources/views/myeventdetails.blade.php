@@ -75,6 +75,9 @@ if($organizer->description!=""){
         $description = "None";
     }
 
+    $title = $event->event_title;
+    $eventdetails_id = $event_detail->id ;
+
 ?>
 
 {{-- class card display the event details of the particular eventin which
@@ -161,7 +164,7 @@ the user has registered. Also the buttons to delete and edit events
    </a>
 
 
-<a style="padding-left: 20px;" href="#" class="btn_more1" >
+<a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" id = "calendar" >
     Add to calendar
   </a>
 
@@ -204,6 +207,52 @@ the user has registered. Also the buttons to delete and edit events
 </div>
 
 {{-- MAP --}}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+</script>
+
+
+<script>
+    jQuery(document).ready(function(){
+       jQuery('#calendar').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
+             method: 'GET',
+             timeout:10000,
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+             },
+
+         error: function(request, status, err) {
+        if (status == "timeout") {
+            // timeout -> reload the page and try again
+            // console.log("timeout");
+            // window.location.reload();
+            alert("timeout: Problem with your internet connetion. too slow");
+
+        } else {
+            // another error occured
+            alert("error: " + request + status + err);
+        }
+    }
+
+
+            });
+          });
+       });
+</script>
 
 </body>
 @endsection

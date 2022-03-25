@@ -23,15 +23,7 @@ class CalendarController extends Controller
     }
 
 
-
-    public function MyeventCalendar($id){
-
-
-
-
-    }
-
-  public function RegisteredeventCalendar($title,$id){
+  public function Calendar($title,$id){
 
       $eventdetails_id = $id;
       $eventdetails =  EventDetail::find( $eventdetails_id );
@@ -73,9 +65,5 @@ class CalendarController extends Controller
 
 
 
-  public function HomeeventCalendar($id){
 
-
-
-  }
 }

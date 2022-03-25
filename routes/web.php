@@ -108,8 +108,7 @@ Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('d
 Route::get('/comment/{id}',[CommentsController::class,'participantComments'])->name('participant-comment');
 
 
-Route::get('/addtocalendar-homeevent/{id}',[CalendarController::class,'HomeeventCalendar'])->name('addtocalendar-homeevent');
 
-Route::get('/addtocalendar-regevent/{event_title}/{eventdetails_id}',[CalendarController::class,'RegisteredeventCalendar'])->name('addtocalendar-regevent');
+Route::get('/addtocalendar/{event_title}/{eventdetails_id}',[CalendarController::class,'Calendar'])->name('addtocalendar');
 
-Route::get('/addtocalendar-myevent/{id}',[CalendarController::class,'MyeventCalendar'])->name('addtocalendar-myevent');
+
