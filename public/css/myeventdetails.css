@@ -173,3 +173,52 @@ a.btn_more1:hover {
   background: #5F5FFC;
   color: #FFF;
 }
+
+div#social-links {
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+div#social-links ul li {
+  display: inline-block;
+}
+
+div#social-links ul li a {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 1px;
+  font-size: 30px;
+  color: #0d6efd;
+}
+div#social-links ul li a:hover {
+  opacity: 0.6;
+}
+
+div#social-links ul {
+  padding-left: 0;
+}
+
+div#social-links .fa-facebook {
+  color: #0d6efd;
+}
+
+div#social-links .fa-twitter {
+  color: deepskyblue;
+}
+
+div#social-links .fa-linkedin {
+  color: #0e76a8;
+}
+
+div#social-links .fa-whatsapp {
+  color: #25D366;
+}
+
+div#social-links .fa-reddit {
+  color: #FF4500;
+}
+
+div#social-links .fa-telegram {
+  color: #0088cc;
+}

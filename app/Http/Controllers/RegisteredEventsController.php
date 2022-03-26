@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\SessionDetail;
 use App\Models\Session;
 use Illuminate\Support\Facades\DB;
+use Jorenvh\Share\Share;
+
 
 class RegisteredEventsController extends Controller
 {
@@ -96,8 +98,20 @@ class RegisteredEventsController extends Controller
 
         $event_detail = $event->eventDetails;
 
+        $shareComponent = \Share::page(
+            // 'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+           'http://127.0.0.1:8000/eventdetails/33',
+            'Open this event',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()
+        ->reddit();
 
-        return view('registered-eventdetails',compact('event','organizer','event_detail'));
+
+        return view('registered-eventdetails',compact('event','organizer','event_detail','shareComponent'));
     }
 
 

@@ -113,12 +113,6 @@ $eventdetails_id = $event_detail->id;
               Register for event
             </a>
 
-
-
-            <a style="padding-left: 20px;" href="#" class="btn_more">
-              Share
-            </a>
-
             <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" id = "calendar" class="btn_more">
                 Add to Calendar
               </a>
@@ -126,6 +120,11 @@ $eventdetails_id = $event_detail->id;
           @if(Session::has('fail'))
                <div class = "alert alert-danger">{{Session::get('fail')}}</div>
                   @endif
+         <p style="padding-left: 20px; padding-top:10px;"><b>Share Event</b>
+         <div class="container mt-4">
+
+         {!! $shareComponent !!}
+         </div>
 
 
       </div>

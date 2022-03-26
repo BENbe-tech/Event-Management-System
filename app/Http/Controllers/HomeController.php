@@ -8,6 +8,9 @@ use App\Models\EventDetail;
 use App\Models\SessionDetail;
 use App\Models\Session;
 use Illuminate\Support\Facades\DB;
+use Jorenvh\Share\Share;
+
+
 class HomeController extends Controller
 {
 
@@ -87,7 +90,21 @@ class HomeController extends Controller
     public function homeevent($id){
         $event =Event::find($id);
 
-        return view('home-event',compact('id','event'));
+
+        $shareComponent = \Share::page(
+            // 'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+            'http://127.0.0.1:8000/home-event/33',
+            'Open this event',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()
+        ->reddit();
+
+
+        return view('home-event',compact('id','event','shareComponent'));
 
     }
 

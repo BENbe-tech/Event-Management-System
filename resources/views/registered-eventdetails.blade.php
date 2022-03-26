@@ -169,15 +169,13 @@
         Add to calendar
       </a>
 
-
-
-
-
-      <a style="padding-left: 20px;" href="#" class="btn_more1" >
-        Share
-      </a>
-
     </div>
+
+    <p style="padding-left: 20px; padding-top:10px;"><b>Share Event</b>
+        <div class="container mt-4">
+
+            {!! $shareComponent !!}
+        </div>
 
    </div>
 
