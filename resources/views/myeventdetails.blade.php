@@ -135,7 +135,7 @@ the user has registered. Also the buttons to delete and edit events
           Edit Event
         </a>
 
-        <a style="padding-left: 20px;" href="#" class="btn_more">
+        <a style="padding-left: 20px;" href="{{route('delete', $event_id)}}" id="delete" class="btn_more">
           Cancel Event
         </a>
       </div>
@@ -253,6 +253,39 @@ the user has registered. Also the buttons to delete and edit events
 
 
             });
+          });
+
+
+
+          jQuery('#delete').click(function(e){
+          e.preventDefault();
+
+          if (confirm("Are you sure you want to cancel this event!    The event will be deleted automatically") == true) {
+
+
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{route('delete', $event_id)}}",
+             method: 'GET',
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+                window.location.href="{{route('myevents')}}";
+             },
+
+            });
+
+        }else{
+
+      alert("Event not canceled");
+        }
+
           });
        });
 </script>

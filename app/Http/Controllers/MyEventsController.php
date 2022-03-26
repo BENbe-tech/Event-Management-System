@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\EventDetail;
 use App\Models\Event;
+use Illuminate\Support\Facades\DB;
 use App\Models\Organizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Stroage;
@@ -46,6 +47,23 @@ class MyEventsController extends Controller
     public function download(Request $request,$file){
 
       return response()->download(public_path('storage/DocumentFolder/'.$file));
+    }
+
+
+    public function delete($id){
+
+        $event = Event::find($id);
+        if($event !=""){
+
+             DB::delete('delete from events where id = ?',[$id]);
+             return response()->json(['success'=>'Event deleted successful']);
+        }else{
+           
+            return response()->json(['success'=>'Event Already deleted']);
+        }
+
+
+
     }
 
 

@@ -65,6 +65,9 @@ Route::get('/myeventdetails/{id}',[MyEventsController::class,'index'])->name('my
 Route::get('/download/{file}',[MyEventsController::class,'download'])->name('download');
 
 
+Route::get('/delete/{id}',[MyEventsController::class,'delete'])->name('delete');
+
+
 Route::get('/home',[HomeController::class,'index'])->name('home')->middleware('isLoggedIn');
 
 
