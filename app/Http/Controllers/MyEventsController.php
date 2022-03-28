@@ -8,6 +8,7 @@ use App\Models\Organizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Stroage;
 use Jorenvh\Share\Share;
+use Illuminate\Support\Facades\File;
 
 class MyEventsController extends Controller
 {
@@ -103,38 +104,103 @@ class MyEventsController extends Controller
             'entry_mode' => 'required',
         ]);
 
-        $event_title = $request->input('eventtitle');
-        $event_id    = $request->input('event_id');
-        $eventdetails_id    = $request->input('eventdetails_id');
-        $category    = $request->input('category');
-        $organizer   = $request->input('organizer');
-        $venue       = $request->input('venue');
-        $virtual_link  = $request->input('link');
-        $city          = $request->input('city');
-        $address       = $request->input('address');
-        $start_date    =$request->input('start_date');
-        $end_date    =$request->input('end_date');
-        $entry_mode   = $request->input('entry_mode');
-        $price       = $request->input('price');
-        $speaker     = $request->input('speaker');
-        $document    = $request->imput('document');
-        $image       = $request->input('image');
-        $description  = $request->input('description');
 
+        $event_id    = $request->input('event_id');
+        $eventdetails_id  = $request->input('eventdetails_id');
+        // $category    =   $request->input('category');
+        // $organizer   =   $request->input('organizer');
+        // $venue       =   $request->input('venue');
+        // $virtual_link  = $request->input('link');
+        // $city          = $request->input('city');
+        // $address       = $request->input('address');
+        // $start_date    = $request->input('start_date');
+        // $end_date      = $request->input('end_date');
+        // $entry_mode    = $request->input('entry_mode');
+        // $price         = $request->input('price');
+        // $speaker       = $request->input('speaker');
+        // $document      = $request->imput('document');
+        // $image         = $request->input('image');
+        // $description   = $request->input('description');
+        // $event_title = $request->input('eventtitle');
+
+        $event = Event::find($event_id);
+        $event->event_title = $request->input('eventtitle');
+        $event->organizer_id =  $request->input('organizer');
+        $res_event =   $event->update();
 
 
         // DB::update('update events set event_title = ?,organizer_id=? where id = ?',
         // [$event_title,$organizer,$event_id]);
+       if($res_event){
+
+        $eventdetails = EventDetail::find( $eventdetails_id);
+
+        if($request->hasFile('image')){
+
+          $destination = 'storage/ImageFolder/'.$eventdetails->image_path;
+
+            if(File::exists($destination)){
+               File::delete($destination);
+            }
+
+            $name = $request->file('image')->getClientOriginalName();
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('storage/ImageFolder/', $filename);
+
+        }
+
+        if($request->hasFile('document')){
+
+        $destination = 'storage/DocumentFolder/'.$eventdetails->document_path;
+
+        if(File::exists($destination)){
+            File::delete($destination);
+         }
+
+            $namedoc = $request->file('document')->getClientOriginalName();
+
+            $docfile = $request->file('document');
+            $docname = time().'.'.$docfile->getClientOriginalExtension();
+            $docfile->move('storage/DocumentFolder/', $docname);
+
+        }
+
+
+        $eventdetails->category =        $request->input('category');
+        $eventdetails->online_link =     $request->input('link');
+        $eventdetails->venue =           $request->input('venue');
+        $eventdetails->city =            $request->input('city');
+        $eventdetails->address =         $request->input('address');
+        $eventdetails->starttime=        $request->input('start_date');
+        $eventdetails->endtime =         $request->input('end_date');
+        $eventdetails->price=            $request->input('price');
+        $eventdetails->description =     $request->input('description');
+        $eventdetails->image_name =      $name;
+        $eventdetails->image_path =      $filename;
+        $eventdetails->document_name =   $namedoc;
+        $eventdetails->document_path =   $docname;
+        $eventdetails->entry_mode =      $request->input('entry_mode');
+        $eventdetails->speaker =         $request->input('speaker');
+        $eventdetails->event_id =        $request->input('event_id');
+
+        $eventdetails->update();
 
 
         // DB::update('update event_details set category = ?,online_link=?, venue = ?, city = ? , address = ? ,
-        //    starttime = ? , endtime = ? , price = ?, description = ? where id = ?',
-        // [$event_title,$organizer,$eventdetails_id]);
+        //    starttime = ? , endtime = ? , price = ?, description = ?, image_name = ? , image_path = ? , document_name = ?,
+        //    document_path=? , entry_mode = ?, speaker = ?, event_id = ? where id = ?',
+        // [$category, $virtual_link, $venue, $city, $address,$start_date,
+        // $end_date, $price, $description, $name , $filename, $namedoc, $docname ,$entry_mode, $speaker
+        //  ,$event_id,$eventdetails_id]);
 
 
-
-        return view('myevents');
-
+       return back()->with('success','Event Updated successfully');
+    }
+    else{
+        return back()->with('fail','Failed to Update event');
+    }
     }
 
 }

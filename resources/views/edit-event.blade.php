@@ -15,12 +15,18 @@
        <div class = "alert alert-danger">{{Session::get('fail')}}</div>
           @endif
     @csrf
+    {{-- @method('POST') --}}
 
-    {{-- class container displays form for creating event --}}
+    {{-- class container displays form for editing event --}}
 
+    <?php
+      $event_id = $event->id;
+    ?>
     <div class="container">
-        <i class="fa-solid fa-memo-circle-info"></i> <h3>Update event</h3>
-      <p>Please fill in the form to edit event details</p>
+        <i class="fa-solid fa-memo-circle-info"></i> <h3>Update event
+
+            <a href ="{{route('myeventdetails', $event_id)}} " class="btn btn-danger float-end">Back</a>
+        </h3>
       <p><span class ="required"> *</span> Must be filled</p>
       <hr>
 
@@ -111,7 +117,7 @@
   <div class ="formline">
      <div>
       <label for="entry_mode"><b>Entry Mode</b></label><span class ="required"> *</span><br>
-    <select id="entry_mode"  name ="entry_mode" value="{{ $event_details->entry_mode}}" required>
+    <select id="entry_mode"  name ="entry_mode" value="{{ old('entry_mode') }}" required>
         <option value = "paid" selected>Paid Event</option>
         <option value = "free" selected>Free Event</option>
     </select>
@@ -140,12 +146,25 @@
      <span class = "text-danger">@error('document'){{$message}} @enderror</span>
     </div>
 
-    <div>
+    <?php
+        $image_path = $event_details->image_path;
+
+    ?>
+
+    <div style="margin-right: 0;">
        <label for="image"><b>Image</b></label><span class ="required"> *</span><br>
        <input type="file" placeholder="Enter image for event" name="image" id="image" value="{{ old('image') }}" required>
        <p class="required">image(jpg,jpeg,png) maximum size 4MB</p>
        <span class = "text-danger">@error('image'){{$message}} @enderror</span>
    </div>
+
+   <div style=" margin-left:10px;">
+    <img src="{{ asset('storage/ImageFolder/'.$image_path) }} "  width="70px" height = "70px" alt="{{$event_details->image_name}}">
+
+   </div>
+
+
+
  </div>
 
  <div>
@@ -157,7 +176,7 @@
 
   <hr>
     <div>
-        <button type="submit" class="registerbtn">Edit</button>
+        <button type="submit" class="registerbtn">Update Event</button>
     </div>
 
     </div>

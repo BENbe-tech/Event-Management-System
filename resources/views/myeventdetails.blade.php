@@ -132,7 +132,7 @@ the user has registered. Also the buttons to delete and edit events
 
     <div class=" inline" >
         <a style="padding-left: 20px;" href="{{route('edit', $event_id)}}" class="btn_more">
-          Edit Event
+          Update Event
         </a>
 
         <a style="padding-left: 20px;" href="{{route('delete', $event_id)}}" id="delete" class="btn_more">

@@ -151,7 +151,7 @@
 
   <hr>
     <div>
-        <button type="submit" class="registerbtn">Create</button>
+        <button type="submit" class="registerbtn">Create Event</button>
     </div>
 
     </div>
