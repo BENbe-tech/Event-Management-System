@@ -68,6 +68,12 @@ Route::get('/download/{file}',[MyEventsController::class,'download'])->name('dow
 Route::get('/delete/{id}',[MyEventsController::class,'delete'])->name('delete');
 
 
+Route::get('/edit/{id}',[MyEventsController::class,'edit'])->name('edit');
+
+
+Route::post('/update',[MyEventsController::class,'update'])->name('update');
+
+
 Route::get('/home',[HomeController::class,'index'])->name('home')->middleware('isLoggedIn');
 
 
