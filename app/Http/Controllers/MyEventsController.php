@@ -71,18 +71,13 @@ class MyEventsController extends Controller
 
      $event = Event::find($id);
 
-    //  echo  $event;
 
      $organizer_id = $event->organizer_id;
 
      $organizers = Organizer::find($organizer_id);
 
-    //  echo $organizers;
 
      $event_details = $event->eventDetails;
-
-    //  echo $event_details;
-
 
         return view('edit-event',compact('event','organizers','event_details'));
 
@@ -107,21 +102,7 @@ class MyEventsController extends Controller
 
         $event_id    = $request->input('event_id');
         $eventdetails_id  = $request->input('eventdetails_id');
-        // $category    =   $request->input('category');
-        // $organizer   =   $request->input('organizer');
-        // $venue       =   $request->input('venue');
-        // $virtual_link  = $request->input('link');
-        // $city          = $request->input('city');
-        // $address       = $request->input('address');
-        // $start_date    = $request->input('start_date');
-        // $end_date      = $request->input('end_date');
-        // $entry_mode    = $request->input('entry_mode');
-        // $price         = $request->input('price');
-        // $speaker       = $request->input('speaker');
-        // $document      = $request->imput('document');
-        // $image         = $request->input('image');
-        // $description   = $request->input('description');
-        // $event_title = $request->input('eventtitle');
+
 
         $event = Event::find($event_id);
         $event->event_title = $request->input('eventtitle');
@@ -129,8 +110,6 @@ class MyEventsController extends Controller
         $res_event =   $event->update();
 
 
-        // DB::update('update events set event_title = ?,organizer_id=? where id = ?',
-        // [$event_title,$organizer,$event_id]);
        if($res_event){
 
         $eventdetails = EventDetail::find( $eventdetails_id);
@@ -187,13 +166,6 @@ class MyEventsController extends Controller
 
         $eventdetails->update();
 
-
-        // DB::update('update event_details set category = ?,online_link=?, venue = ?, city = ? , address = ? ,
-        //    starttime = ? , endtime = ? , price = ?, description = ?, image_name = ? , image_path = ? , document_name = ?,
-        //    document_path=? , entry_mode = ?, speaker = ?, event_id = ? where id = ?',
-        // [$category, $virtual_link, $venue, $city, $address,$start_date,
-        // $end_date, $price, $description, $name , $filename, $namedoc, $docname ,$entry_mode, $speaker
-        //  ,$event_id,$eventdetails_id]);
 
 
        return back()->with('success','Event Updated successfully');

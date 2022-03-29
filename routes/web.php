@@ -12,6 +12,7 @@ use App\Http\Controllers\RegisteredEventsController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\SocialShareButtonsController;
 
 
@@ -122,3 +123,6 @@ Route::get('/addtocalendar/{event_title}/{eventdetails_id}',[CalendarController:
 
 
 Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget'])->name('social-media-share');
+
+
+Route::get('/send-email',[MailController::class,'sendEmail']);
