@@ -128,6 +128,10 @@ class MyEventsController extends Controller
             $filename = time().'.'.$extention;
             $file->move('storage/ImageFolder/', $filename);
 
+        }else{
+
+            $filename = null;
+            $name =null;
         }
 
         if($request->hasFile('document')){
@@ -143,6 +147,11 @@ class MyEventsController extends Controller
             $docfile = $request->file('document');
             $docname = time().'.'.$docfile->getClientOriginalExtension();
             $docfile->move('storage/DocumentFolder/', $docname);
+
+        }else{
+
+            $namedoc = null;
+            $docname = null;
 
         }
 

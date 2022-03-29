@@ -9,7 +9,8 @@ use App\Models\SessionDetail;
 use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 use Jorenvh\Share\Share;
-
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class RegisteredEventsController extends Controller
 {
@@ -41,12 +42,37 @@ class RegisteredEventsController extends Controller
 
         if($res_event==$event_id && $res_user==$user_id){
 
+
             return response()->json(['success'=>'You have already registered']);
         }
         else{
         $event = Event::find($event_id);
 
         $event->users()->attach($user_id);
+
+        //Sending email to registerd user
+
+        $user  = User::find($user_id);
+        $email = $user->email;
+        $name  = $user->name;
+        $event_title = $event->event_title;
+        $event_details = $event->eventDetails;
+        $start_date = $event_details->starttime;
+
+
+        $details = [
+            'title' => 'Dear '. $name.',',
+        //  'body' => 'You have registered for '. $event_title.' event which will commence on '.$start_date.' as planned',
+            'body1' => 'You have registered for ',
+            'body2' => ' event which will commence on ',
+            'body3' => ' as planned',
+            'event_title' => $event_title,
+            'date' => $start_date,
+       ];
+
+          Mail::to($email)->send(new TestMail($details));
+
+          //response
 
         return response()->json(['success'=>'You have registered successfuly to this event']);
         }
@@ -72,12 +98,15 @@ class RegisteredEventsController extends Controller
             if($res_session == $session_id && $res_user == $user_id){
 
             // return back()->with('fail','You have already registered in the session');
+
             return response()->json(['success'=>'You have already registered in the session']);
 
             }else{
             $session = Session::find($session_id);
             $session->users()->attach($user_id);
             // return back()->with('success','You have registered in this session successful');
+
+
             return response()->json(['success'=>'You have registered in this session successful']);
             }
 
