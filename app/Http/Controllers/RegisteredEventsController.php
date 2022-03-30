@@ -10,7 +10,6 @@ use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 use Jorenvh\Share\Share;
 use App\Mail\TestMail;
-use App\Mail\RegisterMail;
 use Illuminate\Support\Facades\Mail;
 
 class RegisteredEventsController extends Controller
@@ -71,9 +70,8 @@ class RegisteredEventsController extends Controller
             'date' => $start_date,
        ];
 
-          Mail::to($email)->send(new RegisterMail($details));
+          Mail::to($email)->send(new TestMail($details));
 
-          //response
 
         return response()->json(['success'=>'You have registered successfuly to this event']);
         }
