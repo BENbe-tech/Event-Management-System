@@ -17,35 +17,40 @@
                   <div class="card shadow-2-strong" style="border-radius: 1rem;">
                     <div class="card-body p-5">
 
-        <h4>Login</h4>
+        <h4>Reset Password</h4>
         <hr>
-        <form action="{{route('login-user')}}" method="post">
-            @if(Session::has('success'))
-            <div class = "alert alert-success">{{Session::get('success')}}</div>
-               @endif
+        <form action="{{route('reset.password.post')}}" method="post">
+
                @if(Session::has('fail'))
                <div class = "alert alert-danger">{{Session::get('fail')}}</div>
                   @endif
            @csrf
+           <input type="hidden" name="token" value="{{ $token }}">
           <div class="form-group">
             <label for="email">Email</label>
-           <input type = "email" class = "form-control" placeholder="Enter Emial" name="email" value="{{old('email')}}">
+           <input type = "email" class = "form-control" placeholder="Enter Emial" name="email" value="{{old('email')}}" required autofocus>
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 
                <div class="form-group">
                 <label for="password">Password</label>
-               <input type = "password" class = "form-control" placeholder="Enter Password" name="password" value="">
+               <input type = "password" class = "form-control" placeholder="Enter Password" name="password" value="" required autofocus >
                <span class = "text-danger">@error('password'){{$message}} @enderror</span>
                    </div>
                    <br>
 
+
+                   <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                   <input type = "password" class = "form-control" placeholder="Confirm Password" name="password_confirmation" value="" required autofocus>
+                   <span class = "text-danger">@error('password_confirmation'){{$message}} @enderror</span>
+                       </div><br>
+
+
                    <div class ="form-group">
-                    <button class =" btn btn-block btn-primary" type="submit">login</button>
+                    <button class =" btn btn-block btn-primary" type="submit">Reset Password</button>
                    </div>
-                   <br>
-                   <a href="registration">New User!! Register Here.</a><br>
-                   <a href="forget-password">Forgot Password</a>
+
           </form>
       </div>
 

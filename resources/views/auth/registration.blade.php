@@ -50,7 +50,7 @@
                    <div class="form-group">
                     <label for="password">Confirm Password</label>
                    <input type = "password" class = "form-control" placeholder="Confirm Password" name="password_confirmation" value="" required autocomplete="new-password">
-                   <span class = "text-danger">@error('confirmpassword'){{$message}} @enderror</span>
+                   <span class = "text-danger">@error('password_confirmation'){{$message}} @enderror</span>
                        </div><br>
 
                     <div class ="form-group">

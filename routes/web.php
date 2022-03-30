@@ -14,6 +14,7 @@ use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SocialShareButtonsController;
+use App\Http\Controllers\ForgotPasswordController;
 
 
 /*
@@ -49,6 +50,21 @@ Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware('i
 Route::post('/logout',[CustomAuthController::class,'logout'])->name('logout');
 
 Route::get('/forgotpassword',[CustomAuthController::class,'forgotpassword'])->name('forgotpassword');
+
+
+Route::post('/forgotpassword',[CustomAuthController::class,'forgot'])->name('forgotpassword');
+
+
+
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget-password');
+
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+
+
 
 Route::get('/create-event',[CreateEventController::class,'index'])->name('create-event');
 

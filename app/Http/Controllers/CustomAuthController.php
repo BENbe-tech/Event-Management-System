@@ -7,6 +7,8 @@ use App\Models\User;
 use function PHPSTORM_META\map;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Mail\ForgotMail;
+use Illuminate\Support\Facades\Mail;
 
 class CustomAuthController extends Controller
 {
@@ -29,6 +31,7 @@ class CustomAuthController extends Controller
        'name' => 'required',
        'email'=>'required|email|unique:users',
       'password' =>'required|min:8|confirmed',
+      'password_confirmation' => 'required',
       'phone' => 'required|min:10',
 
    ]);
@@ -91,13 +94,6 @@ public function logout(){
     }
 }
 
-
-
-//Forgot Password
-public function forgotpassword(){
-
-    return view('auth.forgotpassword');
-}
 
 
 }

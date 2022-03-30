@@ -18,28 +18,26 @@
               <div class="card shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-5">
 
-        <h4>Forgot Password</h4>
+        <h4>Reset Password</h4>
         <hr>
-        <form action = "{{route('register-user')}}" method="post">
-        @if(Session::has('success'))
-     <div class = "alert alert-success">{{Session::get('success')}}</div>
+        <form action = "{{route('forget.password.post')}}" method="post">
+        @if(Session::has('message'))
+     <div class = "alert alert-success">{{Session::get('message')}}</div>
         @endif
-        @if(Session::has('fail'))
-        <div class = "alert alert-danger">{{Session::get('fail')}}</div>
-           @endif
+
         @csrf
 
   {{-- class form-group used to display forgetpassword form --}}
 
           <div class="form-group">
             <label for="email">Enter Email</label>
-           <input type = "text" class = "form-control" placeholder="Enter Emial" name="email" value="">
+           <input type = "text" class = "form-control" placeholder="Enter Emaill" name="email" value="{{old('email')}}" required autofocus>
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 
 
                    <div class ="form-group">
-                    <button class =" btn btn-block btn-primary" type="submit">Submit</button>
+                    <button class =" btn btn-block btn-primary" type="submit">Send Password Link</button>
                    </div>
 
           </form>
