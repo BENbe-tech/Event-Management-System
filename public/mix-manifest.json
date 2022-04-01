@@ -8,6 +8,8 @@
     "/css/myevents.css": "/css/myevents.css",
     "/css/organizer.css": "/css/organizer.css",
     "/css/create.css": "/css/create.css",
+    "/css/edit-profile.css": "/css/edit-profile.css",
+    "/css/profile.css": "/css/profile.css",
     "/css/comments.css": "/css/comments.css",
     "/css/sessiondetails.css": "/css/sessiondetails.css",
     "/css/session.css": "/css/session.css",

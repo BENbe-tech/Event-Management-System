@@ -22,11 +22,6 @@ class Organizer extends Model
 
     ];
 
-//One to many relationship for organizer
-    public function feedbacks(){
-     return $this->hasMany('App\Models\Feedback','organizer_id');
-
-    }
 
     public function events(){
         return $this->hasMany('App\Models\Event','organizer_id');

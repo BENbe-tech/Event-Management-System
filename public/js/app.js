@@ -107,6 +107,28 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 
 /***/ }),
 
+/***/ "./resources/sass/profile.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/profile.scss ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9wcm9maWxlLnNjc3MuanMiLCJtYXBwaW5ncyI6IjtBQUFBIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vcmVzb3VyY2VzL3Nhc3MvcHJvZmlsZS5zY3NzPzM5NWMiXSwic291cmNlc0NvbnRlbnQiOlsiLy8gZXh0cmFjdGVkIGJ5IG1pbmktY3NzLWV4dHJhY3QtcGx1Z2luXG5leHBvcnQge307Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/sass/profile.scss\n");
+
+/***/ }),
+
+/***/ "./resources/sass/edit-profile.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/edit-profile.scss ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9lZGl0LXByb2ZpbGUuc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9lZGl0LXByb2ZpbGUuc2Nzcz9lMWNjIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/edit-profile.scss\n");
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -254,6 +276,8 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 			"css/myevents": 0,
 /******/ 			"css/organizer": 0,
 /******/ 			"css/create": 0,
+/******/ 			"css/edit-profile": 0,
+/******/ 			"css/profile": 0,
 /******/ 			"css/comments": 0,
 /******/ 			"css/sessiondetails": 0,
 /******/ 			"css/session": 0,
@@ -311,20 +335,22 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/create.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/organizer.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/myevents.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/myeventdetails.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/home.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/home-event.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/registered-events.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/registered-eventdetails.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/createsession.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/session.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/sessiondetails.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/comments.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/create.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/organizer.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/myevents.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/myeventdetails.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/home.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/home-event.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/registered-events.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/registered-eventdetails.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/createsession.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/session.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/sessiondetails.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/comments.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/profile.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/myeventdetails","css/myevents","css/organizer","css/create","css/edit-profile","css/profile","css/comments","css/sessiondetails","css/session","css/createsession","css/registered-eventdetails","css/registered-events","css/home-event","css/home"], () => (__webpack_require__("./resources/sass/edit-profile.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

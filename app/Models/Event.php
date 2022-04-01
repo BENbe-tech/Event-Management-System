@@ -43,4 +43,10 @@ class Event extends Model
         return $this->belongsTo(Organizer::class,'organizer_id');
 
        }
-}
+
+       public function comments(){
+        return $this->hasMany(Comment::class,'event_id');
+
+       }
+
+    }

@@ -18,7 +18,7 @@
 who is created by the user of the system. It displays specific event title
 and organizer of the event respectively .Will not be displayed if there is no event
 created --}}
-
+<h4><b>My Created Events</b></h4>
     <table class="styled-table">
         <thead>
             <tr>

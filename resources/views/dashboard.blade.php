@@ -35,8 +35,11 @@
             <li class="nav-item active">
               <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
             </li>
+            <?php
+             $user_id = session('loginId');
+            ?>
             <li class="nav-item">
-              <a class="nav-link" href="">Profile</a>
+              <a class="nav-link" href="{{route('profile',$user_id)}}">Profile</a>
             </li>
 
             <li class="nav-item">

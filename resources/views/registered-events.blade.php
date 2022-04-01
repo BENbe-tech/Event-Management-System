@@ -16,6 +16,7 @@ $count = $events->count();
 
 
 <div>
+    <h4><b>My Registered Events</b></h4>
  {{-- Class styled-table displays event registered by the user --}}
     <table class="styled-table">
         <thead>

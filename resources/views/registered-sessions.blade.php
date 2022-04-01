@@ -10,6 +10,7 @@
     @if($count!=0)
 
     <div>
+        <h4><b>My Registered Sessions</b></h4>
     <table class="styled-table">
         <thead>
             <tr>

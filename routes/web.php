@@ -15,6 +15,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\SocialShareButtonsController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ProfileController;
 
 
 /*
@@ -125,7 +126,10 @@ Route::get('/sessiondetails/{id}',[SessionController::class,'showsessiondetails'
 
 Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('downloaddoc');
 
-Route::get('/comment/{id}',[CommentsController::class,'participantComments'])->name('participant-comment');
+Route::get('/comment/{id}',[CommentsController::class,'participantComments'])->name('comment');
+
+
+Route::post('/post-comment',[CommentsController::class,'PostComments'])->name('post-comment');
 
 
 Route::get('/addtocalendar/{event_title}/{eventdetails_id}',[CalendarController::class,'Calendar'])->name('addtocalendar');
@@ -135,3 +139,12 @@ Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWid
 
 
 Route::get('/send-email',[MailController::class,'sendEmail']);
+
+
+Route::get('/profile/{id}',[ProfileController::class,'profile'])->name('profile');
+
+
+Route::get('/update-profile/{id}',[ProfileController::class,'showUpdateProfile'])->name('update-profile');
+
+
+Route::post('/updates-profile',[ProfileController::class,'UpdateProfile'])->name('updates-profile');
