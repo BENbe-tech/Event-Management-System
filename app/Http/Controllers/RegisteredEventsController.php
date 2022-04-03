@@ -10,7 +10,10 @@ use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 use Jorenvh\Share\Share;
 use App\Mail\TestMail;
+use App\Models\EventDetail;
+use App\Models\EventUser;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
 
 class RegisteredEventsController extends Controller
 {
@@ -24,6 +27,16 @@ class RegisteredEventsController extends Controller
 
         return view('registered-events',compact('events'));
 
+
+    }
+
+    public function schedule(){
+
+        $user_id = session('loginId');
+        $user = User::find($user_id);
+        $events = $user->events;
+
+        return view('schedule', compact('events'));
 
     }
 
@@ -65,7 +78,7 @@ class RegisteredEventsController extends Controller
         //  'body' => 'You have registered for '. $event_title.' event which will commence on '.$start_date.' as planned',
             'body1' => 'You have registered for ',
             'body2' => ' event which will commence on ',
-            'body3' => ' as planned',
+            'body3' => ' as planned. Verify on our page for attendance,one day before the event commence',
             'event_title' => $event_title,
             'date' => $start_date,
        ];
@@ -169,6 +182,64 @@ class RegisteredEventsController extends Controller
          return response()->download(public_path('storage/SessionDocuments/'.$file));
        }
 
+
+       public function verify($id){
+
+        $user_id = session('loginId');
+        $event = Event::find($id);
+        $event_detail = EventDetail::find($event->id);
+        $start = $event_detail->starttime;
+        $currentDateTime = Carbon::now();
+        $newDateTime = $currentDateTime ->addHour(24);
+
+        if($start > $newDateTime){
+
+
+        $participant = DB::table('event_user')->where('event_id',$id)
+        ->where('user_id',$user_id)->get();
+
+
+            if($participant!=[]){
+                $participant_id = $participant[0]->id;
+                $participant = EventUser::find($participant_id);
+              }
+              else{
+
+                  return response()->json(['success'=>'failed to verify register for event first']);
+              }
+
+            $verify_id =  $participant->verify_attendance;
+            if($verify_id == NULL){
+
+            $participant->verify_attendance = 1;
+            $res_event =   $participant->update();
+            if($res_event){
+
+             return response()->json(['success'=>'verified attendance successfully']);
+            }
+            else{
+
+                return response()->json(['success'=>'failed to verify']);
+            }
+           }
+            else{
+
+                return response()->json(['success'=>'you have already verified']);
+            }
+
+        }
+
+        else{
+
+            return response()->json(['success'=>'you can only verify for event attendance one day before the event']);
+        }
+
+
+
+
+
+
+       }
 
 
 }

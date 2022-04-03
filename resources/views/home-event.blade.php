@@ -182,6 +182,7 @@ $eventdetails_id = $event_detail->id;
               jQuery.ajax({
                 url: "{{url('participants/'.$event_id.'/'.$user_id)}}",
                  method: 'GET',
+                 timeout:8000,
                  data: {
                     "_token": "{{ csrf_token() }}",
                  },
@@ -189,7 +190,18 @@ $eventdetails_id = $event_detail->id;
 
                     alert(result.success);
 
-                 }});
+                 },
+
+                 error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+
+            alert("error: " + request + status + err);
+          }
+         }
+                });
               });
 
 
@@ -204,12 +216,25 @@ $eventdetails_id = $event_detail->id;
           jQuery.ajax({
             url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
              method: 'GET',
+             timeout:8000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
              success: function(result){
                 alert(result.success);
-             }});
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+           } else {
+
+            alert("error: " + request + status + err);
+           }
+        }
+
+            });
           });
 
 

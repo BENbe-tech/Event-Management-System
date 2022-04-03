@@ -53,14 +53,14 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropbtn" href="#">Events</a>
                 <div class="dropdown-content">
-                    <a href="{{route('myevents')}}">My Events</a>
+                    <a href="{{route('myevents')}}">Created Events</a>
                     <a href="{{route('registered-events')}}">Registered events</a>
                     <a href="#">Link 3</a>
                 </div>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Schedule</a>
+                <a class="nav-link" href="{{route('schedule')}}">Schedule</a>
               </li>
 
             <li class="nav-item">

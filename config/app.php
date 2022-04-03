@@ -67,7 +67,9 @@ return [
     | carbon and date
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'UTC',
+    'timezone' => 'Africa/Dar_es_Salaam',
+    // 'timezone' => env('TIME_ZONE', 'CET'),
 
     /*
     |--------------------------------------------------------------------------

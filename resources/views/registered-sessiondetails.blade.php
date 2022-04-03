@@ -100,7 +100,7 @@ if($sessiondetails->description!=""){
         Register for session
       </a>
 
-     
+
 
   </div>
 
@@ -125,12 +125,24 @@ if($sessiondetails->description!=""){
           jQuery.ajax({
             url: "{{url('session-participants/'.$event_id.'/'.$user_id.'/'.$session_id)}}",
              method: 'GET',
+             timeout:5000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
              success:function(result){
                 alert(result.success);
-             }});
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+          
+            alert("error: " + request + status + err);
+        }
+    }
+            });
           });
        });
 </script>

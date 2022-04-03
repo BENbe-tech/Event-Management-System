@@ -19,6 +19,8 @@ class MyEventsController extends Controller
 
 }
 
+
+
  //The index function is called when event title is selected at my created event table
     //and display eventdetails of the slected event
     public function index($id){

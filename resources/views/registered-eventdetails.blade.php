@@ -133,8 +133,8 @@
 
         <div class="inline button" >
 
-            <a style="padding-left: 20px;" href="#" class="btn_more">
-              Verify Attendendance
+            <a style="padding-left: 20px;" id="verify" href="{{route('verify',$event->id)}}" class="btn_more">
+              Verify Attendance
             </a>
 
             <a style="padding-left: 20px;" href="{{route('comment', $event->id)}}" class="btn_more">
@@ -223,7 +223,7 @@
           jQuery.ajax({
             url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
              method: 'GET',
-             timeout:10000,
+             timeout:8000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
@@ -245,6 +245,42 @@
 
             });
           });
+
+
+          jQuery('#verify').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{url('verify',$event->id)}}",
+             method: 'GET',
+             timeout:5000,
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+
+            alert("error: " + request + status + err);
+           }
+         }
+
+            });
+          });
+
+
+
+
        });
 </script>
 

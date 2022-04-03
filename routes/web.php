@@ -16,6 +16,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\SocialShareButtonsController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 
 
 /*
@@ -71,6 +72,7 @@ Route::post('/create-organizer',[OrganizerController::class,'createorganizer'])-
 
 Route::get('/myevents',[MyEventsController::class,'myevent'])->name('myevents');
 
+
 Route::get('/myeventdetails/{id}',[MyEventsController::class,'index'])->name('myeventdetails');
 
 Route::get('/download/{file}',[MyEventsController::class,'download'])->name('download');
@@ -99,6 +101,14 @@ Route::get('/event-sessiondetails/{id}',[HomeController::class,'showsessiondetai
 
 
 Route::get('/registered-events',[RegisteredEventsController::class,'index'])->name('registered-events');
+
+
+Route::get('/schedule',[RegisteredEventsController::class,'schedule'])->name('schedule');
+
+
+Route::get('/verify/{id}',[RegisteredEventsController::class,'verify'])->name('verify');
+
+
 
 Route::get('/participants/{event_id}/{user_id}',[RegisteredEventsController::class,'participants'])->name('participants');
 
@@ -148,3 +158,6 @@ Route::get('/update-profile/{id}',[ProfileController::class,'showUpdateProfile']
 
 
 Route::post('/updates-profile',[ProfileController::class,'UpdateProfile'])->name('updates-profile');
+
+
+Route::get('/event-report',[ReportController::class,'index'])->name('event-report');

@@ -40,6 +40,18 @@
                    </div>
                    <br>
 
+              <div class="login-actions">
+
+             <span class = "login-checkbox">
+
+     <input id = "remember" name ="remember" type ="checkbox" class="field login-checkbox"
+             tabindex="4"/>
+            <label class="choice" for="remember">Keep me signed in</label>
+             </span>
+
+              </div>
+
+
                    <div class ="form-group">
                     <button class =" btn btn-block btn-primary" type="submit">login</button>
                    </div>

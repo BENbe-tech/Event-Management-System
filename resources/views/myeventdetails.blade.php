@@ -159,7 +159,7 @@ the user has registered. Also the buttons to delete and edit events
 <div class="inline" >
 
 
- <a style="padding-left: 20px;" href="#" class="btn_more1" >
+ <a style="padding-left: 20px;" href="{{route('event-report')}}" class="btn_more1" >
         View Event Report
    </a>
 
@@ -230,7 +230,7 @@ the user has registered. Also the buttons to delete and edit events
           jQuery.ajax({
             url: "{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}",
              method: 'GET',
-             timeout:10000,
+             timeout:8000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
@@ -271,6 +271,7 @@ the user has registered. Also the buttons to delete and edit events
           jQuery.ajax({
             url: "{{route('delete', $event_id)}}",
              method: 'GET',
+             timeout:5000,
              data: {
                 "_token": "{{ csrf_token() }}",
              },
@@ -278,6 +279,15 @@ the user has registered. Also the buttons to delete and edit events
                 alert(result.success);
                 window.location.href="{{route('myevents')}}";
              },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+            alert("timeout: Problem with your internet connetion. too slow");
+         } else {
+
+            alert("error: " + request + status + err);
+         }
+       }
 
             });
 
