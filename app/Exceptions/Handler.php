@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Throwable;
+use Illuminate\Support\Facades\Session;
 
 class Handler extends ExceptionHandler
 {
@@ -38,4 +41,22 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    // public function render($request, Exception $e)
+    // {
+    //     if($e instanceof TokenMismatchException && $request->getRequestUri() === '/logout'){
+
+    //         if(Session::has('loginId')){
+    //             Session::pull('loginId');
+    //            return  redirect('login');
+
+    //          }
+
+    //         return redirect('/login');
+
+    //     }
+    //     return parent::render($request, $e);
+
+    // }
+
 }

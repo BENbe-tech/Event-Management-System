@@ -216,7 +216,7 @@ event.preventDefault()
 
 var username = document.getElementById("username").innerHTML;
 console.log(username);
-var x = "@"
+var x = "@";
 // document.getElementById("textAreaExample").value =x;
 document.getElementById("message").focus();
 document.getElementById("message").innerHTML = x.concat(username);

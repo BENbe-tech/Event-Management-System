@@ -58,6 +58,9 @@ created --}}
 ?>
    </tbody>
 </table>
+<a style="padding-left: 20px;" href="{{route('event-report')}}" class="btn_more1" >
+    View Events Report
+</a>
 <p class="central" style="text-align: center;">Click Event title of particular event to open it</p>
 </div>
 @else
