@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\SessionDetail;
 use App\Models\Session;
 use App\Models\Event;
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 class SessionController extends Controller
 {
     //
@@ -85,16 +86,16 @@ public function showsessions($id){
    $sessions = Session::all()->where('event_id',$id);
    $count = $sessions->count();
 
-    return view('session',compact('sessions','count'));
+    return view('session',compact('sessions','count','id'));
 
 }
 
-public function showsessiondetails($id){
+public function showsessiondetails($id,$event_id){
 
     $session = Session::find($id);
     $sessiondetails = $session->sessionDetails;
 
-     return view('sessiondetails',compact('session','sessiondetails'));
+     return view('sessiondetails',compact('session','sessiondetails','event_id'));
 
  }
 
@@ -103,6 +104,109 @@ public function showsessiondetails($id){
 
     return response()->download(public_path('storage/SessionDocuments/'.$file));
   }
+
+
+  public function delete($id){
+
+    $event = Session::find($id);
+    if($event !=""){
+
+         DB::delete('delete from sessions where id = ?',[$id]);
+         return response()->json(['success'=>'Session deleted successful']);
+    }else{
+
+        return response()->json(['success'=>'Session Already deleted']);
+    }
+
+
+
+}
+
+
+public function edit($id,$event_id){
+
+    $session = Session::find($id);
+
+    $session_details = $session->sessionDetails;
+
+       return view('edit-session',compact('session','session_details','id','event_id'));
+
+   }
+
+
+   public function update(Request $request){
+
+
+    $request->validate([
+        'sessiontitle' => 'required',
+        'start_time'=>'required',
+        'end_time' => 'required',
+        'date'=>'required',
+        'document' => 'mimes:pdf|max:4096',
+
+    ]);
+
+
+    $session_id    = $request->input('session_id');
+    $sessiondetails_id  = $request->input('sessiondetails_id');
+
+
+    $session = Session::find($session_id);
+    $session->name = $request->input('sessiontitle');
+
+    $res_session =   $session->update();
+
+
+   if($res_session){
+
+    $sessiondetails = SessionDetail::find( $sessiondetails_id);
+
+    if($request->hasFile('document')){
+
+    $destination = 'storage/SessionDocument/'.$sessiondetails->document_path;
+
+    if(File::exists($destination)){
+        File::delete($destination);
+     }
+
+        $namedoc = $request->file('document')->getClientOriginalName();
+
+        $docfile = $request->file('document');
+        $docname = time().'.'.$docfile->getClientOriginalExtension();
+        $docfile->move('storage/SessionDocument/', $docname);
+
+    }else{
+
+        $namedoc = null;
+        $docname = null;
+
+    }
+
+
+
+    $sessiondetails->online_link =     $request->input('link');
+    $sessiondetails->venue =           $request->input('venue');
+
+    $sessiondetails->start_time=        $request->input('start_time');
+    $sessiondetails->end_time =         $request->input('end_time');
+    $sessiondetails->date=            $request->input('date');
+    $sessiondetails->description =     $request->input('description');
+
+    $sessiondetails->document_name =   $namedoc;
+    $sessiondetails->document_path =   $docname;
+    $sessiondetails->speaker =         $request->input('speaker');
+    $sessiondetails->session_id =        $request->input('session_id');
+
+    $sessiondetails->update();
+
+
+
+   return back()->with('success','Session Updated successfully');
+}
+else{
+    return back()->with('fail','Failed to Update Session');
+}
+}
 
 
 

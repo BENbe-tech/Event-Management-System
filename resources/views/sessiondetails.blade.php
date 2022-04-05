@@ -82,20 +82,86 @@ if($sessiondetails->description!=""){
 
 <p style="padding-left: 20px;"><b>Description: </b>{{$description}}</p>
 
+<?php
+$session_id = $session->id;
+$id = $event_id;
+?>
+
 <div class=" inline1" >
-    <a style="padding-left: 20px;" href="#" class="btn_more">
+    {{-- "{{url('session-participants/'.$event_id.'/'.$user_id.'/'.$session_id)}}" --}}
+    <a style="padding-left: 20px;" href="{{url('edit.session/'.$session_id.'/'.$id)}}" class="btn_more">
       Edit session
     </a>
 
-    <a style="padding-left: 20px;" href="#" class="btn_more">
+
+
+    <a style="padding-left: 20px;" id = "delete" href="{{route('delete.session',$session_id)}}" class="btn_more">
       Cancel session
     </a>
 
-    <a style="padding-left: 20px;" href="#" class="btn_more">
-        View session report
-      </a>
+
   </div>
 
 </div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"
+               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+               crossorigin="anonymous">
+</script>
+
+
+<script>
+
+jQuery(document).ready(function(){
+
+
+    jQuery('#delete').click(function(e){
+          e.preventDefault();
+
+          if (confirm("Are you sure you want to cancel this session!    The session will be deleted automatically") == true) {
+
+
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{route('delete.session',$session_id)}}",
+             method: 'GET',
+             timeout:5000,
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+                window.location.href="{{route('sessions', $id)}}";
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+            alert("timeout: Problem with your internet connetion. too slow");
+         } else {
+
+            alert("error: " + request + status + err);
+         }
+       }
+
+            });
+
+        }else{
+
+      alert("Session not canceled");
+        }
+
+          });
+
+
+
+});
+
+</script>
 </body>
 @endsection

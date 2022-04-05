@@ -117,6 +117,12 @@ Route::get('/eventdetails/{id}',[RegisteredEventsController::class,'eventdetails
 
 Route::get('/registeredevents-sessions/{id}',[RegisteredEventsController::class,'showsessions'])->name('registeredevents-sessions');
 
+
+
+Route::get('/participant.sessions/{id}',[RegisteredEventsController::class,'registeredSessions'])->name('participant.sessions');
+
+
+
 Route::get('/registeredevents-sessiondetails/{id}',[RegisteredEventsController::class,'showsessiondetails'])->name('registeredevents-sessiondetails');
 
 
@@ -130,9 +136,19 @@ Route::get('/create-session/{id}',[SessionController::class,'index'])->name('cre
 Route::post('/create-session1',[SessionController::class,'createSession'])->name('create-session1');
 
 
+Route::get('/delete.session/{id}',[SessionController::class,'delete'])->name('delete.session');
+
+
+Route::get('/edit.session/{id}/{event_id}',[SessionController::class,'edit'])->name('edit.session');
+
+
+Route::post('/update.session',[SessionController::class,'update'])->name('update.session');
+
+
+
 Route::get('/sessions/{id}',[SessionController::class,'showsessions'])->name('sessions');
 
-Route::get('/sessiondetails/{id}',[SessionController::class,'showsessiondetails'])->name('sessiondetails');
+Route::get('/sessiondetails/{id}/{event_id}',[SessionController::class,'showsessiondetails'])->name('sessiondetails');
 
 Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('downloaddoc');
 
@@ -164,3 +180,9 @@ Route::get('/createdevents-report',[ReportController::class,'index'])->name('cre
 
 
 Route::get('/event-report/{id}',[ReportController::class,'eventReport'])->name('event-report');
+
+
+Route::get('/eventsessions-report/{id}',[ReportController::class,'eventSessionsReport'])->name('eventsessions-report');
+
+
+Route::get('/session.report/{id}',[ReportController::class,'SessionReport'])->name('session.report');

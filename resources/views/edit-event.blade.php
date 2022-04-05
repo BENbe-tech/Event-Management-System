@@ -139,12 +139,15 @@
 
   <div class ="formline">
 
-    <div>
+    <div style="margin-right: 0;">
      <label for="document"><b>Document</b></label><br>
      <input type="file" placeholder="price for paid event" name="document" id="document" value="{{ old('document') }} "  >
      <p class="required">file(pdf) maximum size 4MB</p>
      <span class = "text-danger">@error('document'){{$message}} @enderror</span>
     </div>
+    <div style="margin-left: 10px; ">
+   <p>{{$event_details->document_name}}</p>
+     </div>
 
     <?php
         $image_path = $event_details->image_path;

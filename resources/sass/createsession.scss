@@ -100,7 +100,22 @@ body {
   }
 
 
+ /* Set a style for the submit button */
+ .registerbtn {
+    background-color: rgb(20, 124, 228);
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    border-radius:4px;
+  }
 
+  .registerbtn:hover {
+    opacity: 1;
+  }
   //CSS for screen less than 800px
 
   @media (max-width: 800px) {

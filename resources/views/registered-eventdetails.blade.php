@@ -196,7 +196,12 @@
         <p style="padding-left: 20px;"><b>Present Sessions</b></p>
 
         <a style="padding-left: 20px;" href="{{route('registeredevents-sessions', $event->id)}}" class="btn_more1" >
-            Show Sessions
+            Show Event Sessions
+          </a>
+
+
+        <a style="padding-left: 20px;" href="{{route('participant.sessions', $event->id)}}" class="btn_more1" >
+            Sessions Registered
           </a>
     </div>
 

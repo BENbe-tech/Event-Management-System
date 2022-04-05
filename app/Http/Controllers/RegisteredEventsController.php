@@ -12,6 +12,7 @@ use Jorenvh\Share\Share;
 use App\Mail\TestMail;
 use App\Models\EventDetail;
 use App\Models\EventUser;
+use App\Models\SessionUser;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
@@ -63,7 +64,7 @@ class RegisteredEventsController extends Controller
 
         $event->users()->attach($user_id);
 
-      
+
 
         //Sending email to registerd user
 
@@ -166,6 +167,26 @@ class RegisteredEventsController extends Controller
          return view('registered-sessions',compact('sessions','count'));
 
      }
+
+
+     public function registeredSessions($id){
+
+        // $event = Event::find($id);
+        // $sessions = $event->sessions;
+        $user_id = session('loginId');
+        $sessions = SessionUser::all()->where('user_id',$user_id);
+
+        // $sessions = Session::all()->where('event_id',$id);
+        $count = $sessions->count();
+
+
+         return view('participant-sessions',compact('sessions','count','user_id','id'));
+
+     }
+
+
+
+
 
      public function showsessiondetails($id){
 

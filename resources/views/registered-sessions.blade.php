@@ -10,7 +10,7 @@
     @if($count!=0)
 
     <div>
-        <h4><b>My Registered Sessions</b></h4>
+        <h4 style="padding-left: 170px;"><b> Event Sessions</b></h4>
     <table class="styled-table">
         <thead>
             <tr>

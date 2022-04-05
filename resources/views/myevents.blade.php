@@ -22,8 +22,9 @@ created --}}
     <table class="styled-table">
         <thead>
             <tr>
-                <th><b>Organizer name</b></th>
                 <th><b>Event title</b></th>
+                <th><b>Organizer name</b></th>
+
             </tr>
         </thead>
         <tbody>
@@ -48,8 +49,9 @@ created --}}
     ?>
 
             <tr>
-                <td><b>{{$organizer_name[0]}}</b></td>
                 <td><a href="{{route('myeventdetails', $event_id)}}" class="title"><b>{{$event_title[$j]}}</b></a></td>
+                <td><b>{{$organizer_name[0]}}</b></td>
+
             </tr>
 
 <?php
@@ -58,7 +60,7 @@ created --}}
 ?>
    </tbody>
 </table>
-<a style="padding-left: 20px;" href="{{route('createdevents-report')}}" class="btn_more1" >
+<a  href="{{route('createdevents-report')}}" class="btn_more1" >
     View Events Report
 </a>
 <p class="central" style="text-align: center;">Click Event title of particular event to open it</p>

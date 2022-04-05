@@ -92,6 +92,23 @@ a {
   color: black;
 }
 
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #147ce4;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 4px;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+
 @media (max-width: 800px) {
   .formline div {
     margin: 1px 0;

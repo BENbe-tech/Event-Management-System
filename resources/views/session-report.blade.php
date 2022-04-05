@@ -12,11 +12,9 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> {{$event->event_title}} Report</b>
+                        <h5><b> {{$session->event_title}} Report</b>
 
                         </h5>
-
-                        <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">View Comment</a><br>
 
                         <table class="table">
                             <thead>
@@ -25,10 +23,7 @@
                                     <th>Participant</th>
                                     <th>Email</th>
                                     <th>Phone</th>
-                                    <th>Verified Attendance</th>
-                                    <th>Payment Amount</th>
-                                    <th>Payment Day</th>
-                                    <th>Ticket Number</th>
+
                                    {{-- Attending virtual or physical --}}
                                 </tr>
                             </thead>
@@ -49,15 +44,6 @@
                                     <td>{{$user->name}} </td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
-                                    @if($participant->verify_attendance==NULL)
-                                    <td>No</td>
-                                    @endif
-                                    @if($participant->verify_attendance==1)
-                                    <td>Yes</td>
-                                    @endif
-                                    <td>4</td>
-                                    <td>Tsh 3000</td>
-                                    <td>20</td>
 
                                 </tr>
                              <?php
@@ -68,22 +54,18 @@
                             </tbody>
                         </table>
 
-                    {{-- Pagination --}}
-                    <div class="d-flex justify-content-center">
 
-                  {!! $participants->links() !!}
+                        <div class="d-flex justify-content-center">
 
-                    </div>
+                            {!! $participants->links() !!}
 
-            {{-- {!! $participants->render() !!} --}}
-
+                              </div>
 
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 </body>
 @endsection
