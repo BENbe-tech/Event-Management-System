@@ -7,88 +7,77 @@
 </head>
 <body>
 
-
-
     <div class="container mt-5">
         <div class="d-flex justify-content-center row">
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
+                        <h5><b> {{$event->event_title}} Report</b></h5>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th class="text-center">#</th>
-                                    <th>Event Title</th>
-                                    <th>Status</th>
-                                    <th>Participants</th>
-                                    <th>Verified Participants</th>
-                                    <th>Total Payments</th>
-                                    <th>Total Tickets</th>
+                                    <th>Participant</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Verified Attendance</th>
+                                    <th>Payment Amount</th>
+                                    <th>Payment Day</th>
+                                    <th>Ticket Number</th>
+                                   {{-- Attending virtual or physical --}}
                                 </tr>
                             </thead>
 
                             <tbody class="table-body">
-                               <?php
-                                  $count = $organizers->count();
-                                  for($j=0; $j<$count;$j++){
-                                    $events = $organizers[$j]->events;
-                                    if($events !=[]){
-                                    $count1 = $events->count();
-                                    for($i=0;$i<$count1;$i++){
-                                    $event_id = $events[$i]->id;
+                         <?php
+                          $x = 1;
 
-                                    $participants = App\Models\EventUser::all()->where('event_id',$event_id);
-                                   
-                               ?>
+                            foreach ($participants as $participant ){
+                                $user_id = $participant->user_id;
+                                $user =App\Models\User::find($user_id);
+
+                   ?>
+
 
                                 <tr class="cell-1">
-                                    <td class="text-center">{{$i+1}}</td>
-                                    <td>{{$events[$i]->event_title}}</td>
-                                    <?php
-                                      $time = $events[$i]->eventDetails;
-                                     $starttime = $time->starttime;
-                                      $endtime =  $time->endtime;
-                                    if($starttime > Carbon\Carbon::now()){
-                                    ?>
-                                    <td><span class="badge badge-info">To happen</span></td>
-
-                                     <?php
-                                    }
-                                    if($starttime < Carbon\Carbon::now() && Carbon\Carbon::now() < $endtime){
-                                     ?>
-
-                                     <td><span class="badge badge-success"> Ongoing </span></td>
-
-                                     <?php
-                                    }
-                                    if (Carbon\Carbon::now() > $endtime){
-                                     ?>
-
-                                     <td><span class="badge badge-danger"> Finished </span></td>
-
-                                    <?php
-                                    }
-                                    ?>
-
-                                    <td>{{$participants->count()}}</td>
-                                    <td>0</td>
+                                    <td>{{$x}}</td>
+                                    <td>{{$user->name}} </td>
+                                    <td>{{$user->email}}</td>
+                                    <td>{{$user->phone}}</td>
+                                    @if($participant->verify_attendance==NULL)
+                                    <td>No</td>
+                                    @endif
+                                    @if($participant->verify_attendance==1)
+                                    <td>Yes</td>
+                                    @endif
+                                    <td>4</td>
                                     <td>Tsh 3000</td>
                                     <td>20</td>
+
                                 </tr>
-
-                                <?php
-                                    }  } }
-                                ?>
-
+                             <?php
+                             $x++;
+                            }
+                             ?>
 
                             </tbody>
                         </table>
+
+                    {{-- Pagination --}}
+                    <div class="d-flex justify-content-center">
+
+                  {!! $participants->links() !!}
+
+                    </div>
+
+            {{-- {!! $participants->render() !!} --}}
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 
 
 </body>

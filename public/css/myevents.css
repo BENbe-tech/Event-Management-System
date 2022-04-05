@@ -55,3 +55,11 @@ a.title {
 a.title:hover {
   color: #2f2fb6;
 }
+
+a.btn_more1 {
+  text-decoration: none;
+  color: #2f2fb6;
+}
+a.btn_more1:hover {
+  color: red;
+}

@@ -18,7 +18,7 @@ body {
 
 
 .styled-table thead tr {
-   
+
     background-color: #2f2fb6;
     color: #ffffff;
     text-align: left;
@@ -63,3 +63,10 @@ a.title{
       }
 }
 
+a.btn_more1{
+    text-decoration: none;
+    color:#2f2fb6 ;
+    &:hover{
+        color:red;
+      }
+}

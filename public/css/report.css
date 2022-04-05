@@ -14,3 +14,14 @@ body {
 thead {
   background: #dddcdc;
 }
+
+p.central {
+  color: red;
+}
+
+a.title {
+  text-decoration: none;
+}
+a.title:hover {
+  color: #2f2fb6;
+}

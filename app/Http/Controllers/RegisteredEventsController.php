@@ -63,6 +63,8 @@ class RegisteredEventsController extends Controller
 
         $event->users()->attach($user_id);
 
+      
+
         //Sending email to registerd user
 
         $user  = User::find($user_id);

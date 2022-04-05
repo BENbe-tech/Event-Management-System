@@ -154,23 +154,12 @@ the user has registered. Also the buttons to delete and edit events
 
     <div class ="inline2">
 <div class = "report">
-<p style="padding-left: 20px;"><b>Event Report</b></p>
-
-<div class="inline" >
-
-
- <a style="padding-left: 20px;" href="{{route('event-report')}}" class="btn_more1" >
-        View Event Report
-   </a>
-
 
 <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" id = "calendar" >
     Add to calendar
   </a>
 
 
-
-</div>
 <p style="padding-left: 20px; padding-top:10px;"><b>Share Event</b>
 <div class="container mt-4">
 

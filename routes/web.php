@@ -160,4 +160,7 @@ Route::get('/update-profile/{id}',[ProfileController::class,'showUpdateProfile']
 Route::post('/updates-profile',[ProfileController::class,'UpdateProfile'])->name('updates-profile');
 
 
-Route::get('/event-report',[ReportController::class,'index'])->name('event-report');
+Route::get('/createdevents-report',[ReportController::class,'index'])->name('createdevents-report');
+
+
+Route::get('/event-report/{id}',[ReportController::class,'eventReport'])->name('event-report');
