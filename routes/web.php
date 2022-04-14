@@ -186,3 +186,6 @@ Route::get('/eventsessions-report/{id}',[ReportController::class,'eventSessionsR
 
 
 Route::get('/session.report/{id}',[ReportController::class,'SessionReport'])->name('session.report');
+
+
+Route::get('/send.notification/{id}',[MyEventsController::class,'sendnotification'])->name('send.notification');

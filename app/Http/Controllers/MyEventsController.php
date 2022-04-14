@@ -3,17 +3,31 @@
 namespace App\Http\Controllers;
 use App\Models\EventDetail;
 use App\Models\Event;
+use App\Models\EventUser;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Organizer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Stroage;
 use Jorenvh\Share\Share;
 use Illuminate\Support\Facades\File;
+use App\Notifications\SendEmailNotification;
+use Illuminate\Support\Facades\Notification;
 
 class MyEventsController extends Controller
 {
 //function index returns the events created when myevent option is selected
     public function myevent(){
+        // $user= User::all();
+        // echo $user;
+
+        // $user_id = EventUser::all()->where('event_id',4)->pluck('user_id');
+        // echo $user_id;
+
+        // $users = User::all()->whereIn('id',$user_id);
+        // echo $users;
+
+
 
     return view('myevents');
 
@@ -184,6 +198,29 @@ class MyEventsController extends Controller
     else{
         return back()->with('fail','Failed to Update event');
     }
+    }
+
+    public function sendnotification($id){
+
+
+        $user_id = EventUser::all()->where('event_id',$id)->pluck('user_id');
+
+        $user = User::all()->whereIn('id',$user_id);
+
+
+        $details = [
+
+            'greeting' => 'Hi Laravel Developer',
+            'body' => 'This is email body',
+            'actiontext' => 'Subscribe this channel',
+            'actionurl' => '/',
+            'lastline' => 'this is the last line',
+
+        ];
+
+        Notification::send($user, new SendEmailNotification($details));
+        return response()->json(['success'=>'Reminder notifications sent']);
+
     }
 
 }

@@ -138,6 +138,10 @@ the user has registered. Also the buttons to delete and edit events
         <a style="padding-left: 20px;" href="{{route('delete', $event_id)}}" id="delete" class="btn_more">
           Cancel Event
         </a>
+
+        <a style="padding-left: 20px;" href="{{route('send.notification', $event_id)}}" id="notification" class="btn_more">
+            Send Notification
+          </a>
       </div>
 
 
@@ -286,6 +290,44 @@ the user has registered. Also the buttons to delete and edit events
         }
 
           });
+
+
+
+          jQuery('#notification').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+          jQuery.ajax({
+            url: "{{route('send.notification', $event_id)}}",
+             method: 'GET',
+             timeout:30000,
+             data: {
+                "_token": "{{ csrf_token() }}",
+             },
+             success: function(result){
+                alert(result.success);
+             },
+
+         error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+
+        } else {
+
+            alert("error: " + request + status + err);
+        }
+    }
+
+
+            });
+          });
+
+
+
        });
 </script>
 
