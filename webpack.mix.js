@@ -31,4 +31,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/profile.scss','public/css/profile.css')
     .sass('resources/sass/edit-profile.scss','public/css/edit-profile.css')
     .sass('resources/sass/report.scss','public/css/report.css')
+    .sass('resources/sass/ticket.scss','public/css/ticket.css')
     .sourceMaps();

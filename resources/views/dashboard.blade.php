@@ -47,7 +47,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#">Tickets</a>
+                <a class="nav-link" href="{{route('register.ticket')}}">Tickets</a>
               </li>
 
               <li class="nav-item dropdown">

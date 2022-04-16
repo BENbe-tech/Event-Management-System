@@ -13,21 +13,12 @@ use Jorenvh\Share\Share;
 use Illuminate\Support\Facades\File;
 use App\Notifications\SendEmailNotification;
 use Illuminate\Support\Facades\Notification;
+use Carbon\Carbon;
 
 class MyEventsController extends Controller
 {
 //function index returns the events created when myevent option is selected
     public function myevent(){
-        // $user= User::all();
-        // echo $user;
-
-        // $user_id = EventUser::all()->where('event_id',4)->pluck('user_id');
-        // echo $user_id;
-
-        // $users = User::all()->whereIn('id',$user_id);
-        // echo $users;
-
-
 
     return view('myevents');
 
@@ -203,24 +194,43 @@ class MyEventsController extends Controller
     public function sendnotification($id){
 
 
+
         $user_id = EventUser::all()->where('event_id',$id)->pluck('user_id');
 
-        $user = User::all()->whereIn('id',$user_id);
+        $users = User::all()->whereIn('id',$user_id);
+
+        $event_title = Event::all()->where('id',$id)->pluck('event_title');
+
+        $event_starttime = EventDetail::all()->where('event_id',$id)->pluck('starttime');
+        $event_venue = EventDetail::all()->where('event_id',$id)->pluck('venue');
+
+        $currentDateTime = Carbon::now();
+        $newDateTime = $currentDateTime ->addHours(2);
 
 
-        $details = [
+        if($event_starttime[0] >= $newDateTime){
 
-            'greeting' => 'Hi Laravel Developer',
-            'body' => 'This is email body',
-            'actiontext' => 'Subscribe this channel',
-            'actionurl' => '/',
-            'lastline' => 'this is the last line',
+  foreach($users as $user){
+
+
+     $details = [
+
+            'greeting' =>'Dear '. $user->name . ',',
+            'body' => $event_title[0]. ' will begin after two hours, on '. $event_starttime[0] .' at ' . $event_venue[0],
+            'actiontext' => 'View the event',
+            'actionurl' => route('eventdetails', $id),
 
         ];
 
         Notification::send($user, new SendEmailNotification($details));
-        return response()->json(['success'=>'Reminder notifications sent']);
 
+    }
+        return response()->json(['success'=>'Reminder notifications sent']);
+        }
+
+        else{
+            return response()->json(['success'=>'You can only set reminder two hours before the event starts']);
+        }
     }
 
 }

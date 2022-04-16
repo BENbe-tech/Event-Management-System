@@ -178,6 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
 
     ],
 
@@ -235,6 +236,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'GoogleCalendar' => Spatie\GoogleCalendar\GoogleCalendarFacade::class,
         'Share' => Jorenvh\Share\ShareFacade::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
 
     ],
 

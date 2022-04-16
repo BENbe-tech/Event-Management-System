@@ -1,0 +1,106 @@
+@use "sass:list";
+@use "sass:math";
+
+// Variables
+$background-color: #f3f3f3;
+$width: 400;
+$circle-size: 50;
+
+body {
+	background-color: $background-color;
+	font-family: 'Yanone Kaffeesatz', sans-serif;
+	font-weight: 600;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+.ticket {
+	width: $width + px;
+	// height: 775px;
+    height: auto;
+	background-color: white;
+	margin: 25px auto;
+	position: relative;
+}
+
+.holes-top {
+	height: $circle-size + px;
+	width: $circle-size + px;
+	background-color: $background-color;
+	border-radius: 50%;
+	position: absolute;
+	left:50%;
+	margin-left: math.div($circle-size, -2) + px;
+	top: math.div($circle-size, -2) + px;
+
+	&:before,
+	&:after {
+		content: '';
+		height: $circle-size + px;
+		width: $circle-size + px;
+		background-color: $background-color;
+		position: absolute;
+		border-radius: 50%;
+	}
+	&:before {
+		left: math.div($width, -2) + px;
+	}
+	&:after {
+		left: math.div($width, 2) + px;
+	}
+}
+
+
+.title {
+	padding: 50px 25px 10px;
+}
+
+.cinema {
+	color: #aaa;
+	font-size: 22px;
+}
+
+.event-title {
+	font-size: 50px;
+}
+.info {
+	padding: 15px 25px;
+    background-color: white;
+}
+table {
+	width: 100%;
+	font-size: 18px;
+	margin-bottom: 15px;
+	tr {
+		margin-bottom: 10px;
+	}
+
+	th {
+		text-align: left;
+		&:nth-of-type(1) {
+			width: 38%;
+		}
+		&:nth-of-type(2) {
+			width: 40%;
+		}
+		&:nth-of-type(3) {
+			width: 15%;
+		}
+	}
+
+	td {
+		width: 33%;
+		font-size: 15px;
+	}
+}
+.bigger {
+	font-size: 48px;
+}
+.serial {
+    background-color: white;
+	padding: 25px;
+}
+

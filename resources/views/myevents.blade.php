@@ -10,6 +10,12 @@
       $organizer_id = App\Models\Organizer::all()->where('user_id',session('loginId'))->pluck('id');
       $event_title =App\Models\Event::all()-> whereIn('organizer_id',$organizer_id)->pluck('event_title');
 
+    //   phpinfo();
+
+    //   if (!extension_loaded('imagick')){
+    //   echo 'imagick not installed';
+    //  }
+
 ?>
 @if($event_title!="[]")
     <div>

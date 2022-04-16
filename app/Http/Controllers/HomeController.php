@@ -34,15 +34,7 @@ class HomeController extends Controller
             $flag = 1;
         }
 
-        // foreach($events as $event){
-        // echo $event->event_title;
-        // $eventx =  $event->eventDetails;
-        // $event_starttime = $eventx->starttime;
-        // $event_endtime = $eventx->endtime;
-        // echo  $event_starttime ;
-        // echo   $event_endtime ;
-
-        // }
+     
 
         return view('home',compact('event_categorys','events','IDevents','flag'));
 
