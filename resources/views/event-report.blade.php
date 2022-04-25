@@ -12,10 +12,8 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> {{$event->event_title}} Report</b>
-
-                        </h5>
-
+                        <h5><b> {{$event->event_title}} Report</b></h5>
+                        
                         <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">View Comment</a><br>
 
                         <table class="table">

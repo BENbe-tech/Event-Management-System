@@ -7,183 +7,96 @@
 </head>
 <body>
 
+<div class = "start">
+    <h2>Chat Messages</h2>
+
+@foreach ($comments as $comment)
 <?php
- $user_id = session('loginId');
+     if($comment->user_id == $user_id){
 
 ?>
 
-   <section class="gradient-custom">
-        {{-- <section style="background-color: #eee;"> --}}
-        <div class="container my-5 py-5">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-12 col-lg-10 col-xl-8">
-              <div class="card">
-                <div class="card-body p-4">
-                  <h4 class="text-center mb-4 pb-2">Nested comments section
-                    </h4>
+    <div class="container1">
+      {{-- <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;"> --}}
+      <i class="fa fa-user fa-3x" class="icon-left" aria-hidden="true"></i>
+      <p>{{$comment->message}}</p>
+      <span class="time-right">11:00</span>
+    </div>
+
+<?php
+     }else{
+
+?>
+
+    <div class="container1 darker">
+      {{-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;"> --}}
+      <i class="fa fa-user-circle fa-3x" class="icon-right" aria-hidden="true"></i>
+      <p>{{$comment->message}}</p>
+      <span class="time-left">11:01</span>
+    </div>
+    
+    <?php
+    }
+    ?>
+
+@endforeach
+
+    {{-- <div class="container1">
+      <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+      <p>Sweet! So, what do you wanna do today?</p>
+      <span class="time-right">11:02</span>
+    </div>
+
+    <div class="container1 darker">
+      <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+      <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+      <span class="time-left">11:05</span>
+    </div> --}}
 
 
-                  <div class="row">
-                    <div class="col">
+        <?php
+        $user_id = session('loginId');
+        $event_id = $id;
+        ?>
 
 
-                      <div class="d-flex flex-start mt-4">
+    <form action = "{{route('post-comment')}}" method="post" id="SubmitForm">
+        @csrf
+    <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+      <div class="d-flex flex-start w-100">
 
-                        <i class="fa fa-user fa-3x" aria-hidden="true">&nbsp;</i>
-                        <div class="flex-grow-1 flex-shrink-1">
-                          <div>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <p class="mb-1">
-                                <span id="username">Natalie Smith</span> <span class="small">- 2 hours ago</span>
-                              </p>
-                              <a href="#"  id="reply"
-                                ><i class="fas fa-reply fa-xs"></i
-                                ><span class="small" > reply</span></a
-                              >
-                            </div>
-                            <p class="small mb-0">
-                              The standard chunk of Lorem Ipsum used since the 1500s is
-                              reproduced below for those interested. Sections 1.10.32 and
-                              1.10.33.
-                            </p>
-                          </div>
+        <div class="form-outline w-100">
+          <textarea
+            class="form-control"
+            id="message"
+            rows="4"
+            name="message"
+            style="background: #fff;"
+            value="{{ old('message') }}"
+            required
+            autofocus
+            autocomplete
+          ></textarea>
 
-
-
-
-                          <div class="d-flex flex-start mt-4">
-
-                            <i class="fa fa-user-circle fa-3x" aria-hidden="true">&nbsp;</i>
-                            <div class="flex-grow-1 flex-shrink-1">
-                              <div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <p class="mb-1">
-                                    Lisa Cudrow <span class="small">- 4 hours ago</span>
-                                  </p>
-                                </div>
-                                <p class="small mb-0">
-                                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                                  scelerisque ante sollicitudin commodo. Cras purus odio,
-                                  vestibulum in vulputate at, tempus viverra turpis.
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-
-
-                          <div class="d-flex flex-start mt-4">
-
-                            <i class="fa fa-user-circle fa-3x" aria-hidden="true">&nbsp;</i>
-                            <div class="flex-grow-1 flex-shrink-1">
-                              <div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <p class="mb-1">
-                                    Maggie McLoan <span class="small">- 5 hours ago</span>
-                                  </p>
-                                </div>
-                                <p class="small mb-0">
-                                  a Latin professor at Hampden-Sydney College in Virginia,
-                                  looked up one of the more obscure Latin words, consectetur
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-
-
-
-                          <div class="d-flex flex-start mt-4">
-
-                            <i class="fa fa-user-circle fa-3x" aria-hidden="true">&nbsp;</i>
-                            <div class="flex-grow-1 flex-shrink-1">
-                              <div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                  <p class="mb-1">
-                                    John Smith <span class="small">- 6 hours ago</span>
-                                  </p>
-                                </div>
-                                <p class="small mb-0">
-                                  Autem, totam debitis suscipit saepe sapiente magnam officiis
-                                  quaerat necessitatibus odio assumenda, perferendis quae iusto
-                                  labore laboriosam minima numquam impedit quam dolorem!
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-
-                  @foreach ($comments as $comment)
-
-                      <div class="d-flex flex-start mt-4">
-
-                        <i class="fa fa-user fa-3x" aria-hidden="true">&nbsp;</i>
-                        <div class="flex-grow-1 flex-shrink-1">
-                          <div>
-                            <div class="d-flex justify-content-between align-items-center">
-                              <p class="mb-1">
-                                <span id="username">{{$comment->users->name}}</span> <span class="small">- {{$comment->created_ats}} hours ago</span>
-                              </p>
-                              <a href="#"  id="reply" onclick="response(event)"><i class="fas fa-reply fa-xs"></i>
-                                <span class="small" > reply{{$comment->user_id}}</span></a>
-                            </div>
-                            <p class="small mb-0">
-                             {{$comment->message}}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-
-                      @endforeach
-
-
-                    </div>
-                  </div><br>
-
-                  <form action = "{{route('post-comment')}}" method="post" id="SubmitForm">
-                      @csrf
-                  <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
-                    <div class="d-flex flex-start w-100">
-
-                      <div class="form-outline w-100">
-                        <textarea
-                          class="form-control"
-                          id="message"
-                          rows="4"
-                          name="message"
-                          style="background: #fff;"
-                          value="{{ old('message') }}"
-                          required
-                          autofocus
-                          autocomplete
-                        ></textarea>
-
-                        <label class="form-label" for="textAreaExample">Message</label>
-                        <span class = "text-danger">@error('message'){{$message}} @enderror</span>
-                      </div>
-                      <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
-                      <input type="hidden" id="event_id" name="event_id" value="{{$id}}">
-                    </div>
-
-                    <div class="float-end mt-2 pt-1">
-                      <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
-                      <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
-                    </div>
-                  </div>
-
-                </form>
-
-                </div>
-              </div>
-            </div>
-          </div>
+          <label class="form-label" for="textAreaExample">Message</label>
+          <span class = "text-danger">@error('message'){{$message}} @enderror</span>
         </div>
+        <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
+        <input type="hidden" id="event_id" name="event_id" value="{{$id}}">
+      </div>
+
+      <div class="float-end mt-2 pt-1">
+        <button class="btn btn-primary btn-sm" type="submit">Post comment</button>
+        <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+      </div>
+    </div>
+
+  </form>
 
 
-      </section>
 
 
+</div>
 
 
 
@@ -195,35 +108,6 @@
 </script>
 
 <script>
-
-document.getElementById("reply").addEventListener("click", function(event){
-event.preventDefault()
-
-
-var username = document.getElementById("username").innerHTML;
-console.log(username);
-var x = "@"
-// document.getElementById("textAreaExample").value =x;
-document.getElementById("message").focus();
-document.getElementById("message").innerHTML = x.concat(username);
-
-
-});
-
-function response(event){
-
-event.preventDefault()
-
-var username = document.getElementById("username").innerHTML;
-console.log(username);
-var x = "@";
-// document.getElementById("textAreaExample").value =x;
-document.getElementById("message").focus();
-document.getElementById("message").innerHTML = x.concat(username);
-
-
-}
-
 
 
 jQuery(document).ready(function(){
@@ -250,6 +134,13 @@ jQuery(document).ready(function(){
              },
              success: function(result){
                 alert(result.success);
+                // window.location.href =  "{{route('comment', $event_id)}}"
+                history.replaceState({
+
+                  id: 'about me',
+                  source: 'web',
+
+                },'About me','{{route('comment', $event_id)}}');
              }
             });
           });

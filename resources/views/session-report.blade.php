@@ -12,9 +12,7 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> {{$session->event_title}} Report</b>
-
-                        </h5>
+                        <h5><b> {{$session->event_title}} Report</b></h5>
 
                         <table class="table">
                             <thead>
