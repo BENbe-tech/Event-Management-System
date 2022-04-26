@@ -31,12 +31,9 @@
   border-radius: 50%;
 }
 
-.container1 i.icon-left {
+.icon-left {
   float: left;
-  max-width: 60px;
-  width: 100%;
   margin-right: 20px;
-  border-radius: 50%;
 }
 
 .container1 img.right {
@@ -45,7 +42,7 @@
   margin-right: 0;
 }
 
-.container1 i.icon-right {
+.icon-right {
   float: right;
   margin-left: 20px;
   margin-right: 0;
@@ -54,6 +51,7 @@
 .time-right {
   float: right;
   color: #aaa;
+  margin-right: 0;
 }
 
 .time-left {

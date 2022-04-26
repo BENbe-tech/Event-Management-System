@@ -195,6 +195,8 @@ Route::get('/downloaddoc/{file}',[SessionController::class,'download'])->name('d
 Route::get('/comment/{id}',[CommentsController::class,'participantComments'])->name('comment')->middleware('isLoggedIn');
 
 
+Route::get('/fetchComment/{id}',[CommentsController::class,'Comments'])->name('fetchComment')->middleware('isLoggedIn');
+
 
 Route::post('/post-comment',[CommentsController::class,'PostComments'])->name('post-comment')->middleware('isLoggedIn');
 
@@ -227,6 +229,9 @@ Route::get('/eventsessions-report/{id}',[ReportController::class,'eventSessionsR
 
 
 Route::get('/session.report/{id}',[ReportController::class,'SessionReport'])->name('session.report')->middleware('isLoggedIn');
+
+
+Route::get('/graph.report',[ReportController::class,'GraphChart'])->name('graph.report')->middleware('isLoggedIn');
 
 
 Route::get('/send.notification/{id}',[MyEventsController::class,'sendnotification'])->name('send.notification')->middleware('isLoggedIn');

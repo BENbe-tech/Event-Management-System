@@ -8,33 +8,38 @@
 <body>
 
 <div class = "start">
-    <h2>Chat Messages</h2>
+    <h2>Comment Messages</h2>
 
 @foreach ($comments as $comment)
-<?php
-     if($comment->user_id == $user_id){
 
+<?php
+//organizer user
+if($comment->user_id == $user_id){
+    $user_organizer = App\Models\User::find($user_id);
 ?>
 
     <div class="container1">
-      {{-- <img src="/w3images/bandmember.jpg" alt="Avatar" style="width:100%;"> --}}
-      <i class="fa fa-user fa-3x" class="icon-left" aria-hidden="true"></i>
-      <p>{{$comment->message}}</p>
-      <span class="time-right">11:00</span>
+
+     <span class="icon-right"> <i class="fa fa-user fa-2x"  aria-hidden="true"></i></span>
+     <span style="float:right;">{{$user_organizer->name}}</span><br>
+     <span style="float:right;">{{$comment->message}}</span><br>
+     <span class="time-right">{{$comment->created_at}}</span>
     </div>
 
 <?php
      }else{
-
+         //participant user
+         $user_participant = App\Models\User::find($comment->user_id);
 ?>
 
     <div class="container1 darker">
-      {{-- <img src="/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;"> --}}
-      <i class="fa fa-user-circle fa-3x" class="icon-right" aria-hidden="true"></i>
+
+      <span class="icon-left"><i class="fa fa-user-circle fa-2x"  aria-hidden="true"></i></span>
+      <span>{{$user_participant->name}}</span>
       <p>{{$comment->message}}</p>
-      <span class="time-left">11:01</span>
+      <span class="time-left">{{$comment->created_at}}</span>
     </div>
-    
+
     <?php
     }
     ?>
@@ -55,7 +60,7 @@
 
 
         <?php
-        $user_id = session('loginId');
+        $current_user_id = session('loginId');
         $event_id = $id;
         ?>
 
@@ -81,8 +86,8 @@
           <label class="form-label" for="textAreaExample">Message</label>
           <span class = "text-danger">@error('message'){{$message}} @enderror</span>
         </div>
-        <input type="hidden" id="user_id" name="user_id" value="{{$user_id}}">
-        <input type="hidden" id="event_id" name="event_id" value="{{$id}}">
+        <input type="hidden" id="user_id" name="user_id" value="{{$current_user_id}}">
+        <input type="hidden" id="event_id" name="event_id" value="{{$event_id}}">
       </div>
 
       <div class="float-end mt-2 pt-1">
@@ -94,11 +99,7 @@
   </form>
 
 
-
-
 </div>
-
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
@@ -133,21 +134,40 @@ jQuery(document).ready(function(){
                 event_id:event_id,
              },
              success: function(result){
-                alert(result.success);
-                // window.location.href =  "{{route('comment', $event_id)}}"
-                history.replaceState({
 
-                  id: 'about me',
-                  source: 'web',
+                window.location.href =  "{{route('comment', $event_id)}}"
 
-                },'About me','{{route('comment', $event_id)}}');
              }
             });
           });
        });
 
 
+    //    function fetchComments(){
+
+    //     $.ajax({
+    //     type: "GET",
+    //     url: "{{url('fetchComment', $event_id)}}",
+    //     dataType: "json",
+
+    //     success:function(data){
+
+    //       console.log(data.event_id);
+    //       console.log(data.comments);
+    //       console.log(data.user_id);
+
+
+    //   "<?php    $user_id;   ?>"  = data.user_id;
+    //   "<?php    $id;        ?>"  =  data.event_id;
+    //   "<?php    $comments;  ?>"  = data.comments;
+
+    //     }
+    //     })
+    //    }
+
+
 </script>
+
 
 </body>
 @endsection

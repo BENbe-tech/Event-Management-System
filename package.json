@@ -25,7 +25,9 @@
         "webpack-cli": "^4.9.1"
     },
     "dependencies": {
+        "@chartisan/chartjs": "^2.1.0",
         "@fortawesome/fontawesome-free": "^5.15.4",
+        "chart.js": "^2.9.3",
         "flatpickr": "^4.6.11",
         "font-awesome": "^4.7.0"
     }

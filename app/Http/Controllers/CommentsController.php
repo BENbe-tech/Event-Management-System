@@ -19,7 +19,7 @@ class CommentsController extends Controller
     $organizer_id = $organizer_ids[0];
     $user_ids = Organizer::all()->where('id',$organizer_id)->pluck('user_id');
     $user_id= $user_ids[0];
-    
+
     $comments = Comment::all()->where('event_id',$id);
 
     return view('participants-comments',compact('id','comments','user_id'));
@@ -47,6 +47,27 @@ class CommentsController extends Controller
 
 
         }
+
+    }
+
+
+    public function Comments($id){
+
+        $organizer_ids = Event::all()->where('id',$id)->pluck('organizer_id');
+
+        $organizer_id = $organizer_ids[0];
+        $user_ids = Organizer::all()->where('id',$organizer_id)->pluck('user_id');
+        $user_id= $user_ids[0];
+
+        $comments = Comment::all()->where('event_id',$id);
+
+        // return view('participants-comments',compact('id','comments','user_id'));
+
+        return response()->json([
+            'event_id' => $id,
+            'comments' => $comments,
+            'user_id'  => $user_id,
+        ]);
 
     }
 
