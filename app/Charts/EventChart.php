@@ -19,7 +19,7 @@ class EventChart extends BaseChart
      * and never a string or an array.
      */
 
-     
+
     public function handler(Request $request): Chartisan
     {
 
@@ -27,8 +27,10 @@ class EventChart extends BaseChart
 
 
         return Chartisan::build()
-            ->labels(['First', 'Second', 'Third'])
-            ->dataset('Sample', [0, 1, 2]);
-            // ->dataset('Sample 2', [3, 2, 1]);
+            ->labels(['Udicti hackthon', 'datatamasha', 'Huawei'])
+            ->dataset('registered', [3, 2, 1])
+            ->dataset('participants', [1, 2, 2]);
     }
 }
+
+

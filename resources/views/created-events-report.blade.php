@@ -15,6 +15,11 @@
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
                         <h5><b>My Created Events Report</b></h5>
+
+            <a href ="{{route('graph.report')}} " class="btn btn-primary float-end">Line Graph Report</a>
+
+            <a href ="{{route('graph.report')}} " class="btn btn-primary float-end">Bar Graph Report</a><br><br>
+
                         <table class="table">
                             <thead>
                                 <tr>

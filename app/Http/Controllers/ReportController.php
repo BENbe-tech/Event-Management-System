@@ -67,18 +67,30 @@ class ReportController extends Controller
        $user_id    = session('loginId');
        $organizer_id =   Organizer::all()->where('user_id',$user_id)->pluck('id');
        $event_title = Event::all()->whereIn('organizer_id',$organizer_id)->pluck('event_title');
-       echo $event_title;
+    //    echo $event_title;
        $event_id = Event::all()->whereIn('organizer_id',$organizer_id)->pluck('id');
-       echo $event_id;
-      $participants = EventUser::all()->whereIn('event_id',$event_id);
-      echo $participants;
+    //    echo $event_id;
+       $x = count($event_id);
+    //    echo $x;
+       $data_participants = array();
 
+       for ($i=0;$i<$x;$i++) {
 
-      $chart = new EventChart;
-      $chart->labels([$event_title]);
-      $chart->dataset('participants',[3,4,5]);
+        $participants = EventUser::all()->where('event_id',$event_id[$i])->where('verify_attendance',1);
+         $y = $participants->count();
+         $data_participants[$i] = $y;
+    }
 
-        return view('event-graph-report');
+    $data_registered = array();
+
+    for ($j=0;$j<$x;$j++) {
+
+        $registered_user = EventUser::all()->where('event_id',$event_id[$j]);
+         $y = $registered_user->count();
+         $data_registered[$j] = $y;
+    }
+
+        return view('event-graph-report',compact('event_title','data_participants','data_registered'));
     }
 
 
