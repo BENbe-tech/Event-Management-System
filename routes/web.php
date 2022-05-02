@@ -231,7 +231,21 @@ Route::get('/eventsessions-report/{id}',[ReportController::class,'eventSessionsR
 Route::get('/session.report/{id}',[ReportController::class,'SessionReport'])->name('session.report')->middleware('isLoggedIn');
 
 
-Route::get('/graph.report',[ReportController::class,'GraphChart'])->name('graph.report')->middleware('isLoggedIn');
+Route::get('/bar-graph.report',[ReportController::class,'BarGraph'])->name('bar-graph.report')->middleware('isLoggedIn');
+
+
+Route::get('/line-graph.report',[ReportController::class,'LineGraph'])->name('line-graph.report')->middleware('isLoggedIn');
+
+
+Route::get('file-import-export', [ReportController::class, 'fileImportExport']);
+
+
+Route::post('file-import', [ReportController::class, 'fileImport'])->name('file-import')->middleware('isLoggedIn');
+
+
+
+Route::get('file-export', [ReportController::class, 'fileExport'])->name('file-export')->middleware('isLoggedIn');
+
 
 
 Route::get('/send.notification/{id}',[MyEventsController::class,'sendnotification'])->name('send.notification')->middleware('isLoggedIn');

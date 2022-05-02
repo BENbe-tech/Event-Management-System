@@ -15,8 +15,8 @@
                         <h5><b> {{$event->event_title}} Report</b></h5>
 
                         <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">View Comments</a>
-                        <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">Export in excel</a>
-                        <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">Export in csv</a><br><br>
+                        <a href ="{{ route('file-export') }} " class="btn btn-primary float-end">Export in excel</a>
+                        <a href ="{{ route('file-export') }} " class="btn btn-primary float-end">Export in csv</a><br><br>
                         <table class="table">
                             <thead>
                                 <tr>

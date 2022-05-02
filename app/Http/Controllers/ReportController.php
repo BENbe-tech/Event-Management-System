@@ -9,6 +9,9 @@ use App\Models\SessionUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Charts\EventChart;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\UsersImport;
+use App\Exports\UsersExport;
 
 class ReportController extends Controller
 {
@@ -62,7 +65,7 @@ class ReportController extends Controller
     }
 
 
-    public function GraphChart(){
+    public function BarGraph(){
 
        $user_id    = session('loginId');
        $organizer_id =   Organizer::all()->where('user_id',$user_id)->pluck('id');
@@ -90,8 +93,59 @@ class ReportController extends Controller
          $data_registered[$j] = $y;
     }
 
-        return view('event-graph-report',compact('event_title','data_participants','data_registered'));
+        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered'));
     }
 
+
+
+
+    public function LineGraph(){
+
+        $user_id    = session('loginId');
+        $organizer_id =   Organizer::all()->where('user_id',$user_id)->pluck('id');
+        $event_title = Event::all()->whereIn('organizer_id',$organizer_id)->pluck('event_title');
+
+        $event_id = Event::all()->whereIn('organizer_id',$organizer_id)->pluck('id');
+
+        $x = count($event_id);
+
+        $data_participants = array();
+
+        for ($i=0;$i<$x;$i++) {
+
+         $participants = EventUser::all()->where('event_id',$event_id[$i])->where('verify_attendance',1);
+          $y = $participants->count();
+          $data_participants[$i] = $y;
+     }
+
+     $data_registered = array();
+
+     for ($j=0;$j<$x;$j++) {
+
+         $registered_user = EventUser::all()->where('event_id',$event_id[$j]);
+          $y = $registered_user->count();
+          $data_registered[$j] = $y;
+     }
+
+         return view('event-line-graph-report',compact('event_title','data_participants','data_registered'));
+     }
+
+
+    public function fileImportExport()
+    {
+       return view('file-import');
+    }
+
+
+    public function fileImport(Request $request)
+    {
+        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        return back();
+    }
+ 
+    public function fileExport()
+    {
+        return Excel::download(new UsersExport, 'users-collection.xlsx');
+    }
 
 }
