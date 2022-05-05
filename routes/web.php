@@ -244,7 +244,10 @@ Route::post('file-import', [ReportController::class, 'fileImport'])->name('file-
 
 
 
-Route::get('file-export', [ReportController::class, 'fileExport'])->name('file-export')->middleware('isLoggedIn');
+Route::get('file-export/{id}', [ReportController::class, 'fileExport'])->name('file-export')->middleware('isLoggedIn');
+
+
+Route::get('download.eventreport.pdf/{id}',[ReportController::class, 'downloadEventPDF'])->name('download.eventreport.pdf')->middleware('isLoggedIn');
 
 
 

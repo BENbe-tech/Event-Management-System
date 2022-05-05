@@ -12,6 +12,7 @@ use App\Charts\EventChart;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ReportController extends Controller
 {
@@ -142,10 +143,29 @@ class ReportController extends Controller
         Excel::import(new UsersImport, $request->file('file')->store('temp'));
         return back();
     }
- 
-    public function fileExport()
+
+    public function fileExport($event_id)
+
     {
-        return Excel::download(new UsersExport, 'users-collection.xlsx');
+        $export = new UsersExport($event_id);
+
+        return Excel::download($export, 'users-collection.xlsx');
     }
+
+
+  public function downloadEventPDF($id){
+
+    $event = Event::find($id);
+
+    // $participants = EventUser::all()->where('event_id',$id);
+    $participants = EventUser::where('event_id',$id)->paginate(6);
+
+    $eventpdf = PDF::loadView('event-report',compact('participants','event'));
+
+    return $eventpdf->download('eventreport.pdf');
+
+  }
+
+
 
 }

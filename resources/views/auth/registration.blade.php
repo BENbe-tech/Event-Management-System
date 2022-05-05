@@ -37,7 +37,7 @@
 
           <div class="form-group">
             <label for="email">Email</label>
-           <input type = "email" class = "form-control" placeholder="Enter Emial" name="email" value="{{ old('email') }}" required autocomplete="email">
+           <input type = "email" class = "form-control" placeholder="Enter Email" name="email" value="{{ old('email') }}" required autocomplete="email">
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 

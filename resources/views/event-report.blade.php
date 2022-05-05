@@ -3,7 +3,9 @@
 @section('content')
 <head>
     <link rel="stylesheet" href="{{asset('css/report.css')}}">
+<style>
 
+</style>
 </head>
 <body>
 
@@ -14,9 +16,10 @@
                     <div class="table-responsive table-borderless">
                         <h5><b> {{$event->event_title}} Report</b></h5>
 
-                        <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">View Comments</a>
-                        <a href ="{{ route('file-export') }} " class="btn btn-primary float-end">Export in excel</a>
-                        <a href ="{{ route('file-export') }} " class="btn btn-primary float-end">Export in csv</a><br><br>
+                        <a href ="{{route('comment', $event->id)}} " class="btn btn-primary float-end">View Comments</a><br><br>
+                        {{-- <a href ="{{ route('file-export',$event->id)}} " class="btn btn-primary float-end">Export in excel</a>
+                        <a href ="{{ route('file-export',$event->id)}} " class="btn btn-primary float-end">Export in csv</a> --}}
+                        {{-- <a href ="{{ route('download.eventreport.pdf',$event->id)}} " class="btn btn-primary float-end">Export in PDF</a> --}}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -54,8 +57,8 @@
                                     @if($participant->verify_attendance==1)
                                     <td>Yes</td>
                                     @endif
-                                    <td>4</td>
                                     <td>Tsh 3000</td>
+                                    <td>Monday</td>
                                     <td>20</td>
 
                                 </tr>

@@ -216,7 +216,7 @@ class MyEventsController extends Controller
      $details = [
 
             'greeting' =>'Dear '. $user->name . ',',
-            'body' => $event_title[0]. ' will begin after two hours, on '. $event_starttime[0] .' at ' . $event_venue[0],
+            'body' => $event_title[0]. ' will begin soon, on '. $event_starttime[0] .' at ' . $event_venue[0],
             'actiontext' => 'View the event',
             'actionurl' => route('eventdetails', $id),
 
@@ -229,7 +229,7 @@ class MyEventsController extends Controller
         }
 
         else{
-            return response()->json(['success'=>'You can only set reminder two hours before the event starts']);
+            return response()->json(['success'=>'You can only set reminder before the event starts']);
         }
     }
 

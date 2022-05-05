@@ -55,7 +55,7 @@
                 <div class="dropdown-content">
                     <a href="{{route('myevents')}}">Created Events</a>
                     <a href="{{route('registered-events')}}">Registered events</a>
-                    <a href="#">Link 3</a>
+                    {{-- <a href="#">Link 3</a> --}}
                 </div>
               </li>
 
@@ -63,9 +63,9 @@
                 <a class="nav-link" href="{{route('schedule')}}">Schedule</a>
               </li>
 
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
+            </li> --}}
           </ul>
 
         <ul class = "navbar-nav ml-auto">

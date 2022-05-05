@@ -29,7 +29,7 @@
            @csrf
           <div class="form-group">
             <label for="email">Email</label>
-           <input type = "email" class = "form-control" placeholder="Enter Emial" name="email" value="{{old('email')}}">
+           <input type = "email" class = "form-control" placeholder="Enter Email" name="email" value="{{old('email')}}">
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 
@@ -41,13 +41,14 @@
                    <br>
 
               <div class="login-actions">
-
+                  
+{{--
              <span class = "login-checkbox">
 
      <input id = "remember" name ="remember" type ="checkbox" class="field login-checkbox"
              tabindex="4"/>
             <label class="choice" for="remember">Keep me signed in</label>
-             </span>
+             </span> --}}
 
               </div>
 

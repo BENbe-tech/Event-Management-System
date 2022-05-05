@@ -31,7 +31,7 @@
 
           <div class="form-group">
             <label for="email">Enter Email</label>
-           <input type = "text" class = "form-control" placeholder="Enter Emaill" name="email" value="{{old('email')}}" required autofocus>
+           <input type = "text" class = "form-control" placeholder="Enter Email" name="email" value="{{old('email')}}" required autofocus>
            <span class = "text-danger">@error('email'){{$message}} @enderror</span>
                </div><br>
 

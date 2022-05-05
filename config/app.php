@@ -180,6 +180,7 @@ return [
         Spatie\GoogleCalendar\GoogleCalendarServiceProvider::class,
         Jorenvh\Share\Providers\ShareServiceProvider::class,
         SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -239,6 +240,7 @@ return [
         'Share' => Jorenvh\Share\ShareFacade::class,
         'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PDF' =>   Barryvdh\DomPDF\Facade\Pdf::class,
     ],
 
 ];
