@@ -160,8 +160,8 @@
 
     <div class="inline" >
     @if(  $price  !=  "Free")
-    <a style="padding-left: 20px;" href="#" class="btn_more1" >
-        Pay via tigopesa
+    <a style="padding-left: 20px;" href="{{route('participant-payview', $event->id)}}" class="btn_more1" >
+        Pay for event
       </a>
      @endif
 

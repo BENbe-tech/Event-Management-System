@@ -18,6 +18,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\PaymentController;
 use App\Models\Event;
 use App\Models\EventDetail;
 use App\Models\Category;
@@ -261,5 +262,12 @@ Route::get('/register.ticket',[TicketController::class,'index'])->name('register
 
 
 Route::get('/qrscanner',[TicketController::class,'qrscanner'])->name('qrscanner')->middleware('isLoggedIn');
+
+
+
+Route::post('/participantpay',[PaymentController::class,'ParticipantPay'])->name('participantpay')->middleware('isLoggedIn');
+
+
+Route::get('/participant-payview/{id}',[PaymentController::class,'Participantindex'])->name('participant-payview')->middleware('isLoggedIn');
 
 });

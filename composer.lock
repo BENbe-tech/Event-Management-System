@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a53558dc1e57b50b8ceb4a4cd5a34ef",
+    "content-hash": "a56d0f25af55958f14693572e35b9316",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -4439,6 +4439,148 @@
             "time": "2021-12-11T13:40:54+00:00"
         },
         {
+            "name": "shoket/laravel-shoket",
+            "version": "v0.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alphaolomi/laravel-shoket.git",
+                "reference": "92228663ccfa9c89c911c94ad660d54fb09d26ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alphaolomi/laravel-shoket/zipball/92228663ccfa9c89c911c94ad660d54fb09d26ca",
+                "reference": "92228663ccfa9c89c911c94ad660d54fb09d26ca",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0",
+                "php": "^8.0|^8.1",
+                "shoket/php-shoket": "^0.0.2",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.10",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^6.22",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Shoket\\Laravel\\ShoketServiceProvider"
+                    ],
+                    "aliases": {
+                        "Shoket": "Shoket\\Laravel\\Facades\\Shoket"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Shoket\\Laravel\\": "src",
+                    "Shoket\\Laravel\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alpha Olomi",
+                    "email": "alphaolomi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Shoket Intergation",
+            "homepage": "https://github.com/shoket/laravel-shoket",
+            "keywords": [
+                "laravel",
+                "laravel-shoket",
+                "payment",
+                "shoket"
+            ],
+            "support": {
+                "issues": "https://github.com/alphaolomi/laravel-shoket/issues",
+                "source": "https://github.com/alphaolomi/laravel-shoket/tree/v0.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/alphaolomi",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-04-20T17:49:08+00:00"
+        },
+        {
+            "name": "shoket/php-shoket",
+            "version": "v0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alphaolomi/php-shoket.git",
+                "reference": "2b55d981573dca02f0c3d63f97a8102ea64d5e8a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alphaolomi/php-shoket/zipball/2b55d981573dca02f0c3d63f97a8102ea64d5e8a",
+                "reference": "2b55d981573dca02f0c3d63f97a8102ea64d5e8a",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.4",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.6",
+                "pestphp/pest": "^1.21"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Shoket\\SDK\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alpha Olomi",
+                    "email": "alphaolomi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Shoket is a PHP client for the Shoket Payment API.",
+            "homepage": "https://alphaolomi.github.io/php-shoket/",
+            "keywords": [
+                "alphaolomi",
+                "mobile-money",
+                "payment-api",
+                "payments",
+                "php-shoket",
+                "shoket",
+                "tanzania"
+            ],
+            "support": {
+                "issues": "https://github.com/alphaolomi/php-shoket/issues",
+                "source": "https://github.com/alphaolomi/php-shoket/tree/v0.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://www.patreon.com/alphaolomi",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2022-04-20T17:05:53+00:00"
+        },
+        {
             "name": "simplesoftwareio/simple-qrcode",
             "version": "4.2.0",
             "source": {
@@ -4580,6 +4722,65 @@
                 }
             ],
             "time": "2022-03-18T07:43:44+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.11.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-15T20:01:36+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
