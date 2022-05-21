@@ -16,8 +16,19 @@ class Payment extends Model
     ];
      //One to one relatioship for between payment and ticket
 
-    public function tickets(){
+    // public function tickets(){
 
-        return $this->hasOne('App\Models\Ticket','payment_id');
-    }
+    //     return $this->hasOne('App\Models\Ticket','payment_id');
+    // }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id');
+
+       }
+
+
+       public function events(){
+        return $this->belongsTo(Event::class,'event_id');
+
+       }
 }

@@ -18,7 +18,13 @@ class CreatePaymentsTable extends Migration
             $table->time('payment_time');
             $table->string('amount');
             $table->string('method');
+            $table->string('reference_no');
+            $table->unsignedBigInteger('event_id')->nullable();
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('set null')->onUpdate('cascade');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
             $table->timestamps();
+
         });
     }
 

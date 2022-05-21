@@ -17,8 +17,20 @@ class Ticket extends Model
 
     ];
        //Inverse relationship between Ticket and payment
-    public function payments(){
+    // public function payments(){
 
-        return $this->belongsTo('App\Models\Payment','payment_id');
-    }
+    //     return $this->belongsTo('App\Models\Payment','payment_id');
+    // }
+
+    public function users(){
+        return $this->belongsTo(User::class,'user_id');
+
+       }
+
+       public function events(){
+        return $this->belongsTo(Event::class,'event_id');
+
+       }
+
+
 }

@@ -57,7 +57,21 @@ class PaymentController extends Controller
             "channel" =>  $provider
         ]);
 
-        dd($chargeResponse)  ;
+        //  dd($chargeResponse)  ;
+
+        // $responses = json_decode($chargeResponse->getContent(),true);
+       echo $chargeResponse['Status'];
+
+       foreach($chargeResponse['data'] as $data){
+           echo $data['channel'];
+       }
+
+       echo $chargeResponse['reference'];
+
+     foreach($chargeResponse as $response){
+
+        echo  $response['Status'];
+     }
 
 
     }

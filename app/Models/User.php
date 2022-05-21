@@ -56,5 +56,14 @@ class User extends Model
        }
 
 
+       public function tickets(){
+
+        return $this->hasMany(Ticket::class,'user_id');
+       }
+
+       public function payments(){
+
+        return $this->hasMany(Payment::class,'user_id');
+       }
 
 }
