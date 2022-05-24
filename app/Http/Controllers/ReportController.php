@@ -96,11 +96,18 @@ class ReportController extends Controller
     }
 
 
-    //   $data = Payment::all()->where('event_id',);
-         $amount = Payment::all()->whereIn('event_id',$event_id)->sum('amount');
-         echo $amount;
 
-        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered'));
+    $event_payments = array();
+
+      for($e=0; $e<$x ; $e++){
+
+        $amount = Payment::all()->where('event_id',$event_id[$e])->pluck('amount');
+        $y = $amount->sum();
+        $event_payments[$e] = $y;
+      }
+
+
+        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered','event_payments'));
     }
 
 
@@ -134,7 +141,20 @@ class ReportController extends Controller
           $data_registered[$j] = $y;
      }
 
-         return view('event-line-graph-report',compact('event_title','data_participants','data_registered'));
+
+     $event_payments = array();
+
+     for($e=0; $e<$x ; $e++){
+
+       $amount = Payment::all()->where('event_id',$event_id[$e])->pluck('amount');
+       $y = $amount->sum();
+       $event_payments[$e] = $y;
+     }
+
+
+
+
+         return view('event-line-graph-report',compact('event_title','data_participants','data_registered','event_payments'));
      }
 
 

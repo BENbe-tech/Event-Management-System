@@ -260,6 +260,6 @@ class RegisteredEventsController extends Controller
 
 
        }
-    
+
 
 }

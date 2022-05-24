@@ -20,7 +20,15 @@
               <div class="card shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-5">
 
-    <h4>Pay for Event</h4>
+                    <?php
+
+                    $id = $event_id;
+                   ?>
+    <h4>Pay for Event
+
+
+    <a href ="{{route('eventdetails', $id)}} " class="btn btn-danger float-right">Back</a>
+    </h4>
     <hr>
     <form action="{{route('participantpay')}}" method="post">
         @if(Session::has('success'))
@@ -30,25 +38,8 @@
            <div class = "alert alert-danger">{{Session::get('fail')}}</div>
               @endif
        @csrf
-       <?php
-
-        $id = $event_id;
-       ?>
 
        <input type="hidden" id="event_id" name="event_id" value="{{$id}}">
-
-       <div class="form-group">
-         <label for="name">Full Name</label><span class ="required"> *</span>
-         <input type = "name" class = "form-control" placeholder="Enter name" name="name" id = "name" value="{{old('name')}}" required>
-         <span class = "text-danger">@error('name'){{$message}} @enderror</span>
-       </div>
-
-
-        <div class="form-group">
-       <label for="email">Email</label><span class ="required"> *</span>
-       <input type = "email" class = "form-control" placeholder="Enter Email" name="email" id="email" value="{{old('email')}}" required>
-       <span class = "text-danger">@error('email'){{$message}} @enderror</span>
-       </div>
 
 
        <div class="form-group">
@@ -84,6 +75,7 @@
           <p>Amount Remaining: {{$amountremaining}}</p>
 
       <div class ="form-group">
+      {{-- <button class =" btn btn-block btn-primary" id="pay" type="submit">Pay</button> --}}
       <button class =" btn btn-block btn-primary" type="submit">Pay</button>
       </div>
 
@@ -94,6 +86,65 @@
        </div>
         </div>
     </section>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+                   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                   crossorigin="anonymous">
+    </script>
+
+
+<script>
+
+
+jQuery(document).ready(function(){
+           jQuery('#pay').click(function(e){
+              e.preventDefault();
+              $.ajaxSetup({
+                 headers: {
+                     'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                 }
+             });
+
+             var event_id =  $('#event_id').val();
+             var amount =  $('#amount').val();
+             var provider =  $('#provider').val();
+             var phone =   $('#phone').val();
+
+              jQuery.ajax({
+                url: "{{url('participantpay')}}",
+                 method: 'POST',
+                 timeout:30000,
+                 data: {
+                    "_token": "{{ csrf_token() }}",
+                    "event_id": event_id,
+                    "amount": amount,
+                    "provider": provider,
+                    "phone": phone,
+                 },
+                 success: function(result){
+
+                    alert(result.success);
+
+                 },
+
+                 error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+
+            alert("error: " + request + status + err);
+          }
+         }
+                });
+              });
+
+            });
+</script>
+
 
 </body>
 

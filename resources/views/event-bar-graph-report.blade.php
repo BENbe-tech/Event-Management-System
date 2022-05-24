@@ -23,7 +23,12 @@
 
 <canvas id="participants-barChart">
 
+</canvas><br><br>
+
+<canvas id="payment-barChart">
+
 </canvas>
+
 
 </div>
 
@@ -55,6 +60,7 @@
   var event_titles = <?php echo  json_encode($event_title); ?>;
   var participants = <?php echo  json_encode($data_participants); ?>;
   var registered_event_user = <?php echo  json_encode($data_registered); ?>;
+  var payments = <?php echo json_encode($event_payments); ?>;
   var participantsbarCanvas = $("#participants-barChart");
 
 //   Chart.defaults.global.defaultFontFamily = "Lato";
@@ -80,11 +86,6 @@
           ]
       },
 
-
-
-
-
-
       options:{
 
     plugins:{
@@ -95,7 +96,7 @@
        },
 
        legend:{
-        position : 'right',
+        position : 'top',
         display: true,
        },
 
@@ -139,7 +140,7 @@
   var barChart  = new Chart(registeredbarCanvas,{
       type :'bar',
       data:{
-        //   labels:['Jan','Feb','March','April','May'],
+
         labels:event_titles,
           datasets:[
           {
@@ -155,9 +156,6 @@
       },
 
 
-
-
-
       options:{
 
     plugins:{
@@ -168,7 +166,7 @@
        },
 
        legend:{
-        position : 'right',
+        position : 'top',
         display: true,
        },
 
@@ -203,6 +201,81 @@
 
       }
   })
+
+
+
+
+  var paymentbarCanvas = $("#payment-barChart");
+
+  var barChart  = new Chart(paymentbarCanvas,{
+      type :'bar',
+      data:{
+
+        labels:event_titles,
+          datasets:[
+          {
+            label: 'Total Payment for each event',
+            data:payments,
+            backgroundColor:'yellow',
+            borderWidth:1,
+            borderColor:'#777',
+            hoverBorderWidth:3 ,
+            hoverBorderColor: '#000',
+          }
+          ]
+      },
+
+
+      options:{
+
+    plugins:{
+        title: {
+       display: true,
+       text: 'Events Total Payment Bar Chart',
+       fontSize : 100,
+       },
+
+       legend:{
+        position : 'top',
+        display: true,
+       },
+
+       tooltips:{
+            enabled:true,
+        },
+    },
+
+
+        scales:{
+
+            y:{
+                display: true,
+                ticks:{
+                  beginAtZero:true
+                },
+                title: {
+                display: true,
+                text: 'Payments'
+            }
+            },
+
+            x:{
+            display: true,
+            title: {
+            display: true,
+            text: 'Event Title'
+            }
+           }
+        },
+
+
+      }
+  })
+
+
+
+
+
 
 
  })

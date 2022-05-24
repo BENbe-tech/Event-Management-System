@@ -36,6 +36,8 @@ class TicketController extends Controller
 
     }
 
+    
+
     public function qrscanner(){
 
         return view('qrscanner');

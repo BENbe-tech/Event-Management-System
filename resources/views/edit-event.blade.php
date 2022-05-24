@@ -25,7 +25,7 @@
     <div class="container">
         <i class="fa-solid fa-memo-circle-info"></i> <h3>Update event
 
-            <a href ="{{route('myeventdetails', $event_id)}} " class="btn btn-danger float-end">Back</a>
+            <a href ="{{route('myeventdetails', $event_id)}} " class="btn btn-danger float-right">Back</a>
         </h3>
       <p><span class ="required"> *</span> Must be filled</p>
       <hr>

@@ -27,7 +27,7 @@
  <div class="container">
      <i class="fa-solid fa-memo-circle-info"></i> <h3>Update Session
 
-        <a href ="{{route('sessions', $event_id)}}" class="btn btn-danger float-end">Back</a>
+        <a href ="{{route('sessions', $event_id)}}" class="btn btn-danger float-right">Back</a>
 
      </h3>
 

@@ -15,7 +15,7 @@
                 <div class="card-body p-5">
 
         <h4>Update Profile
-        <a href ="{{route('profile',$id)}} " class="btn btn-danger float-end">Back</a>
+        <a href ="{{route('profile',$id)}} " class="btn btn-danger float-right">Back</a>
         </h4>
         <hr>
         <form action = "{{route('updates-profile')}}" method="post">

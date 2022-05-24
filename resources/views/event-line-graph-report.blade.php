@@ -13,11 +13,16 @@
 <div style="height:400px; width:900px; margin:auto;">
 
 
-<canvas id="registered-barChart">
+<canvas id="registered-lineChart">
 
 </canvas><br><br>
 
-<canvas id="participants-barChart">
+<canvas id="participants-lineChart">
+
+</canvas><br><br>
+
+
+<canvas id="payment-lineChart">
 
 </canvas>
 
@@ -39,11 +44,12 @@
   var event_titles = <?php echo  json_encode($event_title); ?>;
   var participants = <?php echo  json_encode($data_participants); ?>;
   var registered_event_user = <?php echo  json_encode($data_registered); ?>;
-  var participantsbarCanvas = $("#participants-barChart");
+  var payments = <?php echo json_encode($event_payments); ?>;
+  var participantslineCanvas = $("#participants-lineChart");
 
 
 
-  var barChart  = new Chart(participantsbarCanvas,{
+  var lineChart  = new Chart(participantslineCanvas,{
       type :'line',
       data:{
 
@@ -72,7 +78,7 @@
        },
 
        legend:{
-        position : 'right',
+        position : 'top',
         display: true,
        },
 
@@ -109,11 +115,11 @@
   });
 
 
-  var registeredbarCanvas = $("#registered-barChart");
+  var registeredlineCanvas = $("#registered-lineChart");
 
 
 
-  var barChart  = new Chart(registeredbarCanvas,{
+  var lineChart  = new Chart(registeredlineCanvas,{
       type :'line',
       data:{
         labels:event_titles,
@@ -141,7 +147,7 @@
        },
 
        legend:{
-        position : 'right',
+        position : 'top',
         display: true,
        },
 
@@ -176,6 +182,79 @@
 
       }
   })
+
+
+
+
+  var paymentlineCanvas = $("#payment-lineChart");
+
+
+
+  var lineChart  = new Chart(paymentlineCanvas,{
+      type :'line',
+      data:{
+        labels:event_titles,
+          datasets:[
+          {
+            label: 'Total Payment for each event',
+            data:payments,
+            backgroundColor:'yellow',
+            borderWidth:1,
+            borderColor:'#777',
+            hoverBorderWidth:3 ,
+            hoverBorderColor: '#000',
+          }
+          ]
+      },
+
+
+      options:{
+
+    plugins:{
+        title: {
+       display: true,
+       text: 'Events Total Payment Line Chart',
+       fontSize : 100,
+       },
+
+       legend:{
+        position : 'top',
+        display: true,
+       },
+
+       tooltips:{
+            enabled:true,
+        },
+    },
+
+
+        scales:{
+
+            y:{
+                display: true,
+                ticks:{
+                  beginAtZero:true
+                },
+                title: {
+                display: true,
+                text: 'Payments'
+            }
+            },
+
+            x:{
+            display: true,
+            title: {
+            display: true,
+            text: 'Event Title'
+            }
+           }
+        },
+
+
+      }
+  })
+
+
 
 
  })
