@@ -74,8 +74,14 @@
             <span class = "text-danger">@error('amount'){{$message}} @enderror</span>
              </div>
 
-          <p>Amount Paid: 200</p>
-          <p>Amount Remaining:300</p>
+             <?php
+              $amountpaid = App\Models\Payment::all()->where('event_id',$id)->where('user_id',$user_id)->sum('amount');
+              $amounttotal   = App\Models\EventDetail::all()->where('event_id',$id)->pluck('price');
+              $amountremaining = $amounttotal[0] - $amountpaid;
+             ?>
+
+          <p>Amount Paid: {{$amountpaid}}</p>
+          <p>Amount Remaining: {{$amountremaining}}</p>
 
       <div class ="form-group">
       <button class =" btn btn-block btn-primary" type="submit">Pay</button>

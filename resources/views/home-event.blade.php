@@ -94,7 +94,11 @@ $eventdetails_id = $event_detail->id;
         <p style="padding-left: 20px;"><b>City: </b>{{$city}}</p>
 
 
-        <p style="padding-left: 20px;"><b>Price:</b> {{$price}}</p>
+        @if ($price != "Free")
+        <p style="padding-left: 20px;"><b>Price: </b>Tsh {{$price}}</p>
+        @else
+        <p style="padding-left: 20px;"><b>Price: </b> {{$price}}</p>
+       @endif
 
 
        <p style="padding-left: 20px;"><b>Speaker:</b> {{$speaker}}</p>

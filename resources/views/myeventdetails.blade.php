@@ -105,8 +105,12 @@ the user has registered. Also the buttons to delete and edit events
 
     <p style="padding-left: 20px;"><b>City: </b>{{$city}}</p>
 
+    @if ($price != "Free")
+    <p style="padding-left: 20px;"><b>Price: </b>Tsh {{$price}}</p>
+    @else
+    <p style="padding-left: 20px;"><b>Price: </b> {{$price}}</p>
+   @endif
 
-    <p style="padding-left: 20px;"><b>Price:</b> {{$price}}</p>
     @if ($event_detail->online_link != "")
     <p style="padding-left: 20px;"><b>Virtual event:</b><a href="{{url($link)}}" class="change"> {{$link_value }}</a></p>
     @else

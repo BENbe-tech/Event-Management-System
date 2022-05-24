@@ -156,8 +156,39 @@
 
         <div class ="inline2">
    <div class = "payment">
-    <p style="padding-left: 20px;"><b>Price:</b> {{$price}}</p>
+       @if ($price != "Free")
+       <p style="padding-left: 20px;"><b>Price: </b>Tsh {{$price}}</p>
+       <?php
+       $user_id = session('loginId');
+       $amountpaid = App\Models\Payment::all()->where('event_id',$event_id)->where('user_id',$user_id)->sum('amount');
 
+    if($amountpaid == 0){
+        $percent = 0;
+    }else{
+
+       $percent = ($amountpaid/ $price) * 100 ;
+
+    }
+       ?>
+
+<div class="container">
+    <p style="padding-left: 5px;"> {{$percent}}% Payment (Done)</p>
+    @if ($percent != 0)
+    <div class="progress">
+        <div class="progress-bar bg-success progress-bar-striped active" role="progressbar" aria-valuenow="{{$percent}}" aria-valuemin="0" aria-valuemax="100" style="width:{{$percent}}%">
+          {{$percent}}%
+        </div>
+      </div>
+    @endif
+  </div><br>
+
+
+
+
+
+       @else
+       <p style="padding-left: 20px;"><b>Price: </b> {{$price}}</p>
+      @endif
     <div class="inline" >
     @if(  $price  !=  "Free")
     <a style="padding-left: 20px;" href="{{route('participant-payview', $event->id)}}" class="btn_more1" >

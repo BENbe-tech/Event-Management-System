@@ -12,6 +12,7 @@ use App\Charts\EventChart;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
+use App\Models\Payment;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ReportController extends Controller
@@ -93,6 +94,11 @@ class ReportController extends Controller
          $y = $registered_user->count();
          $data_registered[$j] = $y;
     }
+
+
+    //   $data = Payment::all()->where('event_id',);
+         $amount = Payment::all()->whereIn('event_id',$event_id)->sum('amount');
+         echo $amount;
 
         return view('event-bar-graph-report',compact('event_title','data_participants','data_registered'));
     }
