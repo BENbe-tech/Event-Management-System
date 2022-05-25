@@ -12,7 +12,10 @@ class Payment extends Model
 
         'payment_time',
         'amount',
-        'method'
+        'method',
+        'reference_no',
+        'event_id',
+        'user_id'
     ];
      //One to one relatioship for between payment and ticket
 

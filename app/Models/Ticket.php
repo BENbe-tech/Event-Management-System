@@ -10,10 +10,11 @@ class Ticket extends Model
     use HasFactory;
 
     protected $fillable = [
-        'barcode',
+        'barcode_no',
+        'reference_no',
+        'amount',
         'event_id',
-        'event_user_id',
-        'payment_id'
+        'user_id'
 
     ];
        //Inverse relationship between Ticket and payment

@@ -255,6 +255,22 @@ Route::get('download.eventreport.pdf/{id}',[ReportController::class, 'downloadEv
 Route::get('/send.notification/{id}',[MyEventsController::class,'sendnotification'])->name('send.notification')->middleware('isLoggedIn');
 
 
+Route::post('/save-token', [MyEventsController::class, 'saveToken'])->name('save-token')->middleware('isLoggedIn');
+
+
+
+Route::post('/push-notification', [MyEventsController::class, 'pushNotification'])->name('push-notification')->middleware('isLoggedIn');
+
+
+Route::post('/push-sessionnotification', [MyEventsController::class, 'pushSessionNotification'])->name('push-sessionnotification')->middleware('isLoggedIn');
+
+
+Route::get('/notify/{id}', [MyEventsController::class, 'notifyIndex'])->name('notify')->middleware('isLoggedIn');
+
+
+Route::get('/session-notify/{session_id}/{event_id}', [MyEventsController::class, 'notifySessionIndex'])->name('session-notify')->middleware('isLoggedIn');
+
+
 Route::get('/ticket/{id}',[TicketController::class,'ticket'])->name('ticket')->middleware('isLoggedIn');
 
 

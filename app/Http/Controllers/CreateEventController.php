@@ -81,6 +81,7 @@ class CreateEventController extends Controller
         $eventdetail ->price = $request->price;
         $eventdetail->description =$request->description ;
         $eventdetail->speaker=$request->speaker;
+        $eventdetail->speaker_profile= $request->profile;
         $res = $eventdetail->save();
     }
 

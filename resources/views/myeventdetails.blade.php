@@ -118,8 +118,40 @@ the user has registered. Also the buttons to delete and edit events
     @endif
 
 
+    <div class ="inline">
+   <p style="padding-left: 20px;"><b>Speaker:</b> {{$speaker}} </p>
 
-   <p style="padding-left: 20px;"><b>Speaker:</b> {{$speaker}}</p>
+   @if($speaker != "None")
+
+   <p><a style="padding-left: 20px;" href="#" data-toggle="modal" data-target="#exampleModal" class="btn_more"> view profile</a></p>
+   @endif
+
+</div>
+
+ @if($speaker != "None")
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{$speaker}} profile</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            {{$event_detail->speaker_profile}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+@endif
+
    @if ($event_detail->document_path!="")
    <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p>
    @else
@@ -144,9 +176,10 @@ the user has registered. Also the buttons to delete and edit events
         </a>
 
         <a style="padding-left: 20px;" href="{{route('send.notification', $event_id)}}" id="notification" class="btn_more">
-            Send Notification
+            Email Notification
           </a>
       </div>
+
 
 
   </div>
@@ -163,9 +196,17 @@ the user has registered. Also the buttons to delete and edit events
     <div class ="inline2">
 <div class = "report">
 
+    <div class=" inline" >
 <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" id = "calendar" >
     Add to calendar
   </a>
+
+
+  <a style="padding-left: 20px;" href="{{route('notify',$event_id)}}" id="notification" class="btn_more">
+    Push Notification
+  </a>
+
+    </div>
 
 
 <p style="padding-left: 20px; padding-top:10px;"><b>Share Event</b>
@@ -213,6 +254,11 @@ the user has registered. Also the buttons to delete and edit events
                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
                crossorigin="anonymous">
 </script>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 <script>
@@ -333,6 +379,10 @@ the user has registered. Also the buttons to delete and edit events
 
 
        });
+
+
+
+
 </script>
 
 </body>

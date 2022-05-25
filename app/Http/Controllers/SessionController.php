@@ -65,6 +65,7 @@ class SessionController extends Controller
        $sessiondetail->document_path = $docname ;
        $sessiondetail->venue = $request->venue;
        $sessiondetail->speaker = $request->speaker;
+       $sessiondetail->speaker_profile = $request->profile;
        $sessiondetail->session_id = $session_id;
 
        $res = $sessiondetail->save();
@@ -195,7 +196,9 @@ public function edit($id,$event_id){
     $sessiondetails->document_name =   $namedoc;
     $sessiondetails->document_path =   $docname;
     $sessiondetails->speaker =         $request->input('speaker');
+    $sessiondetails->speaker_profile = $request->input('profile');
     $sessiondetails->session_id =        $request->input('session_id');
+
 
     $sessiondetails->update();
 

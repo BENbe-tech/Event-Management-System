@@ -18,6 +18,7 @@ class SessionDetail extends Model
         'venue',
         'speaker',
         'document',
+        'speaker_profile',
         'session_id'
     ];
 

@@ -17,7 +17,9 @@ class User extends Model
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'device_token'
+
 
     ];
 

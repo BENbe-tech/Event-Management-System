@@ -26,6 +26,7 @@ class EventDetail extends Model
         'document_path',
         'entry_mode',
         'speaker',
+        'speaker_profile',
         'event_id'
 
     ];

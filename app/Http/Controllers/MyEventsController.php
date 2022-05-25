@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\EventDetail;
 use App\Models\Event;
 use App\Models\EventUser;
+use App\Models\SessionUser;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Models\Organizer;
@@ -179,7 +180,7 @@ class MyEventsController extends Controller
         $eventdetails->entry_mode =      $request->input('entry_mode');
         $eventdetails->speaker =         $request->input('speaker');
         $eventdetails->event_id =        $request->input('event_id');
-
+        $eventdetails->speaker_profile=  $request->input('profile');
         $eventdetails->update();
 
 
@@ -232,5 +233,146 @@ class MyEventsController extends Controller
             return response()->json(['success'=>'You can only set reminder before the event starts']);
         }
     }
+
+
+   public function notifyIndex($id){
+
+    return view('notify',compact('id'));
+   }
+
+
+   public function notifySessionIndex($session_id,$event_id){
+
+    return view('session-notify',compact('session_id','event_id'));
+   }
+
+
+    public function saveToken(Request $request)
+
+    {
+        $user_id = session('loginId');
+
+        $userdetails = User::find( $user_id);
+
+
+
+        $userdetails->device_token =  $request->token;
+
+        $userdetails->update();
+
+
+        return response()->json(['Notification allowed successful.']);
+    }
+
+
+    public function pushNotification(Request $request)
+    {
+
+        $request->validate([
+
+            'title' => 'required',
+            'body'=>'required',
+            'event_id'=>'required',
+
+        ]);
+
+        $id = $request->event_id;
+        $user_id = EventUser::all()->where('event_id',$id)->pluck('user_id');
+
+        $firebaseToken = User::whereIn('id',$user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+
+        // foreach($users as $user ){
+        //     echo $user . "<br>";
+        // }
+
+    //     $firebaseToken = User::whereNotNull('device_token')->pluck('device_token')->all();
+
+    //     foreach($firebaseToken as $token){
+    //     echo $token . "<br>";
+    // }
+
+        $SERVER_API_KEY = 'AAAARQ-JPfc:APA91bHYb6hONyGduxFNHSp8JVLCVihnX2LL_e-J7b1bw8Cfp-fX376K-U_mx0Lmxz5UfylpOgoARg794sktn-Hbcf-MIxsL2hsYjPRT0Bp2fkerk53pMrC_imeuI-Yt16tA2vuWyMiF';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
+
+        // dd($response);
+        return back()->with('success','Event Notification Sent');
+    }
+
+
+    public function pushSessionNotification(Request $request)
+    {
+
+        $request->validate([
+
+            'title' => 'required',
+            'body'=>'required',
+            'session_id'=>'required',
+
+        ]);
+
+        $id = $request->session_id;
+        $user_id = SessionUser::all()->where('session_id',$id)->pluck('user_id');
+
+        $firebaseToken = User::whereIn('id',$user_id)->whereNotNull('device_token')->pluck('device_token')->all();
+
+
+
+        $SERVER_API_KEY = 'AAAARQ-JPfc:APA91bHYb6hONyGduxFNHSp8JVLCVihnX2LL_e-J7b1bw8Cfp-fX376K-U_mx0Lmxz5UfylpOgoARg794sktn-Hbcf-MIxsL2hsYjPRT0Bp2fkerk53pMrC_imeuI-Yt16tA2vuWyMiF';
+
+        $data = [
+            "registration_ids" => $firebaseToken,
+            "notification" => [
+                "title" => $request->title,
+                "body" => $request->body,
+            ]
+        ];
+        $dataString = json_encode($data);
+
+        $headers = [
+            'Authorization: key=' . $SERVER_API_KEY,
+            'Content-Type: application/json',
+        ];
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+
+        $response = curl_exec($ch);
+
+        // dd($response);
+        return back()->with('success','Session Notification Sent');
+    }
+
+
+
 
 }

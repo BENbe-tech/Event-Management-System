@@ -125,6 +125,14 @@
     </div>
   </div>
 
+
+  <div>
+    <label for="sprofile"><b>Speaker's Profile</b></label><br>
+    <textarea placeholder="Enter description" name="profile" id="profile" value="{{ old('profile') }}" ></textarea>
+    <span class = "text-danger">@error('profile'){{$message}} @enderror</span>
+   </div>
+
+
   <div class ="formline">
 
     <div>
@@ -143,7 +151,7 @@
  </div>
 
  <div>
-    <label for="description"><b>Description</b></label><span class ="required"> *</span><br>
+    <label for="description"><b>Event Description</b></label><span class ="required"> *</span><br>
     <textarea placeholder="Enter description" name="description" id="description" value="{{ old('description') }}" required ></textarea>
     <span class = "text-danger">@error('description'){{$message}} @enderror</span>
    </div>
