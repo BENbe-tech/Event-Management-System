@@ -68,4 +68,9 @@ class User extends Model
         return $this->hasMany(Payment::class,'user_id');
        }
 
+       public function subscriptions(){
+
+        return $this->hasMany(Subscription::class,'user_id');
+       }
+
 }

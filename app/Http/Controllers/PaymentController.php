@@ -101,6 +101,7 @@ class PaymentController extends Controller
         $payment->payment_time = Carbon::now();
         $payment->amount = $data['amount'];
         $payment->method = $data['channel'];
+        $payment->phone_number = $data['number_used'];
         $payment->reference_no = $chargeResponse['reference'];
         $payment-> event_id = $event_id;
         $payment-> user_id =  $user_id;

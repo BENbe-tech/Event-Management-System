@@ -147,7 +147,7 @@
             </div>
           </div>
         </div>
-      </div>
+    </div>
 
     @endif
 
@@ -172,18 +172,71 @@
         </div>
 
 
+
+
         <div class="inline button" >
 
-            <a style="padding-left: 20px;" id="verify" href="{{route('verify',$event->id)}}" class="btn_more">
+        <a style="padding-left: 20px;" href="{{route('comment', $event->id)}}" class="btn_more">
+            Comment
+             </a>
+
+            {{-- <a style="padding-left: 20px;" id="verify" href="{{route('verify',$event->id)}}" class="btn_more">
               Verify Attendance
-            </a>
+            </a> --}}
 
-            <a style="padding-left: 20px;" href="{{route('comment', $event->id)}}" class="btn_more">
-             Comment
-              </a>
+        <a style="margin-left: 10px; height:40%; " data-toggle="modal" data-target="#modeverifymodal"  href ="#" id="modeverify" class="btn btn-primary ">Verify Attendance</a>
+
+        </div>
 
 
-          </div>
+
+
+
+        <div class="modal fade" id="modeverifymodal" tabindex="-1" role="dialog" aria-labelledby="modeverify" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Verify {{$event->event_title}} Attendance </h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+
+                <div class="modal-body">
+
+
+                    <form action="{{route('verifymode')}}" method="post">
+
+                        <input type="hidden" id="event_id" name="event_id" value="{{$event->id}}">
+
+                        @csrf
+
+                        <div class="form-group">
+                            <label for="mode">Attendance Mode</label><span> *</span>
+                          <select id="mode" class = "form-control" name ="mode"  value="{{ old('mode') }}" required>
+                        <option value = "Physical" selected>Physical</option>
+                        <option value = "Virtual" >Virtaul</option>
+                        <option value = "Hybrid" >Hybrid</option>
+                          </select>
+                          <span class = "text-danger">@error('mode'){{$message}} @enderror</span>
+                          </div>
+
+                          <button class =" btn btn-block btn-primary" id="verifymode" type="submit">Verify Attendance</button>
+
+                      </form>
+
+
+                </div>
+
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+              </div>
+            </div>
+        </div>
+
 
 
       </div>
@@ -357,6 +410,44 @@
             });
           });
 
+
+
+          jQuery('#verifymode').click(function(e){
+          e.preventDefault();
+          $.ajaxSetup({
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+             }
+         });
+
+             var event_id =  $('#event_id').val();
+             var mode     =  $('#mode').val();
+
+          jQuery.ajax({
+            url: "{{url('verifymode')}}",
+             method: 'POST',
+             timeout:6000,
+             data: {
+                "_token": "{{ csrf_token() }}",
+                "event_id": event_id,
+                "mode"     : mode,
+             },
+             success: function(result){
+                alert(result.success);
+             },
+
+             error: function(request, status, err) {
+        if (status == "timeout") {
+
+            alert("timeout: Problem with your internet connetion. too slow");
+        } else {
+
+            alert("error: " + request + status + err);
+           }
+         }
+
+            });
+          });
 
 
 

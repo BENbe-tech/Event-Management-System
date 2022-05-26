@@ -262,4 +262,77 @@ class RegisteredEventsController extends Controller
        }
 
 
+
+
+
+
+
+
+       public function verifyMode(Request $request){
+
+        $request->validate([
+             'mode' => 'required',
+        ]);
+
+        $id = $request->event_id;
+        $user_id = session('loginId');
+
+        // $mode = EventUser::all()->where('user_id',$user_id)->where('event_id',$id);
+        // $mode->attendance_mode = $request->input('mode');
+        // $mode->update();
+
+        $event = Event::find($id);
+        $event_detail = EventDetail::find($event->id);
+        $start = $event_detail->starttime;
+        $currentDateTime = Carbon::now();
+        $newDateTime = $currentDateTime ->addHour(24);
+
+        if($start > $newDateTime){
+
+
+        $participant = DB::table('event_user')->where('event_id',$id)
+        ->where('user_id',$user_id)->get();
+
+
+            if($participant!=[]){
+                $participant_id = $participant[0]->id;
+                $participant = EventUser::find($participant_id);
+              }
+              else{
+
+                  return response()->json(['success'=>'failed to verify register for event first']);
+              }
+
+            $verify_id =  $participant->verify_attendance;
+            if($verify_id == NULL){
+
+            $participant->verify_attendance = 1;
+            $participant->attendance_mode = $request->input('mode');
+            $res_event =   $participant->update();
+            if($res_event){
+
+             return response()->json(['success'=>'verified attendance successfully']);
+            }
+            else{
+
+                return response()->json(['success'=>'failed to verify']);
+            }
+           }
+            else{
+
+                return response()->json(['success'=>'you have already verified']);
+            }
+
+        }
+
+        else{
+
+            return response()->json(['success'=>'you can only verify for event attendance atmost one day before the event']);
+        }
+
+
+
+       }
+
+
 }

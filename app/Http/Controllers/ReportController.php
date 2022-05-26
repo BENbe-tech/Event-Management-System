@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
 use App\Models\Payment;
+use App\Models\Report;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ReportController extends Controller
@@ -38,9 +39,62 @@ class ReportController extends Controller
 
         // $participants = EventUser::all()->where('event_id',$id);
         $event = Event::find($id);
+        $event_name = Event::all()->where('id',$id)->pluck('event_title');
+        $name = $event_name[0];
 
         $participants = EventUser::where('event_id',$id)->paginate(6);
 
+
+       $x = 1;
+        foreach ($participants as $participant ){
+            $user_id = $participant->user_id;
+            $user =User::find($user_id);
+
+            $user_email = $user->email;
+
+         $response = Report::where('email', '=', $user_email)->where('event_id','=',$id)->first();
+
+
+
+       if (!$response) {
+
+        //To edit
+          $amountpaid = Payment::all()->where('event_id',$id)->where('user_id',$user_id)->sum('amount');
+
+
+        $report = new Report();
+        $report->participant =        $user->name;
+        $report->email       =        $user->email;
+        $report->phone       =        $user->phone;
+        $report->number      =        $x;
+        $report->event_id    =        $id;
+        $report->event_title =        $name;
+
+        if($participant->verify_attendance==NULL){
+
+        $report->verified_attendance = "NO";
+        $report->attendance_mode = "NONE";
+        }
+
+        if($participant->verify_attendance== 1){
+
+        $report->verified_attendance = "YES";
+        $report->attendance_mode = $participant->attendance_mode;
+        }
+
+        $report->payment_amount = $amountpaid;
+
+        //creted day of ticket
+        $report->payment_day    = "Monday";
+
+        //created barcode number
+        $report->ticket_number  = "20";
+
+        $res = $report->save();
+            }
+        $x = $x + 1;
+
+        }
 
         return view('event-report',compact('participants','event'));
 
@@ -171,11 +225,13 @@ class ReportController extends Controller
     }
 
     public function fileExport($event_id)
-
     {
         $export = new UsersExport($event_id);
 
-        return Excel::download($export, 'users-collection.xlsx');
+        $event_name = Event::all()->where('id',$event_id)->pluck('event_title');
+        $name = $event_name[0];
+
+        return Excel::download($export, $name.'.xlsx');
     }
 
 

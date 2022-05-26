@@ -141,7 +141,10 @@ Route::get('/registered-events',[RegisteredEventsController::class,'index'])->na
 Route::get('/schedule',[RegisteredEventsController::class,'schedule'])->name('schedule')->middleware('isLoggedIn');
 
 
-Route::get('/verify/{id}',[RegisteredEventsController::class,'verify'])->name('verify')->middleware('isLoggedIn');
+// Route::get('/verify/{id}',[RegisteredEventsController::class,'verify'])->name('verify')->middleware('isLoggedIn');
+
+
+Route::post('/verifymode',[RegisteredEventsController::class,'verifyMode'])->name('verifymode')->middleware('isLoggedIn');
 
 
 

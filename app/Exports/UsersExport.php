@@ -6,6 +6,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use App\Models\Event;
 use App\Models\EventUser;
+use App\Models\Report;
 
 class UsersExport implements FromCollection
 {
@@ -24,8 +25,12 @@ class UsersExport implements FromCollection
     {
         $event = Event::find($this->event_id);
         $participants = EventUser::all()->where('event_id',$this->event_id);
+        $email = "EMAIL";
+        $report = Report::find(1);
+        $report->event_id = $this->event_id;
+        $report->update();
 
-        // return User::all();
-        return $participants;
+        return Report::all()->where('event_id',$this->event_id);
+        // return $participants;
     }
 }

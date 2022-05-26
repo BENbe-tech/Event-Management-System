@@ -12,6 +12,11 @@ class CreateEventController extends Controller
 
     public function index(){
 
+       
+
+
+
+
         return view('create-event');
     }
 
