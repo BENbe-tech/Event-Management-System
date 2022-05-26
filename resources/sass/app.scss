@@ -158,3 +158,34 @@ background-color:#0a3d62;
     display: block;
   }
 
+
+
+  .bnavbar {
+    overflow: hidden;
+    background-color: rgb(48, 58, 170);
+    /* position: fixed; */
+    display:flex;
+    bottom: 0;
+    width: 100%;
+    height: 150px;
+  }
+
+  .bnavbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .bnavbar a:hover {
+    background: #f1f1f1;
+    color: black;
+  }
+
+  .bnavbar a.active {
+    background-color: #04AA6D;
+    color: white;
+  }

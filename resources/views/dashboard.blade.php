@@ -27,6 +27,7 @@
    }
 
 
+
     </style>
 
 
@@ -109,6 +110,26 @@
 <div class ="container">
 
     @yield('content')
+</div>
+
+
+<div class="bnavbar">
+    {{-- <a href="#home" class="active">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a> --}}
+    <p style="margin-left: 30px; color:white; margin-top: 10px;"> Copyright © 2022 EMS Product of UDSM</p>
+
+    {{-- <div >
+        <p style="margin-left: 50px; color:white; margin-top: 10px;"> Why use our product</p>
+
+    </div> --}}
+
+    <div>
+        <p style="margin-left: 50px; color:white; margin-top: 10px;"> Adress & Contacts</p>
+        <p style="margin-left: 50px; color:white; margin-top: 0px;"> EMS Company Limited</p>
+        <p style="margin-left: 50px; color:white; margin-top: 0px;"> P.O.box 35091, Dar es salaam</p>
+        <p style="margin-left: 50px; color:white; margin-top: 0px;"> UDSM-COICT, Kijitonyama</p>
+    </div>
 </div>
 
 
