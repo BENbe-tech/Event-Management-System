@@ -5,20 +5,42 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\EventDetail;
 use App\Models\Event;
+use App\Models\Subscription;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class CreateEventController extends Controller
 {
 
     public function index(){
 
-       
 
+        $user_id    = session('loginId');
 
+        $subscriptions = Subscription::all()->where('user_id',$user_id)->pluck('subscription_end');
+        $time = Carbon::now();
+        $flag = 0;
 
+       foreach($subscriptions as $subscription){
 
+         if($time < $subscription ){
+           $flag = 1;
+         }
+
+       }
+
+       if($flag == 1){
         return view('create-event');
+       }else{
+
+        return redirect('organizer-payindex');
+       }
+
+
+
     }
+
+
 
     //function createEvent is used to create new event
 

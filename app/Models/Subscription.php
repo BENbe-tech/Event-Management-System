@@ -17,7 +17,8 @@ class Subscription extends Model
         'reference_no',
         'subscription_end',
         'user_id',
-        'phone_number'
+        'phone_number',
+        'subscription_type'
     ];
 
     public function users(){

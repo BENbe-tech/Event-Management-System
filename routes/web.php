@@ -95,7 +95,10 @@ Route::get('/create-event',[CreateEventController::class,'index'])->name('create
 Route::post('/create-event1',[CreateEventController::class,'createEvent'])->name('create-event1')->middleware('isLoggedIn');
 
 
+
+
 Route::get('/organizer',[OrganizerController::class,'index'])->name('organizer')->middleware('isLoggedIn');
+
 
 
 Route::post('/create-organizer',[OrganizerController::class,'createorganizer'])->name('create-organizer')->middleware('isLoggedIn');
@@ -287,6 +290,12 @@ Route::get('/qrscanner',[TicketController::class,'qrscanner'])->name('qrscanner'
 Route::post('/participantpay',[PaymentController::class,'ParticipantPay'])->name('participantpay')->middleware('isLoggedIn');
 
 
+Route::post('/organizerpay',[PaymentController::class,'OrganizerPay'])->name('organizerpay')->middleware('isLoggedIn');
+
+
 Route::get('/participant-payview/{id}',[PaymentController::class,'Participantindex'])->name('participant-payview')->middleware('isLoggedIn');
+
+
+Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->name('organizer-payindex')->middleware('isLoggedIn');
 
 });
