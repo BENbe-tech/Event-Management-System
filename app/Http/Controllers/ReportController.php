@@ -12,6 +12,7 @@ use App\Charts\EventChart;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\UsersImport;
 use App\Exports\UsersExport;
+use App\Models\EventDetail;
 use App\Models\Payment;
 use App\Models\Report;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
@@ -158,10 +159,76 @@ class ReportController extends Controller
         $amount = Payment::all()->where('event_id',$event_id[$e])->pluck('amount');
         $y = $amount->sum();
         $event_payments[$e] = $y;
+
       }
 
 
-        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered','event_payments'));
+    //title and category
+
+    $user       = User::find($user_id);
+    $organizers  = $user->organizers;
+
+
+    $event_category = array();
+    $count = $organizers->count();
+
+    $number = 0;
+    // for($j=0; $j<$count;$j++){
+    // $events = $organizers[$j]->events;
+    // if($events !=[]){
+    // $count1 = $events->count();
+    // for($i=0;$i<$count1;$i++){
+    // $event_id = $events[$i]->id;
+
+    // $event_details  = $events[$i]->eventDetails;
+    // $event_category[$number] = $event_details->category;
+    // $eventmonth[$number]     = $event_details->startmonth;
+    // $createdmonth[$number]   = $event_details->createdmonth;
+    // $totalcreatedmonth[$number]  = EventDetail::all()->where('event_id', $event_id )->where('createdmonth',) ;
+    // $totalstartmonth[$number]    =  ;
+
+    // $number++;
+    // }
+    // }
+    // }
+
+        $event_id = array();
+    for($j=0; $j<$count;$j++){
+        $events = $organizers[$j]->events;
+        if($events !=[]){
+        $count1 = $events->count();
+        for($i=0;$i<$count1;$i++){
+        $event_id[$number] = $events[$i]->id;
+        $number++;
+        }
+        }
+        }
+
+//    $x= EventDetail::all()->whereIn('event_id', $event_id )->groupBy('startmonth')->pluck('startmonth');
+    $totaleventstartmonth     = array();
+    $startmonth= EventDetail::all()->whereIn('event_id', $event_id )->unique('startmonth')->pluck('startmonth');
+
+    $totalstartmonth = count($startmonth);
+    for($p=0;$p<$totalstartmonth;$p++){
+
+    $totaleventstartmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('startmonth',$startmonth[$p])->count();
+
+    }
+
+    $createdmonth= EventDetail::all()->whereIn('event_id', $event_id )->unique('createdmonth')->pluck('createdmonth');
+    echo $createdmonth;
+    $totalcreatedmonth = count($createdmonth);
+    for($p=0;$p<$totalcreatedmonth;$p++){
+
+        $totaleventcretedmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('createdmonth',$createdmonth[$p])->count();
+
+     }
+
+     dd($totaleventcretedmonth);
+
+
+
+        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered','event_payments','event_category'));
     }
 
 
@@ -245,6 +312,22 @@ class ReportController extends Controller
     $eventpdf = PDF::loadView('event-report',compact('participants','event'));
 
     return $eventpdf->download('eventreport.pdf');
+
+  }
+
+
+
+  public function timeReport(){
+
+    $user_id    = session('loginId');
+    $user       = User::find($user_id);
+    $organizers  = $user->organizers;
+
+
+    $events = Event::all();
+
+
+    return view('time-report',compact('organizers'));
 
   }
 

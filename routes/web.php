@@ -53,7 +53,7 @@ Route::get('/', function () {
     return view('home',compact('event_categorys','events','IDevents','flag'));
     // return view('welcome');
 
-});
+})->middleware('isLoggedIn');
 
 
 Route::get('/login',[CustomAuthController::class,'login'])->middleware('alreadyLoggedIn');
@@ -232,6 +232,11 @@ Route::get('/createdevents-report',[ReportController::class,'index'])->name('cre
 Route::get('/event-report/{id}',[ReportController::class,'eventReport'])->name('event-report')->middleware('isLoggedIn');
 
 
+
+Route::get('/time-report',[ReportController::class,'timeReport'])->name('time-report')->middleware('isLoggedIn');
+
+
+
 Route::get('/eventsessions-report/{id}',[ReportController::class,'eventSessionsReport'])->name('eventsessions-report')->middleware('isLoggedIn');
 
 
@@ -255,6 +260,7 @@ Route::get('file-export/{id}', [ReportController::class, 'fileExport'])->name('f
 
 
 Route::get('download.eventreport.pdf/{id}',[ReportController::class, 'downloadEventPDF'])->name('download.eventreport.pdf')->middleware('isLoggedIn');
+
 
 
 

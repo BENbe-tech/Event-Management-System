@@ -107,6 +107,12 @@ class MyEventsController extends Controller
             'entry_mode' => 'required',
         ]);
 
+     $startdate = $request->start_date;
+     $enddate= $request->end_date;
+
+     if($startdate >= $enddate){
+      return back()->with('fail', 'starttime cannot be greater than endtime');
+     }
 
         $event_id    = $request->input('event_id');
         $eventdetails_id  = $request->input('eventdetails_id');
@@ -181,6 +187,8 @@ class MyEventsController extends Controller
         $eventdetails->speaker =         $request->input('speaker');
         $eventdetails->event_id =        $request->input('event_id');
         $eventdetails->speaker_profile=  $request->input('profile');
+        $eventdetails->startmonth = substr( $request->input('start_date') , 6, 1);
+        $eventdetails->startyear = substr( $request->input('start_date') , 0, 4);
         $eventdetails->update();
 
 

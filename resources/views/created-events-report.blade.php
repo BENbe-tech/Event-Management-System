@@ -18,7 +18,11 @@
 
             <a href ="{{route('line-graph.report')}} " class="btn btn-primary float-end">Line Graph Report</a>
 
-            <a href ="{{route('bar-graph.report')}} " class="btn btn-primary float-end">Bar Graph Report</a><br><br>
+            <a href ="{{route('bar-graph.report')}} " class="btn btn-primary float-end">Bar Graph Report</a>
+
+            <a href ="{{route('time-report')}} " class="btn btn-primary float-end">Filter Type / Time</a><br><br>
+
+
 
                         <table class="table">
                             <thead>

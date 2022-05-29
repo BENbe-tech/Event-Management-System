@@ -59,6 +59,12 @@ class CreateEventController extends Controller
         ]);
 
 //insertGetId used to get ID of inserted event
+          $startdate = $request->start_date;
+          $enddate= $request->end_date;
+
+       if($startdate >= $enddate){
+        return back()->with('fail', 'starttime cannot be greater than endtime');
+       }
 
         $eventid = Event::insertGetId(
 	        ['event_title' => $request->eventtitle,'organizer_id' => $request->organizer]
@@ -91,6 +97,7 @@ class CreateEventController extends Controller
              $namedoc = null;
              $docname = null;
          }
+         $createddate = Carbon::now();
         $eventdetail = new EventDetail();
         $eventdetail->category = $request->category;
         $eventdetail->venue = $request->venue;
@@ -109,6 +116,11 @@ class CreateEventController extends Controller
         $eventdetail->description =$request->description ;
         $eventdetail->speaker=$request->speaker;
         $eventdetail->speaker_profile= $request->profile;
+        $eventdetail->startmonth = substr( $request->start_date , 6, 1);
+        $eventdetail->startyear = substr( $request->start_date , 0, 4);
+        $eventdetail->createdmonth = substr( $createddate , 6, 1);
+        $eventdetail->createdyear =substr( $createddate, 0, 4) ;
+
         $res = $eventdetail->save();
     }
 
