@@ -50,6 +50,7 @@
                                     $event_id = $events[$i]->id;
 
                                     $participants = App\Models\EventUser::all()->where('event_id',$event_id);
+                                    $amountpaid = App\Models\Payment::all()->where('event_id',$event_id)->sum('amount');
 
                                         $participants_verified = App\Models\EventUser::all()->where('verify_attendance',1)
                                         ->where('event_id',$event_id);
@@ -111,7 +112,7 @@
                                     <td>{{$participants_verified_total}}</td>
                                     <td>{{$participants_not_verified_total}}</td>
 
-                                    <td>Tsh 3000</td>
+                                    <td>{{ $amountpaid }}</td>
                                     <td>20</td>
                                 </tr>
 

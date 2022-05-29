@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\AdminContoller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
@@ -263,6 +263,9 @@ Route::get('download.eventreport.pdf/{id}',[ReportController::class, 'downloadEv
 
 
 
+Route::get('download.eventbarreport.pdf',[ReportController::class, 'downloadBarGraphPDF'])->name('download.eventbarreport.pdf')->middleware('isLoggedIn');
+
+
 
 Route::get('/send.notification/{id}',[MyEventsController::class,'sendnotification'])->name('send.notification')->middleware('isLoggedIn');
 
@@ -303,5 +306,20 @@ Route::get('/participant-payview/{id}',[PaymentController::class,'Participantind
 
 
 Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->name('organizer-payindex')->middleware('isLoggedIn');
+
+
+
+
+
+Route::get('/admin-dashboard',[AdminContoller::class,'adminIndex'])->name('admin-dashboard')->middleware('isLoggedIn');
+
+
+Route::get('/admin-subscribers',[AdminContoller::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isLoggedIn');
+
+
+Route::get('/admin-payments',[AdminContoller::class,'adminPayments'])->name('admin-payments')->middleware('isLoggedIn');
+
+Route::get('/admin-organizers',[AdminContoller::class,'adminOrganizers'])->name('admin-organizers')->middleware('isLoggedIn');
+
 
 });

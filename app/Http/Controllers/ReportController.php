@@ -168,29 +168,10 @@ class ReportController extends Controller
     $user       = User::find($user_id);
     $organizers  = $user->organizers;
 
-
-    $event_category = array();
     $count = $organizers->count();
 
     $number = 0;
-    // for($j=0; $j<$count;$j++){
-    // $events = $organizers[$j]->events;
-    // if($events !=[]){
-    // $count1 = $events->count();
-    // for($i=0;$i<$count1;$i++){
-    // $event_id = $events[$i]->id;
 
-    // $event_details  = $events[$i]->eventDetails;
-    // $event_category[$number] = $event_details->category;
-    // $eventmonth[$number]     = $event_details->startmonth;
-    // $createdmonth[$number]   = $event_details->createdmonth;
-    // $totalcreatedmonth[$number]  = EventDetail::all()->where('event_id', $event_id )->where('createdmonth',) ;
-    // $totalstartmonth[$number]    =  ;
-
-    // $number++;
-    // }
-    // }
-    // }
 
         $event_id = array();
     for($j=0; $j<$count;$j++){
@@ -206,29 +187,182 @@ class ReportController extends Controller
 
 //    $x= EventDetail::all()->whereIn('event_id', $event_id )->groupBy('startmonth')->pluck('startmonth');
     $totaleventstartmonth     = array();
-    $startmonth= EventDetail::all()->whereIn('event_id', $event_id )->unique('startmonth')->pluck('startmonth');
+    $startmonth = array();
+    $startmonth1= EventDetail::all()->whereIn('event_id', $event_id )->unique('startmonth')->pluck('startmonth');
 
-    $totalstartmonth = count($startmonth);
+    $totalstartmonth = count($startmonth1);
     for($p=0;$p<$totalstartmonth;$p++){
 
-    $totaleventstartmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('startmonth',$startmonth[$p])->count();
+    $totaleventstartmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('startmonth',$startmonth1[$p])->count();
+
+
+    switch ($startmonth1[$p]) {
+        case 1:
+            $month = "January";
+            $startmonth[$p] = "January";
+            break;
+        case 2:
+            $month = "February";
+            $startmonth[$p] = "February";
+            break;
+
+        case 3:
+        $month = "March";
+        $startmonth[$p] = "March";
+            break;
+
+        case 4:
+        $month = "April";
+        $startmonth[$p] = "April";
+            break;
+
+        case 5:
+        $month = "May";
+        $startmonth[$p] = "May";
+            break;
+
+        case 6:
+        $month = "June";
+        $startmonth[$p] = "June";
+            break;
+
+        case 7:
+        $month = "July";
+        $startmonth[$p] = "July";
+            break;
+
+        case 8:
+        $month = "August";
+        $startmonth[$p] =  "August";
+            break;
+
+        case 9:
+        $month = "September";
+        $startmonth[$p] =  "September";
+            break;
+
+        case 10:
+        $month = "October";
+        $startmonth[$p] = "October";
+            break;
+
+
+        case 11:
+        $month = "November";
+        $startmonth[$p] = "November";
+        break;
+
+
+        case 12:
+        $month = "December";
+        $startmonth[$p] = "December";
+            break;
+        default:
+            $month = "None";
+            $startmonth[$p] = "None";
+        }
+
+
 
     }
 
-    $createdmonth= EventDetail::all()->whereIn('event_id', $event_id )->unique('createdmonth')->pluck('createdmonth');
-    echo $createdmonth;
-    $totalcreatedmonth = count($createdmonth);
+
+    $createdmonth = array();
+    $totaleventcreatedmonth     = array();
+    $createdmonth1= EventDetail::all()->whereIn('event_id', $event_id )->unique('createdmonth')->pluck('createdmonth');
+
+    $totalcreatedmonth = count($createdmonth1);
     for($p=0;$p<$totalcreatedmonth;$p++){
 
-        $totaleventcretedmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('createdmonth',$createdmonth[$p])->count();
+        $totaleventcreatedmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('createdmonth',$createdmonth1[$p])->count();
+
+        switch ($createdmonth1[$p]) {
+            case 1:
+                $month = "January";
+                $createdmonth[$p] = "January";
+                break;
+            case 2:
+                $month = "February";
+                $createdmonth[$p] = "February";
+                break;
+
+            case 3:
+            $month = "March";
+            $createdmonth[$p] = "March";
+                break;
+
+            case 4:
+            $month = "April";
+            $createdmonth[$p] = "April";
+                break;
+
+            case 5:
+            $month = "May";
+            $createdmonth[$p] = "May";
+                break;
+
+            case 6:
+            $month = "June";
+            $createdmonth[$p] = "June";
+                break;
+
+            case 7:
+            $month = "July";
+            $createdmonth[$p] = "July";
+                break;
+
+            case 8:
+            $month = "August";
+            $createdmonth[$p] =  "August";
+                break;
+
+            case 9:
+            $month = "September";
+            $createdmonth[$p] =  "September";
+                break;
+
+            case 10:
+            $month = "October";
+            $createdmonth[$p] = "October";
+                break;
+
+
+            case 11:
+            $month = "November";
+            $createdmonth[$p] = "November";
+            break;
+
+
+            case 12:
+            $month = "December";
+            $createdmonth[$p] = "December";
+                break;
+            default:
+                $month = "None";
+                $createdmonth[$p] = "None";
+            }
+
+
 
      }
 
-     dd($totaleventcretedmonth);
 
 
 
-        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered','event_payments','event_category'));
+
+     $totaleventcategory     = array();
+    $event_category= EventDetail::all()->whereIn('event_id', $event_id )->unique('category')->pluck('category');
+
+    $totalcategory =  count($event_category);
+
+    for($p=0;$p<$totalcategory;$p++){
+
+        $totaleventcategory[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('category',$event_category[$p])->count();
+
+     }
+
+
+        return view('event-bar-graph-report',compact('event_title','data_participants','data_registered','event_payments','startmonth','totaleventstartmonth','totaleventcreatedmonth','createdmonth','event_category','totaleventcategory'));
     }
 
 
@@ -275,8 +409,219 @@ class ReportController extends Controller
 
 
 
-         return view('event-line-graph-report',compact('event_title','data_participants','data_registered','event_payments'));
+    //title and category
+
+    $user       = User::find($user_id);
+    $organizers  = $user->organizers;
+
+    $count = $organizers->count();
+
+    $number = 0;
+
+
+        $event_id = array();
+    for($j=0; $j<$count;$j++){
+        $events = $organizers[$j]->events;
+        if($events !=[]){
+        $count1 = $events->count();
+        for($i=0;$i<$count1;$i++){
+        $event_id[$number] = $events[$i]->id;
+        $number++;
+        }
+        }
+        }
+
+    $totaleventstartmonth     = array();
+    $startmonth = array();
+    $startmonth1= EventDetail::all()->whereIn('event_id', $event_id )->unique('startmonth')->pluck('startmonth');
+
+    $totalstartmonth = count($startmonth1);
+    for($p=0;$p<$totalstartmonth;$p++){
+
+    $totaleventstartmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('startmonth',$startmonth1[$p])->count();
+
+
+    switch ($startmonth1[$p]) {
+        case 1:
+            $month = "January";
+            $startmonth[$p] = "January";
+            break;
+        case 2:
+            $month = "February";
+            $startmonth[$p] = "February";
+            break;
+
+        case 3:
+        $month = "March";
+        $startmonth[$p] = "March";
+            break;
+
+        case 4:
+        $month = "April";
+        $startmonth[$p] = "April";
+            break;
+
+        case 5:
+        $month = "May";
+        $startmonth[$p] = "May";
+            break;
+
+        case 6:
+        $month = "June";
+        $startmonth[$p] = "June";
+            break;
+
+        case 7:
+        $month = "July";
+        $startmonth[$p] = "July";
+            break;
+
+        case 8:
+        $month = "August";
+        $startmonth[$p] =  "August";
+            break;
+
+        case 9:
+        $month = "September";
+        $startmonth[$p] =  "September";
+            break;
+
+        case 10:
+        $month = "October";
+        $startmonth[$p] = "October";
+            break;
+
+
+        case 11:
+        $month = "November";
+        $startmonth[$p] = "November";
+        break;
+
+
+        case 12:
+        $month = "December";
+        $startmonth[$p] = "December";
+            break;
+        default:
+            $month = "None";
+            $startmonth[$p] = "None";
+        }
+
+
+
+    }
+
+
+    $createdmonth = array();
+    $totaleventcreatedmonth     = array();
+    $createdmonth1= EventDetail::all()->whereIn('event_id', $event_id )->unique('createdmonth')->pluck('createdmonth');
+
+    $totalcreatedmonth = count($createdmonth1);
+    for($p=0;$p<$totalcreatedmonth;$p++){
+
+        $totaleventcreatedmonth[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('createdmonth',$createdmonth1[$p])->count();
+
+        switch ($createdmonth1[$p]) {
+            case 1:
+                $month = "January";
+                $createdmonth[$p] = "January";
+                break;
+            case 2:
+                $month = "February";
+                $createdmonth[$p] = "February";
+                break;
+
+            case 3:
+            $month = "March";
+            $createdmonth[$p] = "March";
+                break;
+
+            case 4:
+            $month = "April";
+            $createdmonth[$p] = "April";
+                break;
+
+            case 5:
+            $month = "May";
+            $createdmonth[$p] = "May";
+                break;
+
+            case 6:
+            $month = "June";
+            $createdmonth[$p] = "June";
+                break;
+
+            case 7:
+            $month = "July";
+            $createdmonth[$p] = "July";
+                break;
+
+            case 8:
+            $month = "August";
+            $createdmonth[$p] =  "August";
+                break;
+
+            case 9:
+            $month = "September";
+            $createdmonth[$p] =  "September";
+                break;
+
+            case 10:
+            $month = "October";
+            $createdmonth[$p] = "October";
+                break;
+
+
+            case 11:
+            $month = "November";
+            $createdmonth[$p] = "November";
+            break;
+
+
+            case 12:
+            $month = "December";
+            $createdmonth[$p] = "December";
+                break;
+            default:
+                $month = "None";
+                $createdmonth[$p] = "None";
+            }
+
+
+
      }
+
+
+
+
+
+     $totaleventcategory     = array();
+    $event_category= EventDetail::all()->whereIn('event_id', $event_id )->unique('category')->pluck('category');
+
+    $totalcategory =  count($event_category);
+
+    for($p=0;$p<$totalcategory;$p++){
+
+        $totaleventcategory[$p]  = EventDetail::all()->whereIn('event_id', $event_id )->where('category',$event_category[$p])->count();
+
+     }
+
+
+
+
+
+
+
+         return view('event-line-graph-report',compact('event_title','data_participants','data_registered','event_payments','startmonth','totaleventstartmonth','totaleventcreatedmonth','createdmonth','event_category','totaleventcategory'));
+     }
+
+
+
+
+
+
+
+
 
 
     public function fileImportExport()
@@ -312,6 +657,34 @@ class ReportController extends Controller
     $eventpdf = PDF::loadView('event-report',compact('participants','event'));
 
     return $eventpdf->download('eventreport.pdf');
+
+  }
+
+
+  public function downloadBarGraphPDF(){
+
+
+
+    // $participants = EventUser::all()->where('event_id',$id);
+    // $participants = EventUser::where('event_id',$id)->paginate(6);
+
+    $render = view('event-bar-graph-report')->render();
+
+    $pdf = new Pdf;
+    PDF::addPage($render);
+    PDF::setOptions(['javascript-delay' => 5000]);
+    PDF::saveAs(public_path('eventBarGraphReport.pdf'));
+
+    return response()->download(public_path('eventBarGraphReport.pdf'));
+
+
+
+
+
+
+    // $eventpdf = PDF::loadView('event-bar-graph-report');
+
+    // return $eventpdf->download('eventBarGraphReport.pdf');
 
   }
 

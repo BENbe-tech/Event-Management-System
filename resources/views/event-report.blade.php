@@ -20,8 +20,9 @@
                       <a href ="{{ route('file-export',$event->id)}} " class="btn btn-primary float-end">Export in excel</a>
                         {{-- <a href ="{{ route('file-export',$event->id)}} " class="btn btn-primary float-end">Export in csv</a> --}}
 
-                        {{-- <a href ="{{ route('download.eventreport.pdf',$event->id)}} " class="btn btn-primary float-right">Export in PDF</a><br> --}}
-                        <table class="table">
+    {{-- <a href ="{{ route('download.eventreport.pdf',$event->id)}} " class="btn btn-primary float-right">Export in PDF</a><br> --}}
+
+               <table class="table">
                             <thead>
                                 <tr>
                                     <th class="text-center">number</th>

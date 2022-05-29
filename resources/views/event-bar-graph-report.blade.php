@@ -2,7 +2,7 @@
 
 @section('content')
 <head>
-    <link rel="stylesheet" href="{{asset('css/comments.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/comments.css')}}"> --}}
 
 </head>
 <body>
@@ -11,7 +11,7 @@
 
 
 {{-- <div id="chart" style="height: 300px;"></div> --}}
-
+  {{-- <a href ="{{ route('download.eventbarreport.pdf')}} " class="btn btn-primary float-end">Export in PDF</a><br> --}}
 
 <div style="height:400px; width:900px; margin:auto;">
 
@@ -26,6 +26,20 @@
 </canvas><br><br>
 
 <canvas id="payment-barChart">
+
+</canvas><br><br>
+
+
+<canvas id="category-barChart">
+
+</canvas><br><br>
+
+
+<canvas id="startmonth-barChart">
+
+</canvas><br><br>
+
+<canvas id="createdmonth-barChart">
 
 </canvas>
 
@@ -61,6 +75,15 @@
   var participants = <?php echo  json_encode($data_participants); ?>;
   var registered_event_user = <?php echo  json_encode($data_registered); ?>;
   var payments = <?php echo json_encode($event_payments); ?>;
+  var category = <?php echo json_encode($event_category);  ?>;
+  var countcategory = <?php echo json_encode($totaleventcategory); ?>;
+  var startmonth  =   <?php  echo json_encode($startmonth); ?>;
+  var countstartmonth =  <?php echo json_encode($totaleventstartmonth);  ?>;
+  var createdmonth =  <?php  echo json_encode($createdmonth);  ?>;
+  var countcreatedmonth = <?php  echo json_encode($totaleventcreatedmonth); ?>;
+
+
+
   var participantsbarCanvas = $("#participants-barChart");
 
 //   Chart.defaults.global.defaultFontFamily = "Lato";
@@ -275,6 +298,218 @@
 
 
 
+  var categorybarCanvas = $("#category-barChart");
+
+var barChart  = new Chart(categorybarCanvas,{
+    type :'bar',
+    data:{
+
+      labels:category,
+        datasets:[
+        {
+          label: 'Total event for each category',
+          data:countcategory,
+          backgroundColor:'brown',
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3 ,
+          hoverBorderColor: '#000',
+        }
+        ]
+    },
+
+
+    options:{
+
+  plugins:{
+      title: {
+     display: true,
+     text: 'Categories of event',
+     fontSize : 100,
+     },
+
+     legend:{
+      position : 'top',
+      display: true,
+     },
+
+     tooltips:{
+          enabled:true,
+      },
+  },
+
+
+      scales:{
+
+          y:{
+              display: true,
+              ticks:{
+                beginAtZero:true
+              },
+              title: {
+              display: true,
+              text: 'No of Events'
+          }
+          },
+
+          x:{
+          display: true,
+          title: {
+          display: true,
+          text: 'Event Category'
+          }
+         }
+      },
+
+
+    }
+})
+
+
+
+
+var startmonthbarCanvas = $("#startmonth-barChart");
+
+var barChart  = new Chart(startmonthbarCanvas,{
+    type :'bar',
+    data:{
+
+      labels:startmonth,
+        datasets:[
+        {
+          label: 'Total event for each month',
+          data: countstartmonth,
+          backgroundColor:'orange',
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3 ,
+          hoverBorderColor: '#000',
+        }
+        ]
+    },
+
+
+    options:{
+
+  plugins:{
+      title: {
+     display: true,
+     text: 'Total event occuring in each month Bar Chart',
+     fontSize : 100,
+     },
+
+     legend:{
+      position : 'top',
+      display: true,
+     },
+
+     tooltips:{
+          enabled:true,
+      },
+  },
+
+
+      scales:{
+
+          y:{
+              display: true,
+              ticks:{
+                beginAtZero:true
+              },
+              title: {
+              display: true,
+              text: 'No of Events'
+          }
+          },
+
+          x:{
+          display: true,
+          title: {
+          display: true,
+          text: 'Months'
+          }
+         }
+      },
+
+
+    }
+})
+
+
+
+
+
+var createdmonthbarCanvas = $("#createdmonth-barChart");
+
+var barChart  = new Chart(createdmonthbarCanvas,{
+    type :'bar',
+    data:{
+
+      labels:createdmonth,
+        datasets:[
+        {
+          label: 'Total event created in each month',
+          data:countcreatedmonth,
+          backgroundColor:'purple',
+          borderWidth:1,
+          borderColor:'#777',
+          hoverBorderWidth:3 ,
+          hoverBorderColor: '#000',
+        }
+        ]
+    },
+
+
+    options:{
+
+  plugins:{
+      title: {
+     display: true,
+     text: 'Total event created in each month Bar Chart',
+     fontSize : 100,
+     },
+
+     legend:{
+      position : 'top',
+      display: true,
+     },
+
+     tooltips:{
+          enabled:true,
+      },
+  },
+
+
+      scales:{
+
+          y:{
+              display: true,
+              ticks:{
+                beginAtZero:true
+              },
+              title: {
+              display: true,
+              text: 'No of Events'
+          }
+          },
+
+          x:{
+          display: true,
+          title: {
+          display: true,
+          text: 'Months'
+          }
+         }
+      },
+
+
+    }
+})
+
+
+
+
+
 
 
 
@@ -282,8 +517,6 @@
 
 
  </script>
-
-
 
 
 </body>
