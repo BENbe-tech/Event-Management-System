@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\AdminContoller;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DashboardController;
@@ -53,7 +54,7 @@ Route::get('/', function () {
     return view('home',compact('event_categorys','events','IDevents','flag'));
     // return view('welcome');
 
-})->middleware('isLoggedIn');
+});
 
 
 Route::get('/login',[CustomAuthController::class,'login'])->middleware('alreadyLoggedIn');
@@ -122,7 +123,7 @@ Route::get('/edit/{id}',[MyEventsController::class,'edit'])->name('edit')->middl
 Route::post('/update',[MyEventsController::class,'update'])->name('update')->middleware('isLoggedIn');
 
 
-Route::get('/home',[HomeController::class,'index'])->name('home')->middleware('isLoggedIn');
+Route::get('/home',[HomeController::class,'index'])->name('home');
 
 
 Route::post('/home-search',[HomeController::class,'search'])->name('home-search');
@@ -311,15 +312,59 @@ Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->n
 
 
 
-Route::get('/admin-dashboard',[AdminContoller::class,'adminIndex'])->name('admin-dashboard')->middleware('isLoggedIn');
 
 
-Route::get('/admin-subscribers',[AdminContoller::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isLoggedIn');
 
 
-Route::get('/admin-payments',[AdminContoller::class,'adminPayments'])->name('admin-payments')->middleware('isLoggedIn');
+Route::get('/admin-dashboard',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isadminLoggedIn');
 
-Route::get('/admin-organizers',[AdminContoller::class,'adminOrganizers'])->name('admin-organizers')->middleware('isLoggedIn');
+
+Route::get('/admin-subscribers',[AdminController::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isadminLoggedIn');
+
+
+Route::get('/admin-payments',[AdminController::class,'adminPayments'])->name('admin-payments')->middleware('isadminLoggedIn');
+
+Route::get('/admin-organizers',[AdminController::class,'adminOrganizers'])->name('admin-organizers')->middleware('isadminLoggedIn');
+
+
+Route::get('/admin-bargraph',[AdminController::class,'adminBarGraphs'])->name('admin-bargraph')->middleware('isadminLoggedIn');
+
+
+Route::get('/admin-linegraph',[AdminController::class,'adminLineGraphs'])->name('admin-linegraph')->middleware('isadminLoggedIn');
+
+
+
+
+
+
+Route::get('/adminlogin',[AdminAuthController::class,'Login'])->middleware('alreadyadminLoggedIn');
+
+
+Route::get('/adminregistration',[AdminAuthController::class,'Registration'])->middleware('alreadyadminLoggedIn');
+
+
+Route::post('/register-admin',[AdminAuthController::class,'RegisterAdmin'])->name('register-admin');
+
+
+Route::post('login-admin',[AdminAuthController::class,'LoginAdmin'])->name('login-admin');
+
+
+Route::get('adminlogin-user1',[AdminAuthController::class,'Login'])->name('adminlogin-user1');
+
+
+Route::post('/adminlogout',[AdminAuthController::class,'Logout'])->name('adminlogout')->middleware('isadminLoggedIn');
+
+
+Route::get('adminforget-password', [AdminAuthController::class, 'adminshowForgetPasswordForm'])->name('adminforget-password');
+
+
+Route::post('adminforget-password', [AdminAuthController::class, 'adminsubmitForgetPasswordForm'])->name('adminforget.password.post');
+
+
+Route::get('adminreset-password/{token}', [AdminAuthController::class, 'adminshowResetPasswordForm'])->name('adminreset.password.get');
+
+
+Route::post('adminreset-password', [AdminAuthController::class, 'adminsubmitResetPasswordForm'])->name('adminreset.password.post');
 
 
 });

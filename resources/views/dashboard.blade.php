@@ -60,9 +60,11 @@
             <?php
              $user_id = session('loginId');
             ?>
+            @if($user_id != "")
             <li class="nav-item">
               <a class="nav-link" href="{{route('profile',$user_id)}}">Profile</a>
             </li>
+          @endif
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('create-event')}}">Create Event</a>
@@ -90,11 +92,15 @@
 
         <ul class = "navbar-nav ml-auto">
 
+
+            @if($user_id != "")
+
             <form action="{{route('logout')}}" method="POST">
              @csrf
 
             <button href="" class="btn btn-outline-success my-2 my-sm-0" type="submit">Signout</button>
             </form>
+            @endif
 
         </ul>
         </div>

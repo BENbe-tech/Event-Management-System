@@ -145,9 +145,15 @@ $eventdetails_id = $event_detail->id;
 
 
            <div class="inline button" >
+
+            @if($user_id != "")
+
             <a href="{{url('participants/'.$event_id.'/'.$user_id)}}" id="register" style="padding-left: 20px;" class="btn_more">
               Register for event
             </a>
+
+            @endif
+            
 
             <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" id = "calendar" class="btn_more">
                 Add to Calendar

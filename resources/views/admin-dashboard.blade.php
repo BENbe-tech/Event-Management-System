@@ -41,10 +41,14 @@
 
         </div>
 {{-- header class used to display the navigation bar  --}}
+<?php
+$user_id = session('adminId');
+ $user  =  App\Models\Administrator::all()->where('id',$user_id);
 
+?>
 <header class= "header">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" >Event Management System&nbsp;|| &nbsp; System Admin</a>
+        <a class="navbar-brand" >Event Management System&nbsp;|| &nbsp; Admin {{$user[0]->name}}</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 
           <span></span>
@@ -55,9 +59,7 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
 
-            <?php
-             $user_id = session('loginId');
-            ?>
+
             <li class="nav-item">
               <a class="nav-link" href="{{route('admin-subscribers')}}">Subscribers<span class="sr-only">(current)</span></a>
             </li>
@@ -70,19 +72,19 @@
                 <a class="nav-link" href="{{route('admin-organizers')}}">Organizers</a>
               </li>
 
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{route('admin-eventreport')}}">Event Reports</a>
+            <li class="nav-item">
+                <a class="nav-link" href="">Event Reports</a>
             </li>
 
 
               <li class="nav-item dropdown">
                 <a class="nav-link dropbtn" href="#">Report Graphs</a>
                 <div class="dropdown-content">
-                    <a href="{{route('admin-bargraphs')}}">Bar Graphs</a>
-                    <a href="{{route('admin-linegraphs')}}">Line Graphs</a>
+                    <a href="{{route('admin-bargraph')}}">Bar Graphs</a>
+                    <a href="{{route('admin-linegraph')}}">Line Graphs</a>
 
                 </div>
-              </li>  --}}
+              </li>
 
 
 
@@ -91,7 +93,7 @@
 
         <ul class = "navbar-nav ml-auto">
 
-            <form action="{{route('logout')}}" method="POST">
+            <form action="{{route('adminlogout')}}" method="POST">
              @csrf
 
             <button href="" class="btn btn-outline-success my-2 my-sm-0" type="submit">Signout</button>

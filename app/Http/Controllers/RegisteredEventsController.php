@@ -44,7 +44,18 @@ class RegisteredEventsController extends Controller
 
 // funtion participants registers the partcipant of the event to the table event_user
     public function participants($event_id,$user_id){
+
+        $user_id = session('loginId');
+        if($user_id != ""){
+
+
         $event = Event::find($event_id);
+        $event_details = $event->eventDetails;
+        $end_date = $event_details->endtime;
+        $time = Carbon::now();
+        
+        if($end_date > $time){
+
         $user = $event->users->find($user_id);
            $res_event = $event->id;
            if($user!=""){
@@ -91,6 +102,15 @@ class RegisteredEventsController extends Controller
 
         return response()->json(['success'=>'You have registered successfuly to this event']);
         }
+    }
+    else{
+        return response()->json(['success'=>'The event has arleady ended']);
+    }
+    }
+    else{
+
+        return response()->json(['success'=>'Failed to register, login first']);
+    }
     }
 
 

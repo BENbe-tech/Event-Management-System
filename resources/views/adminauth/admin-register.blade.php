@@ -18,9 +18,9 @@
               <div class="card shadow-2-strong" style="border-radius: 1rem;">
                 <div class="card-body p-5">
 
-        <h4>Registration</h4>
+        <h4>Admin Registration</h4>
         <hr>
-        <form action = "{{route('register-user')}}" method="post">
+        <form action = "{{route('register-admin')}}" method="post">
         @if(Session::has('success'))
      <div class = "alert alert-success">{{Session::get('success')}}</div>
         @endif
@@ -65,7 +65,7 @@
                     <button class =" btn btn-block btn-primary" type="submit">Register</button>
                    </div>
                    <br>
-                   <p>Already have an account? <a href="login-user1" >Login in</a></p><br>
+                   <p>Already have an account? <a href="adminlogin-user1" >Login in</a>.</p><br>
 
           </form>
 

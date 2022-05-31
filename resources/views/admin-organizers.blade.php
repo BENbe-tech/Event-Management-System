@@ -14,8 +14,11 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> Subscribers Report</b></h5>
-
+                        <h5><b> Organizers Report</b></h5>
+                <?php
+                   $count = $users->count();
+                ?>
+                <p>{{$count}} total users </p>
 
 
                <table class="table">
@@ -24,12 +27,8 @@
                                     <th class="text-center">#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Start Subscription</th>
-                                    <th>End Subscription</th>
-                                    <th>Time remaining</th>
-                                    <th>Subscription Type</th>
-                                    <th>Payment Amount</th>
-
+                                    <th>Phone</th>
+                                    <th>Subscription Status</th>
 
 
                                 </tr>
@@ -39,34 +38,44 @@
                          <?php
                           $x = 1;
 
-                            foreach ($subscriptions as $subscription ){
+                            foreach ($users as $user ){
                             $time = Carbon\Carbon::now();
-                                if($time <= $subscription->subscription_end){
-                                $user = $subscription->users;
-                   ?>
+                            $org = $user->organizers;
+
+                             if(isset($org[0])){
+
+                          ?>
 
 
                                 <tr class="cell-1">
                                     <td>{{$x}}</td>
                                     <td>{{$user->name}} </td>
                                     <td>{{$user->email}}</td>
-
-
-                                    <td>{{$subscription->payment_date}}</td>
-                                    <td>{{$subscription->subscription_end}}</td>
+                                    <td>{{$user->phone}}</td>
 
 
                                     <?php
-                                    $endtime = $subscription->subscription_end;
-                                    $results = $time->diffInDays($endtime, false);
+                                     $status = "finished";
+                                     $ys = $user->subscriptions;
+                                   foreach($ys as $y){
+                                     $t =  $y->subscription_end;
+                                        if($time <= $t  ){
+                                    $status = "ongoing";
+                                     break;
+                                   }
+
+                                 }
 
                                     ?>
-                                    <td>{{$results}} days</td>
+                                    @if($status=="ongoing")
+                                    <td><span class="badge badge-success">{{$status}}</span></td>
+                                    @endif
 
-                                    <td>{{$subscription->subscription_type}}</td>
+                                    @if($status=="finished")
 
+                                    <td><span class="badge badge-danger">{{$status}}</span></td>
+                                    @endif
 
-                                    <td>{{$subscription->subscription_fee}}</td>
 
                                 </tr>
                              <?php
@@ -81,7 +90,7 @@
 
                     <div class="d-flex justify-content-center">
 
-                  {!! $subscriptions->links() !!}
+                  {!! $users->links() !!}
 
                     </div>
 
