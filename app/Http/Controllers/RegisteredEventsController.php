@@ -53,7 +53,7 @@ class RegisteredEventsController extends Controller
         $event_details = $event->eventDetails;
         $end_date = $event_details->endtime;
         $time = Carbon::now();
-        
+
         if($end_date > $time){
 
         $user = $event->users->find($user_id);
