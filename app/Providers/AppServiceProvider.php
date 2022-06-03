@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use ConsoleTVs\Charts\Registrar as Charts;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Schema;
+use \Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -34,5 +35,9 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         Schema::defaultStringLength(191);
+
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
