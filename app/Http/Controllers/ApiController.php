@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Event;
+use App\Models\EventDetail;
 use App\Models\User;
 
 
@@ -27,5 +30,48 @@ class ApiController extends Controller
 
 
     }
+
+    public function Events(){
+
+        $events =Event::all();
+
+        return response()->json($events);
+
+
+    }
+
+
+    public function Event($id){
+
+        $event =Event::all()->where('id',$id);
+
+        return response()->json($event);
+
+
+    }
+
+
+
+    public function Eventdetails(){
+
+        $eventdetails =EventDetail::all();
+
+        return response()->json($eventdetails);
+
+
+    }
+
+
+
+    public function Eventdetail($id){
+
+        $eventdetail =EventDetail::all()->where('event_id',$id);
+
+        return response()->json($eventdetail);
+
+
+    }
+
+
 
 }

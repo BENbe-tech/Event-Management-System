@@ -30,3 +30,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/users',[ApiController::class,'Users'])->name('users');
 
 Route::get('/user/{id}',[ApiController::class,'User'])->name('user');
+
+
+Route::get('/events',[ApiController::class,'Events'])->name('events');
+
+
+Route::get('/event/{id}',[ApiController::class,'Event'])->name('event');
+
+
+Route::get('/eventdetails',[ApiController::class,'Eventdetails'])->name('eventdetails');
+
+
+Route::get('/eventdetail/{id}',[ApiController::class,'Eventdetail'])->name('eventdetail');
