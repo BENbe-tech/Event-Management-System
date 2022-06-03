@@ -29,7 +29,7 @@ class CreateEventController extends Controller
 
        }
 
-       if($flag == 1){
+       if($flag == 0){
         return view('create-event');
        }else{
 
