@@ -238,7 +238,7 @@ class MyEventsController extends Controller
         }
 
         else{
-            return response()->json(['success'=>'You can only set reminder before the event starts']);
+            return response()->json(['success'=>'You can only set reminder 2 hours before the event starts']);
         }
     }
 

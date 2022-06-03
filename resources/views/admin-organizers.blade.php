@@ -20,7 +20,7 @@
                 ?>
                 <p>{{$count}} total users </p>
 
-
+       
                <table class="table">
                             <thead>
                                 <tr>
