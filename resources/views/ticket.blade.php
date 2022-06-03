@@ -15,6 +15,7 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 
 <?php
  $image_path = $event_details->image_path;
+ $name =  $event->event_title;
 
 ?>
 
@@ -61,7 +62,7 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 
 
 
-    {!! QrCode::size(250)->generate('ItSolutionStuff.com'); !!}
+    {!! QrCode::size(250)->generate($name.$qr); !!}
 
 
 

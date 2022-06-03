@@ -28,15 +28,22 @@ class TicketController extends Controller
         $event_details = $event->eventDetails;
         $user_id = session('loginId');
         $user = User::find($user_id);
-        \QrCode::size(200)
-        ->format('png')
-        ->generate('ItSolutionStuff.com', public_path('storage/ImageFolder/qrcode.png'));
 
-        return view('ticket',compact('event','event_details','user'));
+        // \QrCode::size(200)
+        // ->format('png')
+        // ->generate('ItSolutionStuff.com', public_path('storage/ImageFolder/qrcode.png'));
+
+        $time = time();
+
+
+        $qr = md5($time);
+
+
+        return view('ticket',compact('event','event_details','user','qr'));
 
     }
 
-    
+
 
     public function qrscanner(){
 
