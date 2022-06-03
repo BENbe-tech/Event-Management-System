@@ -19,4 +19,13 @@ class ApiController extends Controller
 
     }
 
+    public function User($id){
+
+        $users =User::all()->where('id',$id);
+
+        return response()->json($users);
+
+
+    }
+
 }
