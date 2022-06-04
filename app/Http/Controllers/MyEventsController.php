@@ -38,6 +38,7 @@ class MyEventsController extends Controller
 
         $shareComponent = \Share::page(
             // 'https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/',
+            // 'https://polar-retreat-83406.herokuapp.com/myevents',
            'http://127.0.0.1:8000/myeventdetails/33',
             'Open this event',
         )

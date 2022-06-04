@@ -42,3 +42,31 @@ Route::get('/eventdetails',[ApiController::class,'Eventdetails'])->name('eventde
 
 
 Route::get('/eventdetail/{id}',[ApiController::class,'Eventdetail'])->name('eventdetail');
+
+
+
+
+Route::post('/register-user',[ApiController::class,'registerUser'])->name('register-user');
+
+
+
+Route::post('login-user',[ApiController::class,'loginUser'])->name('login-user');
+
+
+
+Route::post('/logout/{id}',[ApiController::class,'logout'])->name('logout');
+
+
+
+Route::post('/create-event1',[ApiController::class,'createEvent'])->name('create-event1');
+
+
+
+Route::get('/participants/{event_id}/{user_id}',[ApiController::class,'participants'])->name('participants');
+
+
+
+Route::post('/create-session1',[ApiController::class,'createSession'])->name('create-session1');
+
+
+Route::get('/session-participants/{event_id}/{user_id}/{session_id}',[ApiController::class,'sessionParticipants'])->name('session-participants');

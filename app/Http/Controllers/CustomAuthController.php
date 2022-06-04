@@ -46,7 +46,7 @@ class CustomAuthController extends Controller
 
 //    $user->roles()->sync($request->roles);
 
-   $request->session()->put('loginId',$user->id);
+//    $request->session()->put('loginId',$user->id);
    if($res){
     //    return back()->with('success','You have registerd successfully');
        return redirect('login-user1');
