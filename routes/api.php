@@ -54,7 +54,7 @@ Route::post('login-user',[ApiController::class,'loginUser'])->name('login-user')
 
 
 
-Route::post('/logout/{id}',[ApiController::class,'logout'])->name('logout');
+Route::get('/logout/{id}',[ApiController::class,'logout'])->name('logout');
 
 
 
