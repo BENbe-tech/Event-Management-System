@@ -10,17 +10,6 @@
 
     $user_id = $user->id;
 
-   $x ="kayombobernard@gmail.com";
-    $log = App\Models\User::all()->where('email',$x)->first();
-     echo $log;
-if($log != "[]"){
-
-    echo 2;
-
-}
-else{
- echo 1;
-}
     ?>
 
     <h4><b>User Profile</b></h4>
