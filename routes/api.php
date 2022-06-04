@@ -54,19 +54,19 @@ Route::post('login-user',[ApiController::class,'loginUser'])->name('login-user')
 
 
 
-Route::get('/logout/{id}',[ApiController::class,'logout'])->name('logout');
+Route::get('/logout/{session_key}',[ApiController::class,'logout'])->name('logout');
 
 
-
+//create event
 Route::post('/create-event1',[ApiController::class,'createEvent'])->name('create-event1');
 
 
-
+// register in event
 Route::get('/participants/{event_id}/{user_id}',[ApiController::class,'participants'])->name('participants');
 
 
-
+//create session
 Route::post('/create-session1',[ApiController::class,'createSession'])->name('create-session1');
 
-
+//register in session
 Route::get('/session-participants/{event_id}/{user_id}/{session_id}',[ApiController::class,'sessionParticipants'])->name('session-participants');
