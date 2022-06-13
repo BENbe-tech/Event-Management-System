@@ -25,6 +25,7 @@ class CreateEventController extends Controller
 
          if($time < $subscription ){
            $flag = 0;
+        //    $flag = 1;
          }
 
        }
