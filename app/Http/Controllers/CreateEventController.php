@@ -24,7 +24,7 @@ class CreateEventController extends Controller
        foreach($subscriptions as $subscription){
 
          if($time < $subscription ){
-           $flag = 1;
+           $flag = 0;
          }
 
        }

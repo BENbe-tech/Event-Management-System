@@ -135,7 +135,7 @@ class PaymentController extends Controller
 
     }
 
-    
+
 
 
     public function Participantindex($id){
@@ -226,21 +226,32 @@ class PaymentController extends Controller
 
       if($percent == 100){
 
+        $time = time();
+        $qr = md5($time);
+        $event_detailsticket = $event->eventDetails;
+
         $values = [
             'title' => 'Dear '. $user_name.',',
             'body1' => 'You have paid for '. $event_title.' event at '.$time.'.',
             'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no,
             'body' => 'This is the ticket of '. $event_title.' event.',
+            'qr'    =>  $qr,
+            'user'  =>   $user,
+            'eventdetails' => $event_detailsticket ,
+            'event' => $event ,
         ];
 
          Mail::to($user_email)->send(new TicketMail($values));
       }else{
 
+
+
         $details = [
             'title' => 'Dear '. $user_name.',',
             'body1' => 'You have paid for '. $event_title.' event at '.$time.'.',
             'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no,
-       ];
+
+        ];
 
           Mail::to($user_email)->send(new PaymentMail($details));
 

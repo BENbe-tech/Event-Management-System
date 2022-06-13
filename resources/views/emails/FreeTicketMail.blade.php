@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{asset('css/ticket.css')}}">
 
     <script type="text/javascript" src = "{{asset('js/ticket.js')}}" defer></script>
-
     <title>Send Email</title>
 
 <style>
@@ -109,24 +108,27 @@ table td {
 }
 
 
+
 </style>
+
 
 
 </head>
 <body>
 
-    <p>{{$values['title']}}</p>
-    <p>{{$values['body1']}}</p>
-    <p>{{$values['body2']}}</p>
-    <p>{{$values['body']}}</p>
+
+    <p>{{$details['title']}}</p>
+    {{-- <p>{{$details['body']}}</p> --}}
+    <p>{{$details['body1']}}<b>{{$details['event_title']}}</b>{{$details['body2']}}<b>{{$details['date']}}</b>{{$details['body3']}}</p>
+
 
 
   <?php
 
-    $qr   =  $values['qr'];
-    $user = $values['user'];
-    $event_details = $values['eventdetails'];
-    $event    =  $values['event'];
+    $qr   =  $details['qr'];
+    $user = $details['user'];
+    $event_details = $details['eventdetails'];
+    $event    =  $details['event'];
 
     $image_path = $event_details->image_path;
     $name =  $event->event_title;
@@ -140,7 +142,7 @@ table td {
             <p class="event-title">{{$event->event_title}}</p>
         </div>
         <div class="poster">
-            {{-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/25240/only-god-forgives.jpg" alt="Movie: Only God Forgives" /> --}}
+
             <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_details->image_name}}" >
         </div>
         <div class="info">

@@ -11,6 +11,9 @@
     <p>{{$details['title']}}</p>
     {{-- <p>{{$details['body']}}</p> --}}
     <p>{{$details['body1']}}<b>{{$details['event_title']}}</b>{{$details['body2']}}<b>{{$details['date']}}</b>{{$details['body3']}}</p>
+
+
+
     <p>Regards,</p>
     <p><b>EMS Tanzania</b></p>
 </body>

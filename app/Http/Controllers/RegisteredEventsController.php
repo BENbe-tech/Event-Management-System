@@ -10,6 +10,7 @@ use App\Models\Session;
 use Illuminate\Support\Facades\DB;
 use Jorenvh\Share\Share;
 use App\Mail\TestMail;
+use App\Mail\FreeTicketMail;
 use App\Models\EventDetail;
 use App\Models\EventUser;
 use App\Models\SessionUser;
@@ -85,7 +86,14 @@ class RegisteredEventsController extends Controller
         $event_title = $event->event_title;
         $event_details = $event->eventDetails;
         $start_date = $event_details->starttime;
+        $entry_mode = $event_details->entry_mode;
 
+
+        $time = time();
+        $qr = md5($time);
+
+
+      if($entry_mode == "paid"){
 
         $details = [
             'title' => 'Dear '. $name.',',
@@ -97,19 +105,46 @@ class RegisteredEventsController extends Controller
             'date' => $start_date,
        ];
 
-          Mail::to($email)->send(new TestMail($details));
+       Mail::to($email)->send(new TestMail($details));
+
+    }
+
+    if($entry_mode == "free"){
 
 
-        return response()->json(['success'=>'You have registered successfuly to this event']);
+        $details = [
+            'title' => 'Dear '. $name.',',
+
+            'body1' => 'You have registered for ',
+            'body2' => ' event which will commence on ',
+            'body3' => ' as planned. Verify on our page for attendance,one day before the event commence',
+            'event_title' => $event_title,
+            'date' => $start_date,
+            'qr'   =>  $qr,
+            'user' => $user,
+            'eventdetails' => $event_details,
+            'event'    => $event,
+       ];
+
+       Mail::to($email)->send(new FreeTicketMail($details));
+
+    }
+
+
+
+        echo "success";
+        // return response()->json(['success'=>'You have registered successfuly to this event']);
         }
     }
     else{
-        return response()->json(['success'=>'The event has arleady ended']);
+        // return response()->json(['success'=>'The event has arleady ended']);
+        echo "ended";
     }
     }
     else{
+        echo "login first";
 
-        return response()->json(['success'=>'Failed to register, login first']);
+        // return response()->json(['success'=>'Failed to register, login first']);
     }
     }
 
