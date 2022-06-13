@@ -88,10 +88,7 @@ class RegisteredEventsController extends Controller
         $start_date = $event_details->starttime;
         $entry_mode = $event_details->entry_mode;
 
-
-        $time = time();
-        $qr = md5($time);
-
+       $link = url('ticket/'.$event_id);
 
       if($entry_mode == "paid"){
 
@@ -120,10 +117,7 @@ class RegisteredEventsController extends Controller
             'body3' => ' as planned. Verify on our page for attendance,one day before the event commence',
             'event_title' => $event_title,
             'date' => $start_date,
-            'qr'   =>  $qr,
-            'user' => $user,
-            'eventdetails' => $event_details,
-            'event'    => $event,
+            'link' => $link,
        ];
 
        Mail::to($email)->send(new FreeTicketMail($details));
