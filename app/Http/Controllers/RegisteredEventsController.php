@@ -14,6 +14,7 @@ use App\Mail\FreeTicketMail;
 use App\Models\EventDetail;
 use App\Models\EventUser;
 use App\Models\SessionUser;
+use App\Models\Ticket;
 use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 
@@ -109,6 +110,20 @@ class RegisteredEventsController extends Controller
     if($entry_mode == "free"){
 
 
+
+
+        $time = time();
+        $qr = md5($time);
+
+        $ticket = new Ticket();
+        $ticket->barcode_no = $qr;
+        $ticket->event_id = $event_id;
+        $ticket->user_id = $user_id;
+        $ticket->amount   =  "free";
+
+        $ticket->save();
+
+
         $details = [
             'title' => 'Dear '. $name.',',
 
@@ -126,19 +141,19 @@ class RegisteredEventsController extends Controller
 
 
 
-        // echo "success";
-        return response()->json(['success'=>'You have registered successfuly to this event']);
+       echo "success";
+        // return response()->json(['success'=>'You have registered successfuly to this event']);
         }
     }
     else{
-        return response()->json(['success'=>'The event has arleady ended']);
-        // echo "ended";
+        // return response()->json(['success'=>'The event has arleady ended']);
+   echo "already";
     }
     }
     else{
-        // echo "login first";
+echo "failed";
 
-        return response()->json(['success'=>'Failed to register, login first']);
+        // return response()->json(['success'=>'Failed to register, login first']);
     }
     }
 

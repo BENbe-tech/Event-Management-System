@@ -13,6 +13,7 @@ use App\Mail\PaymentMail;
 use App\Mail\TicketMail;
 use  App\Models\EventDetail;
 use App\Models\Subscription;
+use App\Models\Ticket;
 
 class PaymentController extends Controller
 {
@@ -227,6 +228,17 @@ class PaymentController extends Controller
       if($percent == 100){
 
         $link = url('ticket/'.$event_id);
+
+        $time = time();
+        $qr = md5($time);
+
+        $ticket = new Ticket();
+        $ticket->barcode_no = $qr;
+        $ticket->event_id = $event_id;
+        $ticket->user_id = $user_id;
+        $ticket->amount   =  $amounttotal[0];
+        $ticket->reference_no =  $chargeResponse['reference'];
+        $ticket->save();
 
         $values = [
             'title' => 'Dear '. $user_name.',',

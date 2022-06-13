@@ -148,7 +148,7 @@ $eventdetails_id = $event_detail->id;
 
             @if($user_id != "")
 
-            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}" id="register" style="padding-left: 20px;" class="btn_more">
+            <a href="{{url('participants/'.$event_id.'/'.$user_id)}}" id="registe" style="padding-left: 20px;" class="btn_more">
               Register for event
             </a>
 

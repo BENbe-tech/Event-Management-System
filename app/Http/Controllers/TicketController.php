@@ -35,7 +35,6 @@ class TicketController extends Controller
 
         $time = time();
 
-
         $qr = md5($time);
 
 
