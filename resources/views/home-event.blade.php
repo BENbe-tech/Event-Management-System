@@ -79,6 +79,7 @@ $eventdetails_id = $event_detail->id;
     <div class ="inline1">
         <div class = "image">
       <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_detail->image_name}}" >
+
         </div>
 
         <div class="details" >

@@ -7,7 +7,7 @@ use App\Models\EventDetail;
 use App\Models\User;
 use App\Models\Log;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
+use  App\Models\Session;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
@@ -175,6 +175,8 @@ class ApiController extends Controller
 
 
     public function createEvent(Request $request){
+
+
 
         $request->validate([
             'eventtitle' => 'required',
