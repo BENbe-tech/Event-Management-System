@@ -141,19 +141,19 @@ class RegisteredEventsController extends Controller
 
 
 
-       echo "success";
-        // return response()->json(['success'=>'You have registered successfuly to this event']);
+    //    echo "success";
+        return response()->json(['success'=>'You have registered successfuly to this event']);
         }
     }
     else{
-        // return response()->json(['success'=>'The event has arleady ended']);
-   echo "already";
+        return response()->json(['success'=>'The event has arleady ended']);
+//    echo "already";
     }
     }
     else{
-echo "failed";
+// echo "failed";
 
-        // return response()->json(['success'=>'Failed to register, login first']);
+        return response()->json(['success'=>'Failed to register, login first']);
     }
     }
 
