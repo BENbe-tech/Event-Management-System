@@ -20,6 +20,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentShoketController;
 use App\Models\Event;
 use App\Models\EventDetail;
 use App\Models\Category;
@@ -311,16 +312,16 @@ Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->n
 
 
 
-Route::post('/participantpay2',[PaymentController::class,'shoketParticipantPay'])->name('participantpay2')->middleware('isLoggedIn');
+Route::post('/participantpay2',[PaymentShoketController::class,'shoketParticipantPay'])->name('participantpay2')->middleware('isLoggedIn');
 
 
-Route::post('/organizerpay2',[PaymentController::class,' shoketOrganizerPay'])->name('organizerpay2')->middleware('isLoggedIn');
+Route::post('/organizerpay2',[PaymentShoketController::class,' shoketOrganizerPay'])->name('organizerpay2')->middleware('isLoggedIn');
 
 
-Route::get('/participant-payview2/{id}',[PaymentController::class,'shoketParticipantIndex'])->name('participant-payview2')->middleware('isLoggedIn');
+Route::get('/participant-payview2/{id}',[PaymentShoketController::class,'shoketParticipantIndex'])->name('participant-payview2')->middleware('isLoggedIn');
 
 
-Route::get('/organizer-payindex2',[PaymentController::class,'shoketOrganizerIndex'])->name('organizer-payindex2')->middleware('isLoggedIn');
+Route::get('/organizer-payindex2',[PaymentShoketController::class,'shoketOrganizerIndex'])->name('organizer-payindex2')->middleware('isLoggedIn');
 
 
 

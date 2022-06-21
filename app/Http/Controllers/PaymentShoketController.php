@@ -14,45 +14,50 @@ use App\Mail\TicketMail;
 use  App\Models\EventDetail;
 use App\Models\Subscription;
 use App\Models\Ticket;
-use Stripe;
-use Session;
 
-class PaymentController extends Controller
+
+
+class PaymentShoketController extends Controller
 {
     //
 
 
-    public function Organizerindex(){
 
-        return view('organizer_pay');
+    public function shoketOrganizerIndex(){
+
+        return view('organizer_shoketpay');
     }
 
 
+    public function shoketOrganizerPay(Request $request){
 
-
-    public function OrganizerPay(Request $request){
 
         $request->validate([
+
+            'provider' => 'required',
             'amount'=>'required',
+            'phone'=>'required',
             'type'=>'required',
 
         ]);
 
-
+        $provider = $request->provider;
         $amount = $request->amount;
-        $type = $request->type;
 
-        if($amount >= 5000){
+        if($amount >= 1000 ){
+        $phone = $request->phone;
+        $type = $request->type;
 
         if($type == "Monthly" && $amount < 5000 ){
             return back()->with('fail', 'Monthly subscription amount cannot be less than 5000');
+            // return response()->json(['success'=>'Monthly subscription amount cannot be less than 5000']);
 
         }
 
         if($type == "Yearly" && $amount < 60000){
 
             return back()->with('fail', 'Yearly subscription amount cannot be less than 60000');
-
+            // return response()->json(['success'=>'Yearly subscription amount cannot be less than 60000']);
         }
 
 
@@ -71,37 +76,43 @@ class PaymentController extends Controller
         $user_name = $user->name;
         $user_email = $user->email;
 
+        $chargeResponse = Shoket::makePaymentRequest([
+            "amount" => $amount,
+            "customer_name" => $user_name,
+            "email" =>  $user_email,
+            "number_used" => $phone,
+            "channel" =>  $provider
+        ]);
 
-        $channel = $request->card;
-        $ac_no =  $request->number;
-
-        $amountdollar1 = $amount / 2331;
-        $amountdollar = round($amountdollar1);
-
-
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $chargeResponse =   Stripe\Charge::create ([
-          "amount" => $amountdollar * 100,
-          "currency" => "usd",
-          "source" => $request->stripeToken,
-          "description" => "Ems payment",
-        //   "customer" => $user_email,
-     ]);
+        //  dd($chargeResponse)  ;
 
 
-       $reference_no = $chargeResponse['payment_method'];
+       $data = $chargeResponse['data'];
+       $customer = $chargeResponse['customer'];
 
+
+//    $referenceId = $chargeResponse['reference'];
+//    $response = Shoket::verifyPaymentRequest($referenceId, [
+//      "provider_name" => "Tigo",
+//      "provider_code" => "Tigo pesa"
+//      ]);
+    //   dd($response);
+
+       $amount = $data['amount'];
+       $channel = $data['channel'];
+       $reference_no =   $chargeResponse['reference'];
+       $number =  $data['number_used'];
        $time = Carbon::now();
 
 
-     if ( $chargeResponse['status'] == "succeeded" ){
+     if ($data['payment_status'] == "Pending" ){
 
         $sub = new Subscription();
         $sub->payment_date = $time;
         $sub->subscription_fee = $amount;
         $sub->method = $channel;
         $sub->subscription_type = $type;
-        $sub->phone_number = $ac_no;
+        $sub->phone_number = $number;
         $sub->reference_no = $reference_no;
         $sub->subscription_end = $newtime;
         $sub-> user_id =  $user_id;
@@ -113,110 +124,104 @@ class PaymentController extends Controller
         $details = [
             'title' => 'Dear '. $user_name.',',
             'body1' => 'You have paid for '. $type.' subscription at '.$time.' to create and manage event,',
-            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' account number '.$ac_no.' Payment reference number is '.$reference_no.'.',
+            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no.'.',
        ];
 
           Mail::to($user_email)->send(new PaymentMail($details));
 
-
-
-          Session::flash('success', 'Payment has been successfully processed.');
-          return back();
-
+          return back()->with('success','Payment done successful');
+          // return response()->json(['success'=>'Payment Done Successful']);
      }
     }
      else{
         return back()->with('fail', 'Payment Failed');
-
+        // return response()->json(['success'=>'Payment Failed']);
      }
+
+    }else{
+
+        return back()->with('fail', 'Payment should not be below Tsh 1,000');
     }
-    else{
-
-          Session::flash('fail', 'amount should be grater or equal t0 5000');
-        return back();
-
-    }
-
     }
 
 
-
-
-
-
-
-
-    public function Participantindex($id){
+    public function shoketParticipantIndex($id){
 
         $event_id = $id;
         $user_id = session('loginId');
 
-         return view('participant_pay',compact('event_id','user_id'));
+         return view('participant_shoketpay',compact('event_id','user_id'));
+
+
     }
 
 
+    public function shoketParticipantPay(Request $request){
 
-    public function ParticipantPay(Request $request){
+      $request->validate([
 
-
-                $request->validate([
-
+            'provider' => 'required',
             'amount'=>'required',
+            'phone'=>'required',
 
         ]);
 
 
-
+        $provider = $request->provider;
         $amount = $request->amount;
 
-        if($amount >= 5000){
+        if($amount >= 1000 ){
 
-
+        $phone = $request->phone;
         $event_id = $request->event_id;
-        $channel = $request->card;
-        $ac_no =  $request->number;
-
-        $amountdollar1 = $amount / 2331;
-        $amountdollar = round($amountdollar1);
-
-
-
         $event = Event::find($event_id);
         $event_title = $event->event_title;
+
 
         $user_id = session('loginId');
         $user = User::find($user_id);
         $user_name = $user->name;
         $user_email = $user->email;
 
+        $chargeResponse = Shoket::makePaymentRequest([
+            "amount" => $amount,
+            "customer_name" => $user_name,
+            "email" =>  $user_email,
+            "number_used" => $phone,
+            "channel" =>  $provider
+        ]);
+
+        //  dd($chargeResponse)  ;
 
 
-        Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
-        $chargeResponse =   Stripe\Charge::create ([
-          "amount" => $amountdollar * 100,
-          "currency" => "usd",
-          "source" => $request->stripeToken,
-          "description" => "Ems payment",
-          "customer" => $user_email,
-     ]);
+       $data = $chargeResponse['data'];
+       $customer = $chargeResponse['customer'];
 
 
-    //  dd( $chargeResponse );
+
+//    $referenceId = $chargeResponse['reference'];
+//    $response = Shoket::verifyPaymentRequest($referenceId, [
+//      "provider_name" => "Tigo",
+//      "provider_code" => "Tigo pesa"
+//      ]);
+//       dd($response);
 
 
-     $reference_no = $chargeResponse['payment_method'];
-
+       $amount = $data['amount'];
+       $channel = $data['channel'];
+       $reference_no =   $chargeResponse['reference'];
+       $number =  $data['number_used'];
        $time = Carbon::now();
 
 
-     if ($chargeResponse['status'] == "succeeded" ){
+     if ($data['payment_status'] == "Pending" ){
 
         $payment = new Payment();
         $payment->payment_time = Carbon::now();
-        $payment->amount = $amount;
-        $payment->method = $channel;
-        $payment->phone_number =  $ac_no;
-        $payment->reference_no =   $reference_no ;
+        $payment->amount = $data['amount'];
+        $payment->method = $data['channel'];
+        $payment->phone_number = $data['number_used'];
+        $payment->reference_no = $chargeResponse['reference'];
         $payment-> event_id = $event_id;
         $payment-> user_id =  $user_id;
         $res = $payment->save();
@@ -252,13 +257,13 @@ class PaymentController extends Controller
         $ticket->event_id = $event_id;
         $ticket->user_id = $user_id;
         $ticket->amount   =  $amounttotal[0];
-        $ticket->reference_no = $number;
+        $ticket->reference_no =  $chargeResponse['reference'];
         $ticket->save();
 
         $values = [
             'title' => 'Dear '. $user_name.',',
             'body1' => 'You have paid for '. $event_title.' event at '.$time.'.',
-            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' account number '.$ac_no.' Payment reference number is '.$reference_no,
+            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no,
             'body' => 'This is the ticket of '. $event_title.' event.',
             'link' => $link,
         ];
@@ -271,7 +276,7 @@ class PaymentController extends Controller
         $details = [
             'title' => 'Dear '. $user_name.',',
             'body1' => 'You have paid for '. $event_title.' event at '.$time.'.',
-            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' account number '.$ac_no.' Payment reference number is '.$reference_no,
+            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no,
 
         ];
 
@@ -280,28 +285,26 @@ class PaymentController extends Controller
       }
 
 
-
-        Session::flash('success', 'Payment has been successfully processed.');
-
-        return back();
+        return back()->with('success','Payment done successful');
+        // return response()->json(['success'=>'Payment Done Successful']);
 
      }
     }
      else{
         return back()->with('fail', 'Payment Failed');
-
-     }
-
-     }
-
-     else{
-        Session::flash('fail', 'amount should be grater or equal t0 5000');
-
-        return back();
-
+        // return response()->json(['success'=>'Payment Failed']);
      }
 
     }
+    else{
+        return back()->with('fail', 'Payment should not be below Tsh 1,000');
+    }
+
+
+    }
+
+
+
 
 
 }

@@ -64,6 +64,7 @@
                                                     id="payment-form">
                         @csrf
 
+                     <p><a href="organizer-payindex2">pay via Mobile money</a> </p>
 
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
