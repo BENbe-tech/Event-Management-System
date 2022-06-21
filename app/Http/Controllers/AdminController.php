@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\EventDetail;
 use Carbon\Carbon;
+use PDO;
 
 class AdminController extends Controller
 {
@@ -531,6 +532,13 @@ class AdminController extends Controller
 
     }
     return view('admin-eventsreport',compact('users','totalevents'));
+}
+
+
+
+public function adminSearchOrganizer(Request $request){
+
+    echo "ben";
 }
 
 
