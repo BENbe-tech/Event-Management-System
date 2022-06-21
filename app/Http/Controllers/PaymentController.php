@@ -19,7 +19,7 @@ use Session;
 
 class PaymentController extends Controller
 {
-    
+
 
 
     public function Organizerindex(){
@@ -225,7 +225,7 @@ class PaymentController extends Controller
          $percent = ($amountpaid/ $price) * 100 ;
 
 
-      if($percent == 100){
+      if($percent >= 100){
 
         $link = url('ticket/'.$event_id);
 
