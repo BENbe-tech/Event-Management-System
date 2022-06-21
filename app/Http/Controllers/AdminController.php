@@ -54,7 +54,7 @@ class AdminController extends Controller
     public function adminOrganizers(){
 
 
-        $users = User::paginate(6);
+        $users = User::paginate(10);
 
         return view('admin-organizers',compact('users'));
     }

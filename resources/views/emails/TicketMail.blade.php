@@ -16,7 +16,7 @@
     <p>{{$values['title']}}</p>
     <p>{{$values['body1']}}</p>
     <p>{{$values['body2']}}</p>
-    <p>The link to event ticket {{$details['link']}} </p>
+    <p>The link to event ticket {{$values['link']}} </p>
 
 
 

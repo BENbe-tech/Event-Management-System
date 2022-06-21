@@ -8,6 +8,7 @@ use App\Models\Event;
 use App\Models\Subscription;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class CreateEventController extends Controller
 {
@@ -21,16 +22,18 @@ class CreateEventController extends Controller
         $time = Carbon::now();
         $flag = 0;
 
+
        foreach($subscriptions as $subscription){
 
+
          if($time < $subscription ){
-           $flag = 0;
-        //    $flag = 1;
+
+           $flag = 1;
          }
 
        }
 
-       if($flag == 0){
+       if($flag == 1){
         return view('create-event');
        }else{
 
@@ -82,6 +85,11 @@ class CreateEventController extends Controller
         $filename = time().'.'.$extention;
         $file->move('storage/ImageFolder/',$filename);
         // $path =  $request->file('image')->store('public/ImageFolder');
+
+        // $uploadedImageUrl = cloudinary()->upload($request->file('image')->getRealPath(),[
+        //     'folder' => 'Images',
+        // ])->getSecurePath();
+
     }else{
         $filename = null;
         $name =null;
@@ -93,6 +101,11 @@ class CreateEventController extends Controller
         $docname = time().'.'.$docfile->getClientOriginalExtension();
         $docfile->move('storage/DocumentFolder/',$docname);
         // $pathdoc =  $request->file('document')->store('public/DocumentFolder');
+
+        // $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document')->getRealPath(),
+        // [
+        //     'folder'=>'Documents',
+        // ])->getSecurePath();
 
          }else{
              $namedoc = null;
@@ -121,6 +134,8 @@ class CreateEventController extends Controller
         $eventdetail->startyear = substr( $request->start_date , 0, 4);
         $eventdetail->createdmonth = substr( $createddate , 6, 1);
         $eventdetail->createdyear =substr( $createddate, 0, 4) ;
+        // $eventdetail->image_cloud =  $uploadedImageUrl ;
+        // $eventdetail->document_cloud =  $uploadedDocumentUrl;
 
         $res = $eventdetail->save();
     }

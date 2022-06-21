@@ -36,6 +36,7 @@
 if($flag==1){
 $length = $events->count();
 
+
 for($i=0 ; $i<$length; $i++ ){
 
 

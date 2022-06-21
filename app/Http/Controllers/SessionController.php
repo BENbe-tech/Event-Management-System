@@ -8,6 +8,8 @@ use App\Models\Session;
 use App\Models\Event;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+
 class SessionController extends Controller
 {
     //
@@ -67,6 +69,7 @@ class SessionController extends Controller
        $sessiondetail->speaker = $request->speaker;
        $sessiondetail->speaker_profile = $request->profile;
        $sessiondetail->session_id = $session_id;
+
 
        $res = $sessiondetail->save();
    }
