@@ -45,7 +45,7 @@
   cursor: pointer;
 }
 
-.topnav .search-container select {
+.topnav .search-container input {
   padding: 8px;
   margin-top: 8px;
   font-size: 17px;
@@ -64,7 +64,7 @@
     float: none;
   }
 
-  .topnav a, .topnav .search-container select, .topnav .search-container button {
+  .topnav a, .topnav .search-container input, .topnav .search-container button {
     float: none;
     display: block;
     text-align: left;
@@ -73,7 +73,7 @@
     padding: 14px;
   }
 
-  .topnav .search-container select {
+  .topnav .search-container input {
     border: 1px solid #ccc;
     width: 100%;
   }
@@ -89,64 +89,61 @@
 <div class="topnav">
 
     <a  class="active"><h5>Filter event report</h5></a>
+
     <div class="search-container">
 
 
-    <form action="{{route('adminorganizer-search')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('admin-datesearch')}}" method="post" enctype="multipart/form-data">
        @csrf
-        <select id="organizer"  name ="category" value="{{ old('category') }}" required>
-
-            <?php
-
-              $count = count($users);
-              for($i=0;$i<$count;$i++){
-
-            ?>
-                <option value = "{{$user_id[$i]}}" >{{$users[$i]}}</option>
-
-          <?php
-              }
-
-          ?>
-        </select>
+       <input type="date" name="date" value="{{ old('date') }}" required>
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
 
     </div>
 
   </div><br>
+@if($events->count() != 0)
 
-
-  <p style="float: right"><a href="admin-datereport" style="color:blue; ">Filter by date</a></p>
- <p>Total events for organizer {{$userx[0]}} = {{$events->count()}} event</p>
-
-
-
+@if($events->count() > 1)
+<p>Total events created on {{$date}} are {{$events->count()}} events</p>
+@else
+ <p>Total events created on {{$date}} is {{$events->count()}} event </p>
+@endif
 
  <table class="styled-table">
         <thead>
             <tr>
                 <th><b>Event title</b></th>
-                <th><b>Date</b></th>
+                <th><b>Organizer Name</b></th>
+                <th><b>Organizer Email</b></th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach ($events as $event)
 
+<?php
+
+
+foreach($events as $event){
+    $organizer = $event->organizers;
+?>
             <tr>
                 <td>{{$event->event_title}}</td>
-                <td>{{$event->eventDetails->starttime}}</td>
+                <td>{{ $organizer->users->name}}</td>
+                <td>{{ $organizer->users->email}}</td>
 
             </tr>
 
-            @endforeach
+<?php
+}
+?>
 
    </tbody>
 </table>
-
+@else
+<p style="text-align: center;">No event Available</p>
+@endif
 </div>
-
 
 
 </body>

@@ -18,11 +18,11 @@ class CreateEventreportsTable extends Migration
             $table->string('number')->nullable();
             $table->string('participant')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+        
             $table->string('verified_attendance')->nullable();
             $table->string('attendance_mode')->nullable();
             $table->string('payment_amount')->nullable();
-            $table->string('payment_day')->nullable();
+
             $table->string('ticket_number')->nullable();
             $table->string('event_id')->nullable();
             $table->string('event_title')->nullable();

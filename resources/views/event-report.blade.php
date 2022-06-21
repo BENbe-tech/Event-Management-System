@@ -28,11 +28,11 @@
                                     <th class="text-center">number</th>
                                     <th>Participant</th>
                                     <th>Email</th>
-                                    <th>Phone</th>
+
                                     <th>Verified Attendance</th>
                                     <th>Attendance Mode</th>
-                                    <th>Payment Amount</th>
-                                    <th>Payment Day</th>
+                                    <th>Payment Amount (in Tsh)</th>
+
                                     <th>Ticket Number</th>
 
                                    {{-- Attending virtual or physical --}}
@@ -47,15 +47,22 @@
                                 $user_id = $participant->user_id;
                                 $user =App\Models\User::find($user_id);
                                 $amountpaid = App\Models\Payment::all()->where('event_id',$event->id)->where('user_id',$user_id)->sum('amount');
+                                $ticket = App\Models\Ticket::all()->where('event_id', $event->id)->where('user_id',$user_id)->pluck('reference_no');
 
-                   ?>
+                                if($ticket == "[]")
+                                   {
+                                  $number = "None";
+                               }else{
+                                   $number = $ticket[0];
+                                }
+                                 ?>
 
 
                                 <tr class="cell-1">
                                     <td>{{$x}}</td>
                                     <td>{{$user->name}} </td>
                                     <td>{{$user->email}}</td>
-                                    <td>{{$user->phone}}</td>
+
                                     @if($participant->verify_attendance==NULL)
                                     <td>No</td>
                                     <td>None</td>
@@ -66,11 +73,9 @@
                                     @endif
                                     <td>{{$amountpaid}}</td>
 
-                                    {{-- ticket creation day --}}
-                                    <td>Monday</td>
 
                                     {{-- ticket barcode --}}
-                                    <td>20</td>
+                                    <td>{{$number}}</td>
 
 
 

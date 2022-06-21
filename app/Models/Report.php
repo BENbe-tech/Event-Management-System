@@ -13,11 +13,9 @@ class Report extends Model
         'number',
         'participant',
         'email',
-        'phone',
         'verified_attendance',
         'attendance_mode',
         'payment_amount',
-        'payment_day',
         'ticket_number'
     ];
 

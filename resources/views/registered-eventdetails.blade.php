@@ -286,8 +286,12 @@
       @endif
     <div class="inline" >
     @if(  $price  !=  "Free")
-    <a style="padding-left: 20px;" href="{{route('participant-payview', $event->id)}}" class="btn_more1" >
-        Pay for event
+    <a style="padding-left: 20px;" href="{{route('participant-payview2', $event->id)}}" class="btn_more1" >
+        Pay via Mobile
+      </a>
+
+      <a style="padding-left: 20px;" href="{{route('participant-payview', $event->id)}}" class="btn_more1" >
+        Pay via Card
       </a>
      @endif
 

@@ -115,11 +115,21 @@ class RegisteredEventsController extends Controller
         $time = time();
         $qr = md5($time);
 
+        $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
+
+        if($ticket == "[]")
+        {
+             $number = 0;
+        }else{
+            $number = $ticket[0] + 1 ;
+        }
+
         $ticket = new Ticket();
         $ticket->barcode_no = $qr;
         $ticket->event_id = $event_id;
         $ticket->user_id = $user_id;
         $ticket->amount   =  "free";
+        $ticket->reference_no = $number;
 
         $ticket->save();
 

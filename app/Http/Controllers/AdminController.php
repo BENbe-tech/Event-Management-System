@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
 use App\Models\Organizer;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\EventDetail;
+
 use Carbon\Carbon;
+use Illuminate\Support\Carbon as SupportCarbon;
 use PDO;
 
 class AdminController extends Controller
@@ -508,6 +511,7 @@ class AdminController extends Controller
         $userxs = User::all();
 
         $users = array();
+        $user_id = array();
         $totalevents = array();
         $y = 0 ;
         foreach($userxs as $user){
@@ -526,19 +530,130 @@ class AdminController extends Controller
 
           if($x != 0){
               $users[$y] = $user->name;
+              $user_id[$y]  = $user->id;
              $totalevents[$y] = $x;
              $y = $y+1;
           }
 
     }
-    return view('admin-eventsreport',compact('users','totalevents'));
+
+
+    $organizers = Organizer::all()->whereIn('user_id',$user_id[0])->pluck('id');
+
+    $userx = User::all()->where('id',$user_id[0])->pluck('name');
+
+    $events = Event::all()->whereIn('organizer_id',$organizers);
+
+
+    return view('admin-eventsreport',compact('users','userx','user_id','events'));
 }
 
 
 
 public function adminSearchOrganizer(Request $request){
 
-    echo "ben";
+
+    $userxs = User::all();
+
+    $users = array();
+    $user_id = array();
+    $totalevents = array();
+    $y = 0 ;
+    foreach($userxs as $user){
+
+      $organizers = $user->organizers;
+
+      $x = 0;
+
+
+      foreach($organizers as $organizer){
+
+         $events = $organizer->events;
+         $x = $x + $events->count();
+
+      }
+
+      if($x != 0){
+          $users[$y] = $user->name;
+          $user_id[$y]  = $user->id;
+         $totalevents[$y] = $x;
+         $y = $y+1;
+      }
+
+}
+
+    $user_ids = $request->category;
+
+    $organizers = Organizer::all()->where('user_id',$user_ids)->pluck('id');
+
+    $events = Event::all()->whereIn('organizer_id',$organizers);
+
+
+    $userx = User::all()->where('id',$user_ids)->pluck('name');
+
+
+return view('admin-eventsreport',compact('users','userx','user_id','events'));
+}
+
+
+public function DateSearch(Request $request){
+
+    $request->validate([
+        'date' => 'required',
+
+    ]);
+
+    $event_id = array();
+    $date = $request->date;
+    $events = Event::all();
+    $y = 0;
+
+    foreach($events as $event){
+    $eventdetails = $event->eventDetails;
+    $x =  $eventdetails->created_at;
+    $output = substr($x,0,10);
+
+    if($date == $output){
+    $event_id[$y] = $event->id;
+    $y++;
+    }
+
+    }
+
+
+    $events = Event::all()->whereIn('id',$event_id);
+
+
+    return view('admin-datereport',compact('events','date'));
+
+}
+
+public function DateReport(){
+
+    $time = Carbon::now();
+
+    $date = substr($time,0,10);
+
+    $event_id = array();
+    $events = Event::all();
+    $y = 0;
+
+    foreach($events as $event){
+    $eventdetails = $event->eventDetails;
+    $x =  $eventdetails->created_at;
+    $output = substr($x,0,10);
+
+    if($date == $output){
+    $event_id[$y] = $event->id;
+    $y++;
+    }
+
+    }
+
+    $events = Event::all()->whereIn('id',$event_id);
+
+
+    return view('admin-datereport',compact('events','date'));
 }
 
 

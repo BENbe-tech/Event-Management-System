@@ -311,6 +311,19 @@ Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->n
 
 
 
+Route::post('/participantpay2',[PaymentController::class,'shoketParticipantPay'])->name('participantpay2')->middleware('isLoggedIn');
+
+
+Route::post('/organizerpay2',[PaymentController::class,' shoketOrganizerPay'])->name('organizerpay2')->middleware('isLoggedIn');
+
+
+Route::get('/participant-payview2/{id}',[PaymentController::class,'shoketParticipantIndex2'])->name('participant-payview2')->middleware('isLoggedIn');
+
+
+Route::get('/organizer-payindex2',[PaymentController::class,'shoketOrganizerIndex'])->name('organizer-payindex2')->middleware('isLoggedIn');
+
+
+
 
 
 
@@ -329,6 +342,11 @@ Route::get('/admin-organizers',[AdminController::class,'adminOrganizers'])->name
 
 Route::get('/admin-bargraph',[AdminController::class,'adminBarGraphs'])->name('admin-bargraph')->middleware('isadminLoggedIn');
 
+
+Route::get('/admin-datereport',[AdminController::class,'DateReport'])->name('admin-datereport')->middleware('isadminLoggedIn');
+
+
+Route::post('/admin-datesearch',[AdminController::class,'DateSearch'])->name('admin-datesearch')->middleware('isadminLoggedIn');
 
 
 Route::post('/adminorganizer-search',[AdminController::class,'adminSearchOrganizer'])->name('adminorganizer-search')->middleware('isadminLoggedIn');

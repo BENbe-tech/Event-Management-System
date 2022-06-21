@@ -15,6 +15,7 @@ use App\Exports\UsersExport;
 use App\Models\EventDetail;
 use App\Models\Payment;
 use App\Models\Report;
+use App\Models\Ticket;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 class ReportController extends Controller
@@ -61,12 +62,18 @@ class ReportController extends Controller
 
         //To edit
           $amountpaid = Payment::all()->where('event_id',$id)->where('user_id',$user_id)->sum('amount');
+          $ticket = Ticket::all()->where('event_id', $id)->where('user_id',$user_id)->pluck('reference_no');
 
+          if($ticket == "[]")
+             {
+            $number = "None";
+         }else{
+             $number = $ticket[0];
+          }
 
         $report = new Report();
         $report->participant =        $user->name;
         $report->email       =        $user->email;
-        $report->phone       =        $user->phone;
         $report->number      =        $x;
         $report->event_id    =        $id;
         $report->event_title =        $name;
@@ -85,11 +92,8 @@ class ReportController extends Controller
 
         $report->payment_amount = $amountpaid;
 
-        //creted day of ticket
-        $report->payment_day    = "Monday";
 
-        //created barcode number
-        $report->ticket_number  = "20";
+        $report->ticket_number  =  $number;
 
         $res = $report->save();
             }

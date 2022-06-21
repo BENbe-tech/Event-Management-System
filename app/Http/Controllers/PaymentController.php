@@ -142,6 +142,24 @@ class PaymentController extends Controller
 
 
 
+
+    public function shoketOrganizerIndex(){
+
+        return view('organizer_shoketpay');
+    }
+
+
+    public function shoketOrganizerPay(){
+
+     echo "good";
+    }
+
+
+
+
+
+
+
     public function Participantindex($id){
 
         $event_id = $id;
@@ -234,12 +252,21 @@ class PaymentController extends Controller
         $time = time();
         $qr = md5($time);
 
+        $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
+
+        if($ticket == "[]")
+        {
+             $number = 0;
+        }else{
+            $number = $ticket[0] + 1 ;
+        }
+
         $ticket = new Ticket();
         $ticket->barcode_no = $qr;
         $ticket->event_id = $event_id;
         $ticket->user_id = $user_id;
         $ticket->amount   =  $amounttotal[0];
-        $ticket->reference_no =  $chargeResponse['reference'];
+        $ticket->reference_no = $number;
         $ticket->save();
 
         $values = [
@@ -290,16 +317,19 @@ class PaymentController extends Controller
 
     }
 
+    public function shoketParticipantIndex($id){
 
-
-
-
-
-
-    public function TicketSend(){
-
-
+        return view('participant_shoketpay');
     }
+
+
+    public function shoketParticipantPay(){
+
+     echo "good";
+    }
+
+
+
 
 
 }

@@ -55,6 +55,16 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 			<td>{{$event_details->starttime}}</td>
 		</tr>
 	</table>
+
+    <table>
+		<tr>
+			<th>TICKET NUMBER</th>
+
+		</tr>
+		<tr>
+			<td>{{$number}}</td>
+		</tr>
+	</table>
     <hr>
 	</div>
 
@@ -62,7 +72,7 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 
 
 
-    {!! QrCode::size(250)->generate($name.$qr); !!}
+    {!! QrCode::size(250)->generate($name.$qr.$link); !!}
 
 
 

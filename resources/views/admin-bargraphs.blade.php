@@ -93,11 +93,11 @@
     <div class="search-container">
       <form action="{{route('adminbar-search')}}" method="post" enctype="multipart/form-data">
        @csrf
-        <select id="organizer"  name ="category" value="" required>
+        <select id="organizer"  name ="category" value="{{ old('category') }}" required>
 
             <option value = "year" >Year</option>
             <option value = "month" >Month</option>
-            <option value = "user" selected>Organizers</option>
+            <option value = "user" >Organizers</option>
 
         </select>
         <button type="submit"><i class="fa fa-search"></i></button>

@@ -33,7 +33,7 @@
                                     <th>Participants</th>
                                     <th>Verified Participants</th>
                                     <th>Not Verified Participants</th>
-                                    <th>Total Payments</th>
+                                    <th>Total Payments (in Tsh)</th>
                                     <th>Total Tickets</th>
                                 </tr>
                             </thead>
@@ -51,6 +51,8 @@
 
                                     $participants = App\Models\EventUser::all()->where('event_id',$event_id);
                                     $amountpaid = App\Models\Payment::all()->where('event_id',$event_id)->sum('amount');
+
+                                    $totalticket = App\Models\Ticket::all()->where('event_id',$event_id)->count();
 
                                         $participants_verified = App\Models\EventUser::all()->where('verify_attendance',1)
                                         ->where('event_id',$event_id);
@@ -113,7 +115,7 @@
                                     <td>{{$participants_not_verified_total}}</td>
 
                                     <td>{{ $amountpaid }}</td>
-                                    <td>20</td>
+                                    <td>{{$totalticket}}</td>
                                 </tr>
 
                                 <?php

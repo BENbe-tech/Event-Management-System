@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Ticket;
+
 
 class TicketController extends Controller
 {
@@ -33,12 +35,24 @@ class TicketController extends Controller
         // ->format('png')
         // ->generate('ItSolutionStuff.com', public_path('storage/ImageFolder/qrcode.png'));
 
+        $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
+
+
+        if($ticket == "[]")
+        {
+          $number = "None";
+        }else{
+        $number = $ticket[0];
+         }
+
+        $link = url('ticket/'.$event_id);
+
         $time = time();
 
         $qr = md5($time);
 
 
-        return view('ticket',compact('event','event_details','user','qr'));
+        return view('ticket',compact('event','event_details','user','qr','number','link'));
 
     }
 
