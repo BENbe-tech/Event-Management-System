@@ -333,6 +333,9 @@ Route::get('/admin-bargraph',[AdminController::class,'adminBarGraphs'])->name('a
 Route::post('/adminbar-search',[AdminController::class,'adminBarSearch'])->name('adminbar-search')->middleware('isadminLoggedIn');
 
 
+Route::post('/adminbar-search',[AdminController::class,'adminBarSearch'])->name('adminbar-search')->middleware('isadminLoggedIn');
+
+
 Route::get('/filterbar/{search}',[AdminController::class,'FilterBarChart'])->name('filterbar')->middleware('isadminLoggedIn');
 
 

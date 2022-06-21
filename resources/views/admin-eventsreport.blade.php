@@ -92,7 +92,7 @@
     <div class="search-container">
 
 
-    <form action="{{route('adminbar-search')}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('adminorganizer-search')}}" method="post" enctype="multipart/form-data">
        @csrf
         <select id="organizer"  name ="category" value="" required>
 
@@ -106,9 +106,6 @@
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
 
-
-
-
     </div>
 
   </div>
@@ -118,20 +115,16 @@
         <thead>
             <tr>
                 <th><b>Event title</b></th>
-                <th><b>Organizer name</b></th>
+                <th><b>Date</b></th>
 
             </tr>
         </thead>
         <tbody>
-
-
             <tr>
                 <td>project</td>
                 <td>ben</td>
 
             </tr>
-
-
    </tbody>
 </table>
 
