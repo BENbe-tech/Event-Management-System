@@ -15,8 +15,6 @@
 
 <div style="height:400px; width:900px; margin:auto;">
 
-
-
 <canvas id="registered-barChart">
 
 </canvas><br><br>

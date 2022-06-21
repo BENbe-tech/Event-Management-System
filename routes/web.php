@@ -319,7 +319,7 @@ Route::get('/organizer-payindex',[PaymentController::class,'Organizerindex'])->n
 Route::get('/admin-dashboard',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isadminLoggedIn');
 
 
-Route::get('/admin-subscribers',[AdminController::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isadminLoggedIn');
+Route::get('/admin-subscribers/{id}',[AdminController::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isadminLoggedIn');
 
 
 Route::get('/admin-payments',[AdminController::class,'adminPayments'])->name('admin-payments')->middleware('isadminLoggedIn');
@@ -328,6 +328,17 @@ Route::get('/admin-organizers',[AdminController::class,'adminOrganizers'])->name
 
 
 Route::get('/admin-bargraph',[AdminController::class,'adminBarGraphs'])->name('admin-bargraph')->middleware('isadminLoggedIn');
+
+
+Route::post('/adminbar-search',[AdminController::class,'adminBarSearch'])->name('adminbar-search')->middleware('isadminLoggedIn');
+
+
+Route::get('/filterbar/{search}',[AdminController::class,'FilterBarChart'])->name('filterbar')->middleware('isadminLoggedIn');
+
+
+
+Route::get('/admin-eventreport',[AdminController::class,'EventReport'])->name('admin-eventreport')->middleware('isadminLoggedIn');
+
 
 
 Route::get('/admin-linegraph',[AdminController::class,'adminLineGraphs'])->name('admin-linegraph')->middleware('isadminLoggedIn');

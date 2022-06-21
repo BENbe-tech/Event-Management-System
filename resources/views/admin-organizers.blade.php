@@ -14,16 +14,19 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> Organizers Report</b></h5>
+
                 <?php
                    $count = $users->count();
                 ?>
-                <p>{{$count}} total users </p>
 
-       
+                <h5><b> Organizers Report</b></h5>
+                <p>{{$count}} total users of the system</p>
+                <p>Click organizer name to view subscription details </p>
+
+
                <table class="table">
                             <thead>
-                                <tr>
+                                <tr >
                                     <th class="text-center">#</th>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -44,12 +47,16 @@
 
                              if(isset($org[0])){
 
+                            $id = $user->id;
+
+
                           ?>
 
 
-                                <tr class="cell-1">
+                                <tr class="cell-1"  >
+
                                     <td>{{$x}}</td>
-                                    <td>{{$user->name}} </td>
+                                    <td ><a  href="{{route('admin-subscribers',$id)}}">{{$user->name}} </a></td>
                                     <td>{{$user->email}}</td>
                                     <td>{{$user->phone}}</td>
 

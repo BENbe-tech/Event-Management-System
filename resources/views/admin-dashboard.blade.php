@@ -61,22 +61,29 @@ $user_id = session('adminId');
 
 
             <li class="nav-item">
-              <a class="nav-link" href="{{route('admin-subscribers')}}">Subscribers<span class="sr-only">(current)</span></a>
-            </li>
+                <a class="nav-link" href="{{route('admin-organizers')}}">Organizers<span class="sr-only">(current)</span></a>
+              </li>
+
+            {{-- <li class="nav-item">
+              <a class="nav-link" href="{{route('admin-subscribers')}}">Subscribers</a>
+            </li> --}}
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin-payments')}}">All Payments</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('admin-organizers')}}">Organizers</a>
-              </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="">Event Reports</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link " href="{{route('admin-bargraph')}}">Report Bar Graph</a>
             </li>
 
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin-eventreport')}}">Event Report</a>
+            </li>
+
+
+{{--
               <li class="nav-item dropdown">
                 <a class="nav-link dropbtn" href="#">Report Graphs</a>
                 <div class="dropdown-content">
@@ -84,10 +91,7 @@ $user_id = session('adminId');
                     <a href="{{route('admin-linegraph')}}">Line Graphs</a>
 
                 </div>
-              </li>
-
-
-
+              </li> --}}
 
           </ul>
 

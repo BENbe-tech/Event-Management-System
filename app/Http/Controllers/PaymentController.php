@@ -193,7 +193,7 @@ class PaymentController extends Controller
           "currency" => "usd",
           "source" => $request->stripeToken,
           "description" => "Ems payment",
-        //   "customer" => $user_email,
+          "customer" => $user_email,
      ]);
 
 

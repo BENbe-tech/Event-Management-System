@@ -41,7 +41,7 @@
 
                 @endforeach
              @else
-                <p>No Organizer Creted</p>
+                <p>No Organizer Created</p>
             @endif
             <a id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="btn btn-primary float-end"> Allow notification</a>
             {{-- <a id="btn-nft-enable" onclick="initFirebaseMessagingRegistration()" class="change"> Allow notification</a> --}}

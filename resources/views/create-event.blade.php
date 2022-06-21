@@ -63,7 +63,7 @@
 
        <div>
         <label for="Link"><b>Virtual Link</b></label><br>
-        <input type="text" placeholder="Enter online link of event" name="link" id="link" value="{{ old('link') }}"  autocomplete="link" >
+        <input type="url" placeholder="Enter online link of event" name="link" id="link" value="{{ old('link') }}"  autocomplete="link" >
         <span class = "text-danger">@error('link'){{$message}} @enderror</span>
        </div>
 

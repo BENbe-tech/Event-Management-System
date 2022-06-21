@@ -2,98 +2,50 @@
 
 @section('content')
 <head>
-    <link rel="stylesheet" href="{{asset('css/report.css')}}">
-<style>
+    <link rel="stylesheet" href="{{asset('css/profile.css')}}">
 
-</style>
 </head>
 <body>
 
-    <div class="container mt-5">
-        <div class="d-flex justify-content-center row">
-            <div class="col-md-10">
-                <div class="rounded">
-                    <div class="table-responsive table-borderless">
-                        <h5><b> Subscribers Report</b></h5>
+
+    <h4><b>Organizer Subscription details</b></h4>
 
 
 
-               <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Start Subscription</th>
-                                    <th>End Subscription</th>
-                                    <th>Time remaining</th>
-                                    <th>Subscription Type</th>
-                                    <th>Payment Amount</th>
+    <div class="card">
 
+        <div class ="inline">
+<?php
+        foreach ($subscriptions as $subscription ){
+            $time = Carbon\Carbon::now();
+         if($time <= $subscription->subscription_end){
 
+            $user = $subscription->users;
+            $endtime = $subscription->subscription_end;
+            $results = $time->diffInDays($endtime, false);
+?>
+            <div class = "user">
 
-                                </tr>
-                            </thead>
+                <p><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<b>Name:</b>  {{$user->name}}</p>
+                <p><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<b>Email:</b> {{$user->email}}</p>
+                <p><i class="fa fa-credit-card" aria-hidden="true"></i>&nbsp;<b>Payment:</b>Tsh {{$subscription->subscription_fee}}</p>
 
-                            <tbody class="table-body">
-                         <?php
-                          $x = 1;
-
-                            foreach ($subscriptions as $subscription ){
-                            $time = Carbon\Carbon::now();
-                                if($time <= $subscription->subscription_end){
-                                $user = $subscription->users;
-                   ?>
-
-
-                                <tr class="cell-1">
-                                    <td>{{$x}}</td>
-                                    <td>{{$user->name}} </td>
-                                    <td>{{$user->email}}</td>
-
-
-                                    <td>{{$subscription->payment_date}}</td>
-                                    <td>{{$subscription->subscription_end}}</td>
-
-
-                                    <?php
-                                    $endtime = $subscription->subscription_end;
-                                    $results = $time->diffInDays($endtime, false);
-
-                                    ?>
-                                    <td>{{$results}} days</td>
-
-                                    <td>{{$subscription->subscription_type}}</td>
-
-
-                                    <td>{{$subscription->subscription_fee}}</td>
-
-                                </tr>
-                             <?php
-                             $x++;
-                            }
-                        }
-                             ?>
-
-                            </tbody>
-                        </table>
-
-
-                    <div class="d-flex justify-content-center">
-
-                  {!! $subscriptions->links() !!}
-
-                    </div>
-
-
-
-
-                    </div>
-                </div>
             </div>
+
+        <div class= "details">
+            <p><i class="fa fa-sitemap" aria-hidden="true"></i>&nbsp;<b>Subscription </b></p>
+
+                <p><b>Start subscription: </b> {{$subscription->payment_date}}</p>
+                <p><b>End subscription: </b> {{$subscription->subscription_end}}</p>
+                <p><b>Time remaining: </b> {{$results}}</p>
+                <p><b>Subscription Type: </b> {{$subscription->subscription_type}}</p>
+            </div>
+<?php
+     }
+    }
+?>
         </div>
     </div>
-
 
 </body>
 @endsection

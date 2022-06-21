@@ -14,8 +14,9 @@
             <div class="col-md-10">
                 <div class="rounded">
                     <div class="table-responsive table-borderless">
-                        <h5><b> All Payments</b></h5>
+                        <h5><b> All Payments done by organizers of events</b></h5>
 
+                        <p>Total amount paid in Tsh {{$subscriptions1}} </p>
 
 
                <table class="table">
@@ -24,11 +25,11 @@
                                     <th class="text-center">#</th>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Phone Number</th>
+                                    {{-- <th>Phone Number</th> --}}
                                     <th>Start Subscription</th>
                                     <th>End Subscription</th>
                                     <th>Subscription Type</th>
-                                    <th>Payment Amount</th>
+                                    <th>Payment Amount (Tsh)</th>
 
 
 
@@ -50,7 +51,7 @@
                                     <td>{{$user->name}} </td>
                                     <td>{{$user->email}}</td>
 
-                                    <td>{{$user->phone}}</td>
+                                    {{-- <td>{{$user->phone}}</td> --}}
                                     <td>{{$subscription->payment_date}}</td>
                                     <td>{{$subscription->subscription_end}}</td>
 
