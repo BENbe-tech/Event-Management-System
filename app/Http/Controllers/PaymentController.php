@@ -149,9 +149,119 @@ class PaymentController extends Controller
     }
 
 
-    public function shoketOrganizerPay(){
+    public function shoketOrganizerPay(Request $request){
 
-     echo "good";
+
+        $request->validate([
+
+            'provider' => 'required',
+            'amount'=>'required',
+            'phone'=>'required',
+            'type'=>'required',
+
+        ]);
+
+        $provider = $request->provider;
+        $amount = $request->amount;
+
+        if($amount >= 1000 ){
+        $phone = $request->phone;
+        $type = $request->type;
+
+        if($type == "Monthly" && $amount < 5000 ){
+            return back()->with('fail', 'Monthly subscription amount cannot be less than 5000');
+            // return response()->json(['success'=>'Monthly subscription amount cannot be less than 5000']);
+
+        }
+
+        if($type == "Yearly" && $amount < 60000){
+
+            return back()->with('fail', 'Yearly subscription amount cannot be less than 60000');
+            // return response()->json(['success'=>'Yearly subscription amount cannot be less than 60000']);
+        }
+
+
+       if($type == "Monthly"){
+           $newtime = Carbon::now()->addMonth();
+       }
+
+       if($type == "Yearly"){
+         $newtime = Carbon::now()->addYear();
+       }
+
+
+
+        $user_id = session('loginId');
+        $user = User::find($user_id);
+        $user_name = $user->name;
+        $user_email = $user->email;
+
+        $chargeResponse = Shoket::makePaymentRequest([
+            "amount" => $amount,
+            "customer_name" => $user_name,
+            "email" =>  $user_email,
+            "number_used" => $phone,
+            "channel" =>  $provider
+        ]);
+
+        //  dd($chargeResponse)  ;
+
+
+       $data = $chargeResponse['data'];
+       $customer = $chargeResponse['customer'];
+
+
+//    $referenceId = $chargeResponse['reference'];
+//    $response = Shoket::verifyPaymentRequest($referenceId, [
+//      "provider_name" => "Tigo",
+//      "provider_code" => "Tigo pesa"
+//      ]);
+    //   dd($response);
+
+       $amount = $data['amount'];
+       $channel = $data['channel'];
+       $reference_no =   $chargeResponse['reference'];
+       $number =  $data['number_used'];
+       $time = Carbon::now();
+
+
+     if ($data['payment_status'] == "Pending" ){
+
+        $sub = new Subscription();
+        $sub->payment_date = $time;
+        $sub->subscription_fee = $amount;
+        $sub->method = $channel;
+        $sub->subscription_type = $type;
+        $sub->phone_number = $number;
+        $sub->reference_no = $reference_no;
+        $sub->subscription_end = $newtime;
+        $sub-> user_id =  $user_id;
+        $res = $sub->save();
+
+
+     if($res){
+
+        $details = [
+            'title' => 'Dear '. $user_name.',',
+            'body1' => 'You have paid for '. $type.' subscription at '.$time.' to create and manage event,',
+            'body2' => 'Amount paid is Tsh '. $amount.' via '. $channel. ' phone number '.$number.' Payment reference number is '.$reference_no.'.',
+       ];
+
+          Mail::to($user_email)->send(new PaymentMail($details));
+
+          return back()->with('success','Payment done successful');
+          // return response()->json(['success'=>'Payment Done Successful']);
+     }
+    }
+     else{
+        return back()->with('fail', 'Payment Failed');
+        // return response()->json(['success'=>'Payment Failed']);
+     }
+
+    }else{
+
+        return back()->with('fail', 'Payment should not be below Tsh 1,000');
+    }
     }
 
 

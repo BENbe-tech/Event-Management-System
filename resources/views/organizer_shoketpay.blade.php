@@ -25,7 +25,7 @@
     <a href ="{{route('home')}} " class="btn btn-danger float-right">Back</a>
     </h4>
     <hr>
-    <form action="{{route('organizerpay')}}" method="post">
+    <form action="{{route('organizerpay2')}}" method="post">
         @if(Session::has('success'))
         <div class = "alert alert-success">{{Session::get('success')}}</div>
            @endif
@@ -117,7 +117,7 @@ jQuery(document).ready(function(){
              var phone =   $('#phone').val();
 
               jQuery.ajax({
-                url: "{{url('organizerpay')}}",
+                url: "{{url('organizerpay2')}}",
                  method: 'POST',
                  timeout:30000,
                  data: {

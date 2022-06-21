@@ -317,7 +317,7 @@ Route::post('/participantpay2',[PaymentController::class,'shoketParticipantPay']
 Route::post('/organizerpay2',[PaymentController::class,' shoketOrganizerPay'])->name('organizerpay2')->middleware('isLoggedIn');
 
 
-Route::get('/participant-payview2/{id}',[PaymentController::class,'shoketParticipantIndex2'])->name('participant-payview2')->middleware('isLoggedIn');
+Route::get('/participant-payview2/{id}',[PaymentController::class,'shoketParticipantIndex'])->name('participant-payview2')->middleware('isLoggedIn');
 
 
 Route::get('/organizer-payindex2',[PaymentController::class,'shoketOrganizerIndex'])->name('organizer-payindex2')->middleware('isLoggedIn');
