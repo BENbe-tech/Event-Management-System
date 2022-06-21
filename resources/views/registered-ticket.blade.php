@@ -33,6 +33,17 @@ for($i =0; $i<$count;$i++ ){
        $event_details = $events[$i]->eventDetails;
        $event_id = $events[$i]->id;
 
+       $amountpaid = App\Models\Payment::all()->where('event_id',$event_id)->where('user_id',$user_id)->sum('amount');
+         $amounttotal = App\Models\EventDetail::all()->where('event_id',$event_id)->pluck('price');
+
+         $price = $amounttotal[0];
+
+         if($price != NULL ){
+         $percent = ($amountpaid/ $price) * 100 ;
+         }
+
+      if($percent >= 100 || $price == NULL){
+
 ?>
             <tr>
                 <td><a href="{{route('ticket', $event_id)}}" class="title"><b>{{$events[$i]->event_title}}</b></a></td>
@@ -40,7 +51,7 @@ for($i =0; $i<$count;$i++ ){
             </tr>
 
      <?php
-}
+}}
      ?>
         </tbody>
     </table>
