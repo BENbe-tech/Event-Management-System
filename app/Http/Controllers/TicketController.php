@@ -15,7 +15,7 @@ class TicketController extends Controller
         $user = User::find($user_id);
         $events = $user->events;
 
-        return view('registered-ticket',compact('events'));
+        return view('registered-ticket',compact('events','user_id'));
 
     }
 
