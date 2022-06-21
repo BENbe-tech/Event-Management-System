@@ -62,7 +62,7 @@
 
         <div class="form-group">
             <label for="amount">Amount (in Tsh)</label><span class ="required"> *</span>
-            <input type = "name" class = "form-control" placeholder="200" name="amount" id="amount" value="{{old('amount')}}" required>
+            <input type = "name" class = "form-control" placeholder="1000" name="amount" id="amount" value="{{old('amount')}}" required>
             <span class = "text-danger">@error('amount'){{$message}} @enderror</span>
              </div>
 
