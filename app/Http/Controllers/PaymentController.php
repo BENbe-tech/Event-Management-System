@@ -41,6 +41,8 @@ class PaymentController extends Controller
 
         $provider = $request->provider;
         $amount = $request->amount;
+
+        if($amount >= 1000 ){
         $phone = $request->phone;
         $type = $request->type;
 
@@ -134,6 +136,11 @@ class PaymentController extends Controller
         // return response()->json(['success'=>'Payment Failed']);
      }
 
+    }else{
+
+        return back()->with('fail', 'Payment should not be below Tsh 1,000');
+    }
+
     }
 
 
@@ -161,6 +168,9 @@ class PaymentController extends Controller
 
         $provider = $request->provider;
         $amount = $request->amount;
+
+        if($amount >= 1000 ){
+
         $phone = $request->phone;
         $event_id = $request->event_id;
         $event = Event::find($event_id);
@@ -274,6 +284,11 @@ class PaymentController extends Controller
         return back()->with('fail', 'Payment Failed');
         // return response()->json(['success'=>'Payment Failed']);
      }
+
+    }
+    else{
+        return back()->with('fail', 'Payment should not be below Tsh 1,000');
+    }
 
 
     }

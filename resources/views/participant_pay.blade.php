@@ -74,6 +74,7 @@
 
           <p>Amount Paid: {{$amountpaid}}</p>
           <p>Amount Remaining: {{$amountremaining}}</p>
+          <p>Payment should be Tsh 1,000 and above</p>
 
       <div class ="form-group">
       {{-- <button class =" btn btn-block btn-primary" id="pay" type="submit">Pay</button> --}}

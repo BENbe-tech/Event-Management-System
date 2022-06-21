@@ -75,8 +75,9 @@
 
 
 
-          <p>Monthly Subscription:<b>60000</b></p>
-          <p>Yearly Subscription:  <b>5000</b></p>
+          <p>Yearly Subscription:<b>60,000</b></p>
+          <p>Monthly Subscription:  <b>5,000</b></p>
+          <p>Payment should be Tsh 1,000 and above</p>
 
       <div class ="form-group">
      {{-- <button class =" btn btn-block btn-primary" id="pay" type="submit">Pay</button> --}}
