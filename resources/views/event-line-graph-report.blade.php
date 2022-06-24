@@ -93,7 +93,7 @@
     plugins:{
         title: {
        display: true,
-       text: 'Events Participants Bar Chart',
+       text: 'Events Participants Line Chart',
        fontSize : 100,
        },
 
@@ -162,7 +162,7 @@
     plugins:{
         title: {
        display: true,
-       text: 'Events Registered Users Bar Chart',
+       text: 'Events Registered Users Line Chart',
        fontSize : 100,
        },
 
@@ -374,7 +374,7 @@ var lineChart  = new Chart(startmonthlineCanvas,{
   plugins:{
       title: {
      display: true,
-     text: 'Total event occuring in each month Bar Chart',
+     text: 'Total event occuring in each month Line Chart',
      fontSize : 100,
      },
 
@@ -445,7 +445,7 @@ var lineChart  = new Chart(createdmonthlineCanvas,{
   plugins:{
       title: {
      display: true,
-     text: 'Total event created in each month Bar Chart',
+     text: 'Total event created in each month Line Chart',
      fontSize : 100,
      },
 

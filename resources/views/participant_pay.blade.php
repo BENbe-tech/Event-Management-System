@@ -75,6 +75,16 @@
                         <input type="hidden"  id="event_id" name="event_id" value="{{$id}}">
 
 
+                        {{-- <div class='form-row row'>
+                            <div class='col-xs-12 form-group required'>
+                                <label class='control-label' >Email</label><span class ="required"> *</span> <input
+                                    class='form-control email'  name="email"  value="{{old('email')}}" type='email' required>
+                                    <span class = "text-danger">@error('email'){{$message}} @enderror</span>
+                                </div>
+                        </div> --}}
+
+
+
 
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>

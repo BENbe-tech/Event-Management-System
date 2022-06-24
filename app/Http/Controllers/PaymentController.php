@@ -83,9 +83,9 @@ class PaymentController extends Controller
         $chargeResponse =   Stripe\Charge::create ([
           "amount" => $amountdollar * 100,
           "currency" => "usd",
-          "source" => $request->stripeToken,
+        //   "source" => $request->stripeToken,
           "description" => "Ems payment",
-        //   "customer" => $user_email,
+          "customer" => "cus_Lw8uZC5lp72TzV",
      ]);
 
 
@@ -163,6 +163,7 @@ class PaymentController extends Controller
 
             'amount'=>'required',
 
+
         ]);
 
 
@@ -191,13 +192,25 @@ class PaymentController extends Controller
 
 
 
+
+        // $stripe = new \Stripe\StripeClient(
+        //     'sk_test_51KbHjnLuT9YuvaHTOuBxZ5oKPgXw3uabe5Av5krD4R3Yy68RVyWfuFloyTYVVlh89DKkWhSS0Mf2n6FgUJvKltjE00HMAJkXki'
+        //   );
+
+        //   $stripe->customers->create([
+        //     'description' => 'New EMS customer',
+        //     'email'       => $user_email,
+
+        //   ]);
+
         Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+
         $chargeResponse =   Stripe\Charge::create ([
           "amount" => $amountdollar * 100,
           "currency" => "usd",
-          "source" => $request->stripeToken,
+    //   "source" => $request->stripeToken,
           "description" => "Ems payment",
-          "customer" => $user_email,
+          "customer" => "cus_Lw8uZC5lp72TzV",
      ]);
 
 

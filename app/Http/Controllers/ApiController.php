@@ -116,31 +116,22 @@ class ApiController extends Controller
 
 
      public function loginUser(Request $request){
-
         $request->validate([
-
             'email'=>'required|email',
            'password' =>'required|min:8',
-
         ]);
           $user = User::where('email', '=', $request->email)->first();
           if($user){
              if(Hash::check($request->password,$user->password)){
-
                  $session_key =  md5(time());
-
                  $log = new Log();
                  $log->name  = $user->name;
                  $log->user_id = $user->id;
                  $log->session_key = $session_key;
-
                  $log->save();
                 //  $user_session = $user->id;
-
                  return response()->json(['session_key' => $session_key]);
-
              } else {
-
                  return response()->json(['info'=>'Password not matches.']);
              }
             }

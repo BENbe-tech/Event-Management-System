@@ -333,7 +333,7 @@ Route::get('/organizer-payindex2',[PaymentShoketController::class,'shoketOrganiz
 Route::get('/admin-dashboard',[AdminController::class,'adminIndex'])->name('admin-dashboard')->middleware('isadminLoggedIn');
 
 
-Route::get('/admin-subscribers',[AdminController::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isadminLoggedIn');
+Route::get('/admin-subscribers/{id}',[AdminController::class,'adminSubscribers'])->name('admin-subscribers')->middleware('isadminLoggedIn');
 
 
 Route::get('/admin-payments',[AdminController::class,'adminPayments'])->name('admin-payments')->middleware('isadminLoggedIn');
