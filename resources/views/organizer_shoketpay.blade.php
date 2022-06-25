@@ -22,7 +22,7 @@
 
 
     <h4>Pay for Subscription
-    <a href ="{{route('home')}} " class="btn btn-danger float-right">Back</a>
+    <a href ="{{route('home')}} " id = "pay" class="btn btn-danger float-right">Back</a>
     </h4>
     <hr>
     <form action="{{route('organizerpay2')}}" method="post">
