@@ -357,8 +357,9 @@ class RegisteredEventsController extends Controller
         // $mode->update();
 
         $event = Event::find($id);
-        $event_detail = EventDetail::find($event->id);
-        $start = $event_detail->starttime;
+        $event_detail = EventDetail::all()->where('event_id',$event->id)->pluck('starttime');
+
+        $start = $event_detail[0];
         $currentDateTime = Carbon::now();
         $newDateTime = $currentDateTime ->addHour(24);
 
@@ -376,6 +377,7 @@ class RegisteredEventsController extends Controller
               else{
 
                   return response()->json(['success'=>'failed to verify register for event first']);
+                //   return back()->with('fail','failed to verify register for event first');
               }
 
             $verify_id =  $participant->verify_attendance;
@@ -387,15 +389,18 @@ class RegisteredEventsController extends Controller
             if($res_event){
 
              return response()->json(['success'=>'verified attendance successfully']);
+            //  return back()->with('success','verified attendance successfully');
             }
             else{
 
                 return response()->json(['success'=>'failed to verify']);
+                // return back()->with('fail','failed to verify');
             }
            }
             else{
 
                 return response()->json(['success'=>'you have already verified']);
+                // return back()->with('success','you have already verified');
             }
 
         }
@@ -403,6 +408,7 @@ class RegisteredEventsController extends Controller
         else{
 
             return response()->json(['success'=>'you can only verify for event attendance atmost one day before the event']);
+            // return back()->with('fail','you can only verify for event attendance atmost one day before the event');
         }
 
 

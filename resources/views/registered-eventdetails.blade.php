@@ -205,6 +205,25 @@
                 <div class="modal-body">
 
 
+
+
+                    {{-- @if (Session::has('success'))
+                        <div class="alert alert-success text-center">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                            <p>{{ Session::get('success') }}</p>
+                        </div>
+                    @endif
+
+                    @if(Session::has('fail'))
+                    <div class = "alert alert-danger">
+                     <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+                       <p> {{Session::get('fail')}} </p>
+
+                    </div>
+                    @endif --}}
+
+
+
                     <form action="{{route('verifymode')}}" method="post">
 
                         <input type="hidden" id="event_id" name="event_id" value="{{$event->id}}">

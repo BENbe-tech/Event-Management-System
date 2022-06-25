@@ -114,7 +114,7 @@
 
      <div>
       <label for="price"><b>Price (Tsh)</b></label><br>
-      <input type="text" placeholder="price for paid event" name="price" id="price" value="{{ old('price') }}"  >
+      <input type="text" placeholder="5000" name="price" id="price" value="{{ old('price') }}"  >
       <span class = "text-danger">@error('price'){{$message}} @enderror</span>
      </div>
 

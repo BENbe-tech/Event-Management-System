@@ -236,6 +236,7 @@ class MyEventsController extends Controller
 
     }
         return response()->json(['success'=>'Reminder notifications sent']);
+        
         }
 
         else{
