@@ -370,7 +370,8 @@ class RegisteredEventsController extends Controller
         ->where('user_id',$user_id)->get();
 
 
-            if($participant!=[]){
+            if($participant!="[]"){
+
                 $participant_id = $participant[0]->id;
                 $participant = EventUser::find($participant_id);
               }
