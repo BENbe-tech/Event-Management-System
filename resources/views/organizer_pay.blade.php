@@ -101,7 +101,7 @@
                         <div class='form-row row'>
                             <div class='col-xs-12 form-group required'>
                                 <label class='control-label'>Name on Card</label> <input
-                                    class='form-control' size='4' type='text' name = "card">
+                                    class='form-control' placeholder="visa" size='4' type='text' name = "card">
                             </div>
                         </div>
 
@@ -109,7 +109,7 @@
                             <div class='col-xs-12 form-group card required'>
                                 <label class='control-label'>Card Number</label> <input
                                     autocomplete='off' class='form-control card-num' size='20'
-                                    type='text' name= "number">
+                                    type='text'  placeholder = "4242424242424242" name= "number">
                             </div>
                         </div>
 
