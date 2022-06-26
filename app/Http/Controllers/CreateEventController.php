@@ -86,9 +86,12 @@ class CreateEventController extends Controller
         $file->move('storage/ImageFolder/',$filename);
         // $path =  $request->file('image')->store('public/ImageFolder');
 
-        // $uploadedImageUrl = cloudinary()->upload($request->file('image')->getRealPath(),[
-        //     'folder' => 'Images',
-        // ])->getSecurePath();
+       
+
+        $uploadedImageUrl = Cloudinary::upload($file->getRealPath(),[
+            'folder' => 'Images',
+        ])->getSecurePath();
+
 
     }else{
         $filename = null;
@@ -102,10 +105,12 @@ class CreateEventController extends Controller
         $docfile->move('storage/DocumentFolder/',$docname);
         // $pathdoc =  $request->file('document')->store('public/DocumentFolder');
 
-        // $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document')->getRealPath(),
-        // [
-        //     'folder'=>'Documents',
-        // ])->getSecurePath();
+
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('file')->getRealPath(),
+        [
+            'folder'=>'Documents',
+        ])->getSecurePath();
+
 
          }else{
              $namedoc = null;
@@ -134,8 +139,8 @@ class CreateEventController extends Controller
         $eventdetail->startyear = substr( $request->start_date , 0, 4);
         $eventdetail->createdmonth = substr( $createddate , 6, 1);
         $eventdetail->createdyear =substr( $createddate, 0, 4) ;
-        // $eventdetail->image_cloud =  $uploadedImageUrl ;
-        // $eventdetail->document_cloud =  $uploadedDocumentUrl;
+        $eventdetail->image_cloud =  $uploadedImageUrl ;
+        $eventdetail->document_cloud =  $uploadedDocumentUrl;
 
         $res = $eventdetail->save();
     }

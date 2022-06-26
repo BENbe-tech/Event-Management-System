@@ -29,6 +29,18 @@ class PaymentShoketController extends Controller
     }
 
 
+    // public function shoketOrganizerIndex(){
+
+
+    //     $user_id = session('loginId');
+    //     $user = User::find($user_id);
+    //     $user_name = $user->name;
+    //     $user_email = $user->email;
+
+    //     return view('organizer_shoketpay',compact('user_name','user_email'));
+    // }
+
+
     public function shoketOrganizerPay(Request $request){
 
 
@@ -129,8 +141,8 @@ class PaymentShoketController extends Controller
 
           Mail::to($user_email)->send(new PaymentMail($details));
 
-          return back()->with('success','Payment done successful');
-          // return response()->json(['success'=>'Payment Done Successful']);
+          return back()->with('success','Wallet Push successful');
+          // return response()->json(['success'=>'Wallet Push successful']);
      }
     }
      else{
@@ -285,8 +297,8 @@ class PaymentShoketController extends Controller
       }
 
 
-        return back()->with('success','Payment done successful');
-        // return response()->json(['success'=>'Payment Done Successful']);
+        return back()->with('success','Wallet pushed successful');
+        // return response()->json(['success'=>'Wallet pushed Successful']);
 
      }
     }

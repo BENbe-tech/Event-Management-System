@@ -34,7 +34,9 @@
               @endif
        @csrf
 
+       {{-- <input type="hidden" id="email" name="email" value="{{$user_email}}">
 
+       <input type="hidden" id="user_name" name="user_name" value="{{$user_name}}"> --}}
 
        <div class="form-group">
        <label for="phone">Phone number</label><span class ="required"> *</span>
@@ -144,6 +146,49 @@ jQuery(document).ready(function(){
          }
                 });
               });
+
+
+
+
+//               jQuery('#pay').click(function(e){
+//               e.preventDefault();
+
+//               var type1 =  $('#type').val();
+//              var amount1 =  $('#amount').val();
+//              var provider1 =  $('#provider').val();
+//              var phone1 =   $('#phone').val();
+//              var user_name = $('#user_name').val();
+//              var user_email = $('#user_email').val();
+
+
+//               var myHeaders = new Headers();
+// myHeaders.append("Authorization", "Bearer sk_mLRoCaQElAUVlj");
+// myHeaders.append("Content-Type", "application/json");
+
+// var raw = JSON.stringify({
+//   "amount": amount1,
+//   "customer_name": user_name,
+//   "email": user_email,
+//   "number_used": phone1,
+//   "channel": provider1
+// });
+
+// var requestOptions = {
+//   method: 'POST',
+//   headers: myHeaders,
+//   body: raw,
+//   redirect: 'follow'
+// };
+
+// fetch("https://api.shoket.co/v1/charge/", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));
+
+
+// });
+
+
 
             });
 </script>
