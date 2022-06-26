@@ -62,6 +62,18 @@ class CreateEventController extends Controller
             'entry_mode' => 'required',
         ]);
 
+        $uploadedImageUrl = Cloudinary::upload($request->file('image')->getRealPath(),[
+            'folder' => 'Images',
+        ])->getSecurePath();
+
+
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+        [
+            'folder'=>'Documents',
+        ])->getSecurePath();
+
+
+
 //insertGetId used to get ID of inserted event
           $startdate = $request->start_date;
           $enddate= $request->end_date;
@@ -79,6 +91,8 @@ class CreateEventController extends Controller
 
       if($request->hasFile('image')){
 
+
+
         $name = $request->file('image')->getClientOriginalName();
         $file = $request->file('image');
         $extention = $file->getClientOriginalExtension();
@@ -86,17 +100,12 @@ class CreateEventController extends Controller
         $file->move('storage/ImageFolder/',$filename);
         // $path =  $request->file('image')->store('public/ImageFolder');
 
-       
-
-        $uploadedImageUrl = Cloudinary::upload($file->getRealPath(),[
-            'folder' => 'Images',
-        ])->getSecurePath();
-
-
     }else{
         $filename = null;
         $name =null;
     }
+
+
         if($request->hasFile('document')){
         $namedoc = $request->file('document')->getClientOriginalName();
 
@@ -106,16 +115,11 @@ class CreateEventController extends Controller
         // $pathdoc =  $request->file('document')->store('public/DocumentFolder');
 
 
-        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('file')->getRealPath(),
-        [
-            'folder'=>'Documents',
-        ])->getSecurePath();
-
-
          }else{
              $namedoc = null;
              $docname = null;
          }
+
          $createddate = Carbon::now();
         $eventdetail = new EventDetail();
         $eventdetail->category = $request->category;

@@ -36,6 +36,12 @@ class SessionController extends Controller
 
         //insertGetId used to get ID of inserted session
 
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+        [
+            'folder'=>'SessionDocuments',
+        ])->getSecurePath();
+
+
         $session_id = Session::insertGetId(
 	        ['name' => $request->sessiontitle,'event_id' => $request->event_id]
 	    );
@@ -69,6 +75,7 @@ class SessionController extends Controller
        $sessiondetail->speaker = $request->speaker;
        $sessiondetail->speaker_profile = $request->profile;
        $sessiondetail->session_id = $session_id;
+       $sessiondetail->document_cloud =  $uploadedDocumentUrl;
 
 
        $res = $sessiondetail->save();
@@ -150,6 +157,12 @@ public function edit($id,$event_id){
 
     ]);
 
+    $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+    [
+        'folder'=>'SessionDocuments',
+    ])->getSecurePath();
+
+
 
     $session_id    = $request->input('session_id');
     $sessiondetails_id  = $request->input('sessiondetails_id');
@@ -201,6 +214,7 @@ public function edit($id,$event_id){
     $sessiondetails->speaker =         $request->input('speaker');
     $sessiondetails->speaker_profile = $request->input('profile');
     $sessiondetails->session_id =        $request->input('session_id');
+    $sessiondetails->document_cloud =  $uploadedDocumentUrl;
 
 
     $sessiondetails->update();

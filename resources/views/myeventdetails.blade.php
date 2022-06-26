@@ -31,6 +31,7 @@ if($event_detail->price !=""){
 if ($event_detail->document_path!="") {
 
     $document_path = $event_detail->document_path;
+    $document_cloud = $event_detail->document_cloud;
     $document_value = "Download to view document";
 }
 
@@ -88,7 +89,9 @@ the user has registered. Also the buttons to delete and edit events
 <div class="card">
 <div class ="inline1">
     <div class = "image">
-  <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_detail->image_name}}" >
+  {{-- <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_detail->image_name}}" > --}}
+
+  <img src="{{$event_detail->image_cloud}}" alt="{{$event_detail->image_name}}" >
     </div>
 
     <div class="details" >
@@ -153,7 +156,8 @@ the user has registered. Also the buttons to delete and edit events
 @endif
 
    @if ($event_detail->document_path!="")
-   <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p>
+   {{-- <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p> --}}
+   <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_cloud)}}" class="change">{{ $document_value }}</a></p>
    @else
    <p style="padding-left: 20px;"><b>Document: </b> None</p>
    @endif

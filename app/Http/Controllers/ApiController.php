@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
 use App\Models\SessionDetail;
 use Illuminate\Support\Facades\DB;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 
 use Illuminate\Http\Request;
@@ -181,6 +182,17 @@ class ApiController extends Controller
             'entry_mode' => 'required',
         ]);
 
+        $uploadedImageUrl = Cloudinary::upload($request->file('image')->getRealPath(),[
+            'folder' => 'Images',
+        ])->getSecurePath();
+
+
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+        [
+            'folder'=>'Documents',
+        ])->getSecurePath();
+
+
 
           $startdate = $request->start_date;
           $enddate= $request->end_date;
@@ -246,6 +258,8 @@ class ApiController extends Controller
         $eventdetail->startyear = substr( $request->start_date , 0, 4);
         $eventdetail->createdmonth = substr( $createddate , 6, 1);
         $eventdetail->createdyear =substr( $createddate, 0, 4) ;
+        $eventdetail->image_cloud =  $uploadedImageUrl ;
+        $eventdetail->document_cloud =  $uploadedDocumentUrl;
 
         $res = $eventdetail->save();
     }
@@ -351,6 +365,14 @@ class ApiController extends Controller
 
         ]);
 
+
+
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+        [
+            'folder'=>'SessionDocuments',
+        ])->getSecurePath();
+
+
         //insertGetId used to get ID of inserted session
 
         $session_id = Session::insertGetId(
@@ -386,6 +408,7 @@ class ApiController extends Controller
        $sessiondetail->speaker = $request->speaker;
        $sessiondetail->speaker_profile = $request->profile;
        $sessiondetail->session_id = $session_id;
+       $sessiondetail->document_cloud =  $uploadedDocumentUrl;
 
        $res = $sessiondetail->save();
    }

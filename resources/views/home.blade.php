@@ -47,7 +47,8 @@ for($i=0 ; $i<$length; $i++ ){
 
 <div class="card">
     <div class = "image">
-  <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" >
+  {{-- <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" > --}}
+  <img src="{{ $dataDetail->image_cloud }}" alt="{{$dataDetail->image_name}}" >
     </div>
   <div class="details">
     <h5>{{$dataEvent->event_title}}</h5>
@@ -77,7 +78,8 @@ $event_id = $dataEvent->id;
 
 <div class="card">
     <div class = "image">
-  <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" >
+  {{-- <img src="{{ asset('storage/ImageFolder/'. $dataDetail->image_path) }}" alt="{{$dataDetail->image_name}}" > --}}
+  <img src="{{ $dataDetail->image_cloud }}" alt="{{$dataDetail->image_name}}" >
     </div>
   <div class="details">
     <h5>{{$dataEvent->event_title}}</h5>

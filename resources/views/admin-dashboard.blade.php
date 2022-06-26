@@ -37,7 +37,8 @@
 
     <div class="loader">
 
-        <img src="{{ asset('storage/ImageFolder/circles.svg') }}" alt="circles" >
+        {{-- <img src="{{ asset('storage/ImageFolder/circles.svg') }}" alt="circles" > --}}
+        <img src="https://res.cloudinary.com/emstz/image/upload/v1656231918/circles_nnr8wg.svg" alt="circles" >
 
         </div>
 {{-- header class used to display the navigation bar  --}}

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 use App\Notifications\SendEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use Carbon\Carbon;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 class MyEventsController extends Controller
 {
@@ -108,6 +109,19 @@ class MyEventsController extends Controller
             'entry_mode' => 'required',
         ]);
 
+
+        $uploadedImageUrl = Cloudinary::upload($request->file('image')->getRealPath(),[
+            'folder' => 'Images',
+        ])->getSecurePath();
+
+
+        $uploadedDocumentUrl = Cloudinary::uploadFile($request->file('document') ->getRealPath(),
+        [
+            'folder'=>'Documents',
+        ])->getSecurePath();
+
+
+
      $startdate = $request->start_date;
      $enddate= $request->end_date;
 
@@ -190,6 +204,8 @@ class MyEventsController extends Controller
         $eventdetails->speaker_profile=  $request->input('profile');
         $eventdetails->startmonth = substr( $request->input('start_date') , 6, 1);
         $eventdetails->startyear = substr( $request->input('start_date') , 0, 4);
+        $eventdetails->image_cloud =  $uploadedImageUrl ;
+        $eventdetails->document_cloud =  $uploadedDocumentUrl;
         $eventdetails->update();
 
 
@@ -236,7 +252,7 @@ class MyEventsController extends Controller
 
     }
         return response()->json(['success'=>'Reminder notifications sent']);
-        
+
         }
 
         else{

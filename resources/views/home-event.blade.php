@@ -78,7 +78,8 @@ $eventdetails_id = $event_detail->id;
 <div class="card">
     <div class ="inline1">
         <div class = "image">
-      <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_detail->image_name}}" >
+      {{-- <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_detail->image_name}}" > --}}
+      <img src="{{ $event_detail->image_cloud }}" alt="{{$event_detail->image_name}}" >
 
         </div>
 
