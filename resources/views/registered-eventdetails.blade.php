@@ -162,7 +162,7 @@
 
        @if ($event_detail->document_path!="")
        {{-- <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_path)}}" class="change">{{ $document_value }}</a></p> --}}
-       <p style="padding-left: 20px;"><b>Document: </b><a href="{{url('/download',$document_cloud)}}" class="change">{{ $document_value }}</a></p>
+        <p style="padding-left: 20px;"><b>Document: </b><a href="{{$document_cloud}}" download class="change">{{ $document_value }}</a></p>
        @else
        <p style="padding-left: 20px;"><b>Document: </b> None</p>
        @endif

@@ -172,6 +172,10 @@ Route::get('/participant.sessions/{id}',[RegisteredEventsController::class,'regi
 Route::get('/registeredevents-sessiondetails/{id}',[RegisteredEventsController::class,'showsessiondetails'])->name('registeredevents-sessiondetails')->middleware('isLoggedIn');
 
 
+Route::get('/registeredevents-sessiondetails2/{id}',[RegisteredEventsController::class,'showsessiondetails2'])->name('registeredevents-sessiondetails2')->middleware('isLoggedIn');
+
+
+
 Route::get('/session-participants/{event_id}/{user_id}/{session_id}',[RegisteredEventsController::class,'sessionParticipants'])->name('session-participants')->middleware('isLoggedIn');
 
 

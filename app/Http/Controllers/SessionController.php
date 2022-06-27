@@ -41,6 +41,7 @@ class SessionController extends Controller
             'folder'=>'SessionDocuments',
         ])->getSecurePath();
 
+        // dd($uploadedDocumentUrl);
 
         $session_id = Session::insertGetId(
 	        ['name' => $request->sessiontitle,'event_id' => $request->event_id]

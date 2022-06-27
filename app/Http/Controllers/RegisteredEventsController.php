@@ -275,6 +275,19 @@ class RegisteredEventsController extends Controller
       }
 
 
+
+      public function showsessiondetails2($id){
+
+        $session = Session::find($id);
+        $sessiondetails = $session->sessionDetails;
+        $event = $session->event;
+
+
+         return view('registered-sessiondetails2',compact('session','sessiondetails','event'));
+
+     }
+
+
       public function download(Request $request,$file){
 
          return response()->download(public_path('storage/SessionDocuments/'.$file));

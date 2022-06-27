@@ -17,7 +17,7 @@ and session report--}}
 if ($sessiondetails->document_path!="") {
 
 $document_path = $sessiondetails->document_path;
-$document_cloud =  $sessiondetails->document_cloud;
+$document_cloud = $sessiondetails->document_cloud;
 $document_value = "Download to view document";
 }
 
@@ -50,9 +50,20 @@ if($sessiondetails->description!=""){
         $description = "None";
     }
 
+    $session_id = $session->id;
+    $user_id = session('loginId');
+    $event_id = $event->id;
+
 
 ?>
 <div class="card">
+
+    @if(Session::has('success'))
+    <div class = "alert alert-success">{{Session::get('success')}}</div>
+       @endif
+       @if(Session::has('fail'))
+       <div class = "alert alert-danger">{{Session::get('fail')}}</div>
+          @endif
 
 <p style="padding-left: 20px;"><i class="fa fa-calendar" aria-hidden="true" ></i>{{$session->name}}</p>
 
@@ -80,15 +91,16 @@ if($sessiondetails->description!=""){
 
 <p style="padding-left: 20px;"><b>Venue: </b>{{$venue}}</p>
 
+
 <div class ="inline">
 <p style="padding-left: 20px;"><b>Speaker: </b>{{$speaker}}</p>
+
 @if($speaker != "None")
 
 <p><a style="padding-left: 20px;" href="#" data-toggle="modal" data-target="#exampleModal" class="btn_more"> view profile</a></p>
 @endif
 
 </div>
-
 
 @if($speaker != "None")
 <!-- Modal -->
@@ -115,93 +127,10 @@ if($sessiondetails->description!=""){
 @endif
 
 
-
 <p style="padding-left: 20px;"><b>Description: </b>{{$description}}</p>
 
-<?php
-$session_id = $session->id;
-$id = $event_id;
-?>
-
-<div class=" inline1" >
-    {{-- "{{url('session-participants/'.$event_id.'/'.$user_id.'/'.$session_id)}}" --}}
-    <a style="padding-left: 20px;" href="{{url('edit.session/'.$session_id.'/'.$id)}}" class="btn_more">
-      Edit session
-    </a>
-
-
-
-    <a style="padding-left: 20px;" id = "delete" href="{{route('delete.session',$session_id)}}" class="btn_more">
-      Cancel session
-    </a>
-
-    <a style="padding-left: 20px;" href="{{url('session-notify/'.$session_id.'/'.$id)}}" id="notification" class="btn_more">
-        Push Notification
-      </a>
-
-
-  </div>
 
 </div>
 
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"
-               integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-               crossorigin="anonymous">
-</script>
-
-
-<script>
-
-jQuery(document).ready(function(){
-
-
-    jQuery('#delete').click(function(e){
-          e.preventDefault();
-
-          if (confirm("Are you sure you want to cancel this session!    The session will be deleted automatically") == true) {
-
-
-          $.ajaxSetup({
-             headers: {
-                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-             }
-         });
-          jQuery.ajax({
-            url: "{{route('delete.session',$session_id)}}",
-             method: 'GET',
-             timeout:5000,
-             data: {
-                "_token": "{{ csrf_token() }}",
-             },
-             success: function(result){
-                alert(result.success);
-                window.location.href="{{route('sessions', $id)}}";
-             },
-
-             error: function(request, status, err) {
-        if (status == "timeout") {
-            alert("timeout: Problem with your internet connetion. too slow");
-         } else {
-
-            alert("error: " + request + status + err);
-         }
-       }
-
-            });
-
-        }else{
-
-      alert("Session not canceled");
-        }
-
-          });
-
-
-
-});
-
-</script>
 </body>
 @endsection

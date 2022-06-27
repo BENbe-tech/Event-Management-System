@@ -55,9 +55,12 @@ class MyEventsController extends Controller
 
     }
 //The download function is called when downloading document of the event
-    public function download(Request $request,$file){
+    public function download($file){
 
       return response()->download(public_path('storage/DocumentFolder/'.$file));
+    //   return response()->download(path($file));
+
+    //   return Storage::download($file);
     }
 
 

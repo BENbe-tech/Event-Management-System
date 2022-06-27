@@ -33,10 +33,10 @@
        foreach ($participant_sessions as $participant_session ){
 
        $x++;
-      
+
       ?>
             <tr>
-                <td><a href="{{route('registeredevents-sessiondetails', $participant_session->id)}}" class="title"><b>{{$participant_session->name}}</b></a></td>
+                <td><a href="{{route('registeredevents-sessiondetails2', $participant_session->id)}}" class="title"><b>{{$participant_session->name}}</b></a></td>
                 <td><b>{{$participant_session->sessionDetails->date}}</b></td>
                 <td><b>{{$participant_session->sessionDetails->start_time}}</b></td>
             </tr>
