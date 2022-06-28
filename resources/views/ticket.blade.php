@@ -15,6 +15,7 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 
 <?php
  $image_path = $event_details->image_path;
+ $image_cloud =  $event_details->image_cloud;
  $name =  $event->event_title;
 
 ?>
@@ -27,7 +28,8 @@ Inspired by: https://dribbble.com/shots/1166639-Movie-Ticket/attachments/152161
 	</div>
 	<div class="poster">
 		{{-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/25240/only-god-forgives.jpg" alt="Movie: Only God Forgives" /> --}}
-        <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_details->image_name}}" >
+        {{-- <img src="{{ asset('storage/ImageFolder/'.$image_path) }}" alt="{{$event_details->image_name}}" > --}}
+        <img src="{{$image_cloud}}" alt="{{$event_details->image_name}}" >
     </div>
 	<div class="info">
 	<table>
