@@ -157,7 +157,7 @@ $eventdetails_id = $event_detail->id;
             @endif
 
 
-            <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" id = "calenda" class="btn_more">
+            <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" id = "calendar" class="btn_more">
                 Add to Calendar
             </a>
           </div>
