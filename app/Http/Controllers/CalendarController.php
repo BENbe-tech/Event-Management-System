@@ -27,9 +27,9 @@ class CalendarController extends Controller
 
       $eventdetails_id = $id;
       $eventdetails =  EventDetail::find( $eventdetails_id );
-      $user_id = session('loginId');
-      $user = User::find($user_id);
-      $email = $user->email;
+    //   $user_id = session('loginId');
+    //   $user = User::find($user_id);
+    //   $email = $user->email;
       $starttime = $eventdetails->starttime;
       $endtime = $eventdetails->endtime;
 
