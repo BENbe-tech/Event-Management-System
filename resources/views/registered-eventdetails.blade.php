@@ -243,7 +243,7 @@
                           <span class = "text-danger">@error('mode'){{$message}} @enderror</span>
                           </div>
 
-                          <button class =" btn btn-block btn-primary" id="verifymod" type="submit">Verify Attendance</button>
+                          <button class =" btn btn-block btn-primary" id="verifymode" type="submit">Verify Attendance</button>
 
                       </form>
 
