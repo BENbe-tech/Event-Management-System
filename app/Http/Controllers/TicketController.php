@@ -35,7 +35,7 @@ class TicketController extends Controller
         // ->format('png')
         // ->generate('ItSolutionStuff.com', public_path('storage/ImageFolder/qrcode.png'));
 
-        $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
+        $ticket = Ticket::all()->where('event_id', $event_id)->where('user_id',$user_id)->pluck('reference_no');
 
 
         if($ticket == "[]")

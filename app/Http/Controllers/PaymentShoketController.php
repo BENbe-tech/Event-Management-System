@@ -256,12 +256,13 @@ class PaymentShoketController extends Controller
         $qr = md5($time);
 
         $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
-
+        $count = count($ticket);
         if($ticket == "[]")
         {
-             $number = 0;
+             $number = 1;
         }else{
-            $number = $ticket[0] + 1 ;
+        
+            $number = $ticket[$count-1] + 1 ;
         }
 
         $ticket = new Ticket();
