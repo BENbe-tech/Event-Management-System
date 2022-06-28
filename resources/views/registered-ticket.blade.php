@@ -39,9 +39,14 @@ for($i =0; $i<$count;$i++ ){
 
          $price = $amounttotal[0];
 
+
+
          if($price != NULL ){
          $percent = ($amountpaid/ $price) * 100 ;
+         }else{
+            $percent = 0;
          }
+
 
       if($percent >= 100 || $price == NULL){
 
