@@ -202,9 +202,9 @@ the user has registered. Also the buttons to delete and edit events
 <div class = "report">
 
     <div class=" inline" >
-<a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" id = "calendar" >
+{{-- <a style="padding-left: 20px;" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" id = "calendar" >
     Add to calendar
-  </a>
+  </a> --}}
 
 
   <a style="padding-left: 20px;" href="{{route('notify',$event_id)}}" id="notification" class="btn_more">

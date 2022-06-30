@@ -317,9 +317,9 @@
       </a>
      @endif
 
-    <a style="padding-left: 20px;" id = "calendar" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
+    {{-- <a style="padding-left: 20px;" id = "calendar" href="{{url('addtocalendar/'. $title.'/'.$eventdetails_id)}}" class="btn_more1" >
         Add to calendar
-      </a>
+      </a> --}}
 
     </div>
 

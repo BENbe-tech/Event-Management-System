@@ -55,7 +55,7 @@
 
                     <div class ="form-group">
                    <label for="phone">Enter a Phone number:</label>
-                   <input type="tel" class="form-control" placeholder="+255-656-400-900" id="phone" name="phone"  value="{{ old('phone') }}" required autocomplete="phone">
+                   <input type="tel" class="form-control" placeholder="255656400900" id="phone" name="phone"  value="{{ old('phone') }}" required autocomplete="phone">
                    <span class = "text-danger">@error('phone'){{$message}} @enderror</span>
 
 

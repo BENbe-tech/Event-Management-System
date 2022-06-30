@@ -55,7 +55,7 @@
       <option value = "Tigo" selected>Tigo</option>
       <option value = "Vodacom" >Vodacom</option>
       <option value = "Airtel" >Airtel</option>
-      <option value = "TTCL" >TTCL</option>
+      {{-- <option value = "TTCL" >TTCL</option> --}}
         </select>
         <span class = "text-danger">@error('provider'){{$message}} @enderror</span>
         </div>
