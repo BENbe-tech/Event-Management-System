@@ -14,6 +14,8 @@ use App\Mail\TestMail;
 use App\Models\SessionDetail;
 use Illuminate\Support\Facades\DB;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use App\Models\Ticket;
+use App\Mail\FreeTicketMail;
 
 
 use Illuminate\Http\Request;
@@ -131,6 +133,7 @@ class ApiController extends Controller
                  $log->session_key = $session_key;
                  $log->save();
                 //  $user_session = $user->id;
+                $request->session()->put('loginId',$user->id);
                  return response()->json(['session_key' => $session_key]);
              } else {
                  return response()->json(['info'=>'Password not matches.']);
@@ -151,6 +154,11 @@ class ApiController extends Controller
         if($log != "[]"){
 
             DB::delete('delete from logs where session_key = ?',[$session_key]);
+
+            if(Session::has('loginId')){
+                Session::pull('loginId');
+             }
+
             return response()->json(['success'=>'Logged out successfully']);
 
         }
@@ -322,7 +330,11 @@ class ApiController extends Controller
         $event_title = $event->event_title;
         $event_details = $event->eventDetails;
         $start_date = $event_details->starttime;
+        $entry_mode = $event_details->entry_mode;
 
+        $link = url('ticket/'.$event_id);
+
+        if($entry_mode == "paid"){
 
         $details = [
             'title' => 'Dear '. $name.',',
@@ -335,6 +347,54 @@ class ApiController extends Controller
        ];
 
           Mail::to($email)->send(new TestMail($details));
+
+        }
+
+        if($entry_mode == "free"){
+
+
+
+
+            $time = time();
+            $qr = md5($time);
+
+            $ticket = Ticket::all()->where('event_id', $event_id)->pluck('reference_no');
+            $count = count($ticket);
+
+            if($ticket == "[]")
+
+            {
+                 $number = 1;
+            }else{
+                $number = $ticket[$count-1] + 1 ;
+            }
+
+            $ticket = new Ticket();
+            $ticket->barcode_no = $qr;
+            $ticket->event_id = $event_id;
+            $ticket->user_id = $user_id;
+            $ticket->amount   =  "free";
+            $ticket->reference_no = $number;
+
+            $ticket->save();
+
+
+            $details = [
+                'title' => 'Dear '. $name.',',
+
+                'body1' => 'You have registered for ',
+                'body2' => ' event which will commence on ',
+                'body3' => ' as planned. Verify on our page for attendance,one day before the event commence',
+                'event_title' => $event_title,
+                'date' => $start_date,
+                'link' => $link,
+           ];
+
+           Mail::to($email)->send(new FreeTicketMail($details));
+
+        }
+
+
 
 
         return response()->json(['success'=>'You have registered successfuly to this event']);
